@@ -2,7 +2,7 @@
   <div class="results container-fluid">
     <div class="row justify-content-center" v-if="!state.loading">
       <div class="col-md-8 col-12 p-md-5">
-        <div class="shadow bg-light text-center m-3 p-md-5 p-4">
+        <div class="shadow rounded bg-light text-center m-3 p-md-5 p-4">
           <h2><u> You have selected a {{ state.character.race }} {{ state.character.job }}!</u> </h2>
           <!-- <div v-if="state.languages.choose > 0 && state.languages < state.languagess.from.length">
             <h3>You can learn {{ state.languagess.choose }} additional languages!</h3>
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="col-4 d-md-block d-none bg-primary p-5 pt-5">
-        <div class="shadow bg-light text-center m-3 p-5">
+        <div class="shadow rounded bg-light text-center m-3 p-5">
           <h2><u>Character Profile</u></h2>
           <h3>Party Role: {{ state.character.role }}</h3>
           <h3>Play Style: {{ state.character.style }}</h3>

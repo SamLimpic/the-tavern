@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-4 col-12 py-md-0 py-3">
-    <img :src="state.character.imgUrl" class="img-fluid" alt="">
+    <img :src="state.character.imgUrl" class="img-fluid bg-warning p-1 shadow rounded" alt="">
   </div>
   <div class="col-md-6 col-12 text-left">
     <h2><u> <span class="editName" @click.stop="" spellcheck="false" contenteditable="true" @blur="editName"> {{ state.character.name || 'Add Name' }}</span> </u></h2>
@@ -23,7 +23,7 @@
       </div>
     </div> -->
   <div class="col-12 mt-md-5">
-    <h2><u>{{ state.character.name }}'s Abilities</u></h2>
+    <h2><u>{{ state.character.name }}'s Ability Scores</u></h2>
     <div class="row mt-md-3">
       <StatsComponent v-for="(s, key) in state.character.scores" :key="key" :stat-prop="s" />
     </div>

@@ -28,11 +28,6 @@ const routes = [
     beforeEnter: authGuard
   },
   {
-    path: '/dungeon-test',
-    name: 'DungeonTest',
-    component: loadPage('DungeonTestPage')
-  },
-  {
     path: '/access-test',
     name: 'AccessTest',
     component: loadPage('AccessTestPage')

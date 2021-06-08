@@ -24,13 +24,13 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'DungeonTest' }" class="nav-link">
-            Dungeon Test
+          <router-link :to="{ name: 'Account' }" class="nav-link">
+            Account
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link :to="{ name: 'AccessTest' }" class="nav-link">
-            Accessibility
+          <router-link :to="{ name: 'About' }" class="nav-link">
+            About
           </router-link>
         </li>
       </ul>

@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-dark shadow mt-4 py-1" v-if="state.equipment === indexProp">
+  <div class="bg-dark shadow rounded mt-4 py-1" v-if="state.equipment === indexProp">
     <h3 class="text-center text-light pt-3">
       <u> Set {{ indexProp + 1 }}</u>
     </h3>

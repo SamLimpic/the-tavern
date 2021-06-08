@@ -26,10 +26,10 @@
         <RecComponent />
       </div>
       <div class="TavernKeeper col-4 d-md-block d-none bg-primary p-xl-5">
-        <div class="shadow bg-light text-center m-3 p-5">
-          <div>
+        <div class="shadow rounded bg-light text-center m-3 p-5">
+          <!-- <div>
             <img src="https://ibb.co/7jQxfhV" alt="Friendly Tavern Keeper">
-          </div>
+          </div> -->
           <i>You must be new in town. Let me know if you have any questions!</i>
           <div class="row justify-content-center">
             <div class="col-12 text-center my-2">

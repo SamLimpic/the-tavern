@@ -1,11 +1,11 @@
 <template>
   <div class="account container-fluid">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center h-100">
       <div class="col-md-8 d-md-block d-none p-md-5">
-        <div class="row justify-content-between shadow bg-light text-center m-3 p-md-5 p-4" v-if="state.activeCharacter.job">
+        <div class="row justify-content-between shadow rounded bg-light text-center m-3 p-md-5 p-4" v-if="state.activeCharacter.job">
           <ActiveCharacter />
         </div>
-        <div class="row justify-content-between shadow bg-light text-center m-3 p-md-5 p-4" v-else>
+        <div class="row justify-content-between shadow rounded bg-light text-center m-3 p-md-5 p-4" v-else>
           <div class="col-12">
             <h1 class=" text-center">
               Please select a Character for more details
@@ -13,9 +13,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-4 col-12 bg-primary sidebar p-md-5 pt-md-5">
-        <div class="shadow bg-light text-center m-md-3 mx-1 my-3 p-md-5 p-3" v-if="state.user.isAuthenticated && state.characters">
-          <h2><u>Your Characters</u></h2>
+      <div class="col-md-4 col-12 bg-primary h-100 p-md-5">
+        <div class="shadow rounded bg-light text-center mx-md-3 mx-1 p-md-4 p-3" v-if="state.user.isAuthenticated && state.characters">
+          <h2 class="m-0 p-0">
+            <u>Your Characters</u>
+          </h2>
           <CharacterListComponent v-for="c in state.characters" :key="c.id" :character="c" />
         </div>
       </div>
@@ -64,8 +66,5 @@ export default {
 
  button {
    font-size: 1.5rem;
- }
- @media(min-width: 768px){
-
  }
 </style>

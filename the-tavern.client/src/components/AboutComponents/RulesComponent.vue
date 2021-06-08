@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow bg-light text-center m-3 p-md-5 p-4">
+  <div class="shadow rounded bg-light text-center m-3 p-md-5 p-4">
     <div class="StartingComponent">
       <h2><u>DnD Rules</u></h2>
       <h3>

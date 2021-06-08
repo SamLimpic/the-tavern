@@ -1,7 +1,7 @@
 <template>
   <!-- TODO get the toggle to dissappear on anything larger than a medium -->
   <div class="row justify-content-center">
-    <div class="col-12">
+    <div class="col-12 mt-3">
       <button type="button" class="btn btn-lg btn-dark w-100" @click="setActiveCharacter(character.id)">
         <h3>
           <u>{{ character.name }}</u>

@@ -1,8 +1,8 @@
 <template>
   <div class="home container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-12 p-md-5">
-        <div class="shadow bg-light text-center m-3 p-md-5 p-4">
+    <div class="row justify-content-center h-100">
+      <div class="col-md-8 col-12 p-md-5 shadow">
+        <div class="shadow rounded bg-light text-center m-3 p-md-5 p-4">
           <h2><u>Welcome Weary Traveller!</u></h2>
           <p>
             The Tavern is an interactive character creation experience for Dungeons and Dragons 5th Edition, designed for aspiring adventurers!
@@ -35,14 +35,16 @@
           </div>
         </div>
       </div>
-      <div class="col-4 d-md-block d-none bg-primary sidebar p-5 pt-5">
-        <div class="shadow bg-light text-center m-3 p-5" v-if="state.user.isAuthenticated && state.characters">
-          <h2><u>Your Characters</u></h2>
+      <div class="col-4 d-md-block d-none bg-primary shadow h-100 p-5 pt-5">
+        <div class="shadow rounded bg-light text-center m-3 p-5" v-if="state.user.isAuthenticated && state.characters">
+          <h2 class="m-0 p-0">
+            <u>Your Characters</u>
+          </h2>
           <router-link :to="{name: 'Account'}">
             <CharacterListComponent v-for="c in state.characters" :key="c.id" :character="c" />
           </router-link>
         </div>
-        <div class="shadow bg-light text-center m-3 p-5" v-else>
+        <div class="shadow rounded bg-light text-center m-3 p-5" v-else>
           <h2>Log in to view your character list!</h2>
         </div>
       </div>

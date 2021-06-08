@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow bg-light text-center m-3 p-md-5 p-4">
+  <div class="shadow rounded bg-light text-center m-3 p-md-5 p-4">
     <div>
       <h2><u>DnD Character Backgrounds</u></h2>
       <h3>

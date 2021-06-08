@@ -5,7 +5,7 @@
         <QuestionComponent />
       </div>
       <div class="col-4 d-md-block d-none bg-primary p-5 pt-5">
-        <div class="shadow bg-light text-center m-3 p-5">
+        <div class="shadow rounded bg-light text-center m-3 p-5">
           <h2><u>Progress</u></h2>
           <!-- The value of the 'Style' & aria-valuenow attributes will be tied to the Index of our question Array at current question -->
           <div id="questions results" class="progress mb-4" style="height: 2rem">

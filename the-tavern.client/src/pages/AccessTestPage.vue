@@ -5,7 +5,7 @@
         <h2 class="my-3">
           <u> Accessibility Test Page </u>
         </h2>
-        <div class="row justify-content-around p-3 my-3 shadow bg-light">
+        <div class="row justify-content-around p-3 my-3 shadow rounded bg-light">
           <div class="col-md-2 col-12 my-2">
             <button type="button" class="btn btn-lg btn-primary">
               Primary
@@ -37,7 +37,7 @@
             </button>
           </div>
         </div>
-        <div class="row justify-content-around p-3 my-3 shadow bg-light">
+        <div class="row justify-content-around p-3 my-3 shadow rounded bg-light">
           <div class="col-md-2 col-12 my-2">
             <button type="button" class="btn btn-lg btn-outline-primary">
               Primary
@@ -70,7 +70,7 @@
           </div>
         </div>
         <div class="row justify-content-around">
-          <div class="col-10 shadow bg-light p-3 my-3">
+          <div class="col-10 shadow rounded bg-light p-3 my-3">
             <h3><u>Header On Light Background</u></h3>
             <h4><b>Approriate Header Hierarchy</b></h4>
             <h5><i>And Various Font Formats</i></h5>
