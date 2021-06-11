@@ -2,7 +2,7 @@
   <div>
     <div v-if="state.role">
       <h3 class="mb-0 text-left">
-        {{ attributeProp }}
+        {{ attributeProp[0].toUpperCase() + attributeProp.slice(1) }}
       </h3>
       <div class="progress mb-3" style="height: 1.5rem">
         <div :class="'progress-bar ' + state.colors[attributeProp]"
@@ -17,7 +17,7 @@
 
     <div v-else>
       <h3 class="mb-0 text-left">
-        {{ attributeProp }}
+        {{ attributeProp[0].toUpperCase() + attributeProp.slice(1) }}
       </h3>
       <div class="progress mb-3" style="height: 1.5rem">
         <div :class="'progress-bar ' + state.colors[attributeProp]"

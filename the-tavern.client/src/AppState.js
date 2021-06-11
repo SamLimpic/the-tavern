@@ -125,5 +125,6 @@ export const AppState = reactive({
     }
   },
   activeNum: 0,
+  chooseAbilities: [],
   chooseScores: []
 })

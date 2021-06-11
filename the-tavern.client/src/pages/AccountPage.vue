@@ -14,7 +14,7 @@
         </div>
       </div>
       <div class="col-md-4 col-12 bg-primary h-100 p-md-5">
-        <div class="shadow rounded bg-light text-center mx-md-3 mx-1 p-md-4 p-3" v-if="state.user.isAuthenticated && state.characters">
+        <div class="shadow rounded bg-light text-center m-3 my-md-3 my-4 p-md-4 p-3" v-if="state.user.isAuthenticated && state.characters">
           <h2 class="m-0 p-0">
             <u>Your Characters</u>
           </h2>

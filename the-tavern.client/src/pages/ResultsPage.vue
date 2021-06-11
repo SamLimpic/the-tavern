@@ -1,6 +1,6 @@
 <template>
   <div class="results container-fluid">
-    <div class="row justify-content-center" v-if="!state.loading">
+    <div class="row justify-content-center h-100" v-if="!state.loading">
       <div class="col-md-8 col-12 p-md-5">
         <div class="shadow rounded bg-light text-center m-3 p-md-5 p-4">
           <h2><u> You have selected a {{ state.character.race }} {{ state.character.job }}!</u> </h2>
@@ -22,20 +22,21 @@
               <ChoicesComponent v-for="(c, key) in state.job.equipment[0].choices" :key="key" :choice-prop="c" :index-prop="key" />
             </div>
           </div>
+          <div v-else-if="state.chooseAbilities && state.chooseAbilities.length > state.abilities">
+            <h3>Time to choose some of your abilities!</h3>
+            <div class="row justify-content-around">
+              <AbilityComponent v-for="a in state.chooseAbilities" :key="a" :ability-prop="a" />
+            </div>
+          </div>
           <div v-else>
-            <div v-if="state.chooseScores && state.mods > state.modChoice">
-              <h3>Now assign your {{ state.mods }} Ability Modifiers!</h3>
-              <div class="row justify-content-around">
-                <AbilityModsComponent v-for="m in state.chooseScores" :key="m" :mod-prop="m" />
-              </div>
+            <div class="row justify-content-around" v-if="state.chooseScores && state.mods > state.modChoice">
+              <AbilityModsComponent v-for="m in state.chooseScores" :key="m" :mod-prop="m" />
             </div>
-            <div>
-              <AbilityScore />
-            </div>
+            <AbilityScore />
           </div>
         </div>
       </div>
-      <div class="col-4 d-md-block d-none bg-primary p-5 pt-5">
+      <div class="col-4 d-md-block d-none bg-primary h-100 p-5 pt-5">
         <div class="shadow rounded bg-light text-center m-3 p-5">
           <h2><u>Character Profile</u></h2>
           <h3>Party Role: {{ state.character.role }}</h3>
@@ -65,12 +66,14 @@ export default {
       activeCharacter: computed(() => AppState.activeCharacter),
       job: computed(() => AppState.job),
       chooseScores: computed(() => AppState.chooseScores),
+      chooseAbilities: computed(() => AppState.chooseAbilities),
       skills: computed(() => AppState.count.skills),
       equipment: computed(() => AppState.count.equipment),
       languages: computed(() => AppState.count.languages),
       mods: computed(() => AppState.count.mods),
       modChoice: computed(() => AppState.count.modChoice),
       score: computed(() => AppState.count.score),
+      abilities: computed(() => AppState.count.abilities),
       from: computed(() => AppState.languages)
     })
     onMounted(async() => {

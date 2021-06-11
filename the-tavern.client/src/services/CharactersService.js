@@ -15,6 +15,21 @@ class CharactersService {
     }
   }
 
+  getAbilities() {
+    const abilities = AppState.character.abilities
+    AppState.job.abilities.forEach(a => {
+      abilities.push(a)
+    })
+    AppState.race.abilities.forEach(a => {
+      abilities.push(a)
+    })
+    abilities.forEach(a => {
+      if (a.choose !== undefined) {
+        AppState.chooseAbilities.push(a)
+      }
+    })
+  }
+
   getAbilityModifiers() {
     const mods = AppState.race.scores
     mods.forEach(m => {
@@ -106,7 +121,7 @@ class CharactersService {
       imgUrl: 'http://www.fillmurray.com/g/300/300',
       scores: AppState.characterScores,
       languages: race.languages,
-      // abilities: job.abilities,
+      abilities: [],
       spellcasting: {
         spellAbility: job.spellcasting.ability,
         totalSpells: job.spellcasting.spells,
@@ -128,6 +143,9 @@ class CharactersService {
         tools: job.tools
       }
     }
+
+    this.getAbilities()
+    console.log(AppState.character)
   }
 
   async saveCharacter(body) {

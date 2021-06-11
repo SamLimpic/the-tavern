@@ -1,9 +1,13 @@
 <template>
   <div class="row">
-    <div class="DiceImg col-12 text-center" v-if="state.bool">
+    <div class="DiceImg col-12 text-center" v-if="state.mods > state.modChoice">
+      <h3>Now assign your {{ state.mods }} Ability Modifiers!</h3>
+      <i class="fas fa-dice-five fa-10x text-warning my-4"></i>
+    </div>
+    <div class="DiceImg col-12 text-center" v-else-if="state.bool">
       <h3>Now you just need to roll your Ability Scores!</h3>
       <i class="fas fa-dice-five fa-10x text-warning my-4" @click=" diceRoll()"></i>
-      <h3>Click the dice to generate your ability scores below:</h3>
+      <h3>Click the dice to generate your Scores below:</h3>
     </div>
     <div class="DiceImg col-12 text-center" v-else-if="state.score < 6">
       <i class="fas fa-dice-d20 text-danger fa-10x my-4"></i>
@@ -19,7 +23,6 @@
   <div class="row" v-if="state.score < 6">
     <DiceNum v-for="(d, key) in state.activeScores" :key="key" :dice-props="d" :index-prop="key" />
   </div>
-
   <div class="row mt-2 text-center">
     <StatsComponent v-for="(s, key) in state.characterScores" :key="key" :stat-prop="s" />
   </div>
@@ -41,6 +44,9 @@ export default {
       abilityScore: computed(() => AppState.abilityScore),
       activeScores: computed(() => AppState.activeScores),
       characterScores: computed(() => AppState.characterScores),
+      chooseScores: computed(() => AppState.chooseScores),
+      mods: computed(() => AppState.count.mods),
+      modChoice: computed(() => AppState.count.modChoice),
       score: computed(() => AppState.count.score)
     })
     return {
@@ -50,7 +56,10 @@ export default {
         for (let i = 0; i < 6; i++) {
           const subRolls = []
           for (let j = 0; j < 4; j++) {
-            const num = Math.floor(Math.random() * 6 + 1)
+            let num = Math.floor(Math.random() * 6 + 1)
+            if (num === 1) {
+              num = Math.floor(Math.random() * 6 + 1)
+            }
             subRolls.push(num)
           }
           subRolls.sort((a, b) => b - a)

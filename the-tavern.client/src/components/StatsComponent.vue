@@ -16,9 +16,9 @@
       <h2 v-if="statProp.value > 0">
         {{ statProp.value + statProp.mod }}
       </h2>
-      <h5 v-if="statProp.mod > 0 && statProp.value < 1 ">
+      <h6 v-if="statProp.mod > 0 && statProp.value < 1 ">
         +{{ statProp.mod }}
-      </h5>
+      </h6>
     </div>
   </div>
 </template>
@@ -35,6 +35,7 @@ export default {
   },
   setup() {
     const state = reactive({
+      character: computed(() => AppState.character),
       abilityScore: computed(() => AppState.abilityScore),
       activeNum: computed(() => AppState.activeNum),
       activeScore: computed(() => AppState.activeScore)
@@ -85,5 +86,8 @@ h4 {
 }
 h5 {
   font-size: 3rem
+}
+h6 {
+  font-size: 2rem
 }
 </style>

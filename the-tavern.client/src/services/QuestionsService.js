@@ -223,6 +223,7 @@ class QuestionsService {
       equipment: 0,
       mods: 0,
       modChoice: 0,
+      abilities: 0,
       score: 0
     }
     AppState.tieBreakers = []

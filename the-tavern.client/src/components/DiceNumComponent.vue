@@ -1,5 +1,13 @@
 <template>
-  <div class="col-2 text-center">
+  <div class="col-2 d-md-block d-none text-center">
+    <div class="bg-light diceRoll" draggable="true" @dragstart="moveNum(diceProps, indexProp)">
+      <h3 v-if="diceProps > 0">
+        {{ diceProps }}
+      </h3>
+    </div>
+  </div>
+
+  <div class="col-4 d-md-none d-block text-center my-2">
     <div class="bg-light diceRoll" draggable="true" @dragstart="moveNum(diceProps, indexProp)">
       <h3 v-if="diceProps > 0">
         {{ diceProps }}

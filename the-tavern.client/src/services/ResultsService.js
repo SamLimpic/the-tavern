@@ -29,12 +29,12 @@ class ResultsService {
     AppState.background = res.data[0]
   }
 
-  // async getEquipment() {
-  //   const weapons = await api.get('api/weapons')
-  //   AppState.weapons = weapons.data
-  //   const armor = await api.get('api/armor')
-  //   AppState.armor = armor.data
-  // }
+  async getEquipment() {
+    const weapons = await api.get('api/weapons')
+    AppState.weapons = weapons.data
+    const armor = await api.get('api/armor')
+    AppState.armor = armor.data
+  }
 }
 
 export const resultsService = new ResultsService()

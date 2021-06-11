@@ -218,4 +218,12 @@ export default class Notification {
       text: 'Quite a fine choice!'
     })
   }
+
+  static expand(obj) {
+    Swal.fire(
+      `${obj.title}`,
+      `${obj.body}`,
+      'info'
+    )
+  }
 }
