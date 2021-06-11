@@ -145,7 +145,6 @@ class CharactersService {
     }
 
     this.getAbilities()
-    console.log(AppState.character)
   }
 
   async saveCharacter(body) {
