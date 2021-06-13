@@ -1,10 +1,10 @@
 <template>
   <div class="questions container-fluid">
-    <div class="row justify-content-center" v-if="state.activeQuestion && !state.loading">
+    <div class="row justify-content-center h-100" v-if="state.activeQuestion && !state.loading">
       <div class="col-md-8 col-12 p-md-5">
         <QuestionComponent />
       </div>
-      <div class="col-4 d-md-block d-none bg-primary p-5 pt-5">
+      <div class="col-4 d-md-block d-none bg-primary h-100 p-5 pt-5">
         <div class="shadow rounded bg-light text-center m-3 p-5">
           <h2><u>Progress</u></h2>
           <!-- The value of the 'Style' & aria-valuenow attributes will be tied to the Index of our question Array at current question -->
