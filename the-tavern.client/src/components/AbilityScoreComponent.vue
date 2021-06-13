@@ -56,10 +56,7 @@ export default {
         for (let i = 0; i < 6; i++) {
           const subRolls = []
           for (let j = 0; j < 4; j++) {
-            let num = Math.floor(Math.random() * 6 + 1)
-            if (num === 1) {
-              num = Math.floor(Math.random() * 6 + 1)
-            }
+            const num = Math.floor(Math.random() * 5 + 2)
             subRolls.push(num)
           }
           subRolls.sort((a, b) => b - a)

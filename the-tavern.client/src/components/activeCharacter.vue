@@ -4,11 +4,19 @@
       <StatsComponent v-for="(s, key) in state.character.scores" :key="key" :stat-prop="s" />
     </div>
   </div>
-  <div class="col-md-5 col-12 text-left py-md-0 py-3">
+  <div class="col-md-5 col-12 text-left position-relative py-md-0 py-3">
     <img :src="state.character.imgUrl" class="w-100 bg-warning p-1 shadow rounded" alt="">
+    <button
+      type="button"
+      class="btn btn-outline-warning btn-overlay"
+      aria-label="Edit Character"
+      @click="editCharacter"
+    >
+      <i class="fas fa-edit"></i>
+    </button>
   </div>
   <div class="col-md-7 col-12 text-left">
-    <h2><u> <span class="editName" @click.stop="" spellcheck="false" contenteditable="true" @blur="editName"> {{ state.character.name || 'Add Name' }}</span> </u></h2>
+    <h2><u> {{ state.character.name || 'Add Name' }} </u></h2>
     <h3>The {{ state.character.race }} {{ state.character.job }}</h3>
     <h3>{{ state.character.alignment }}</h3>
     <h4>{{ state.character.gender }}: {{ state.character.age }} Years Old</h4>
@@ -49,10 +57,11 @@ export default {
     })
     return {
       state,
-      async editName(event) {
+      async editCharacter() {
         try {
-          state.character.name = event.target.innerText
-          await charactersService.editName(state.character)
+          await Notification.editCharacter()
+          await charactersService.editCharacter(state.character)
+          Notification.toast('Your profile was updated!', 'success')
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }
@@ -70,5 +79,15 @@ export default {
 }
 img{
   max-width: 40vh;
+}
+
+.btn-overlay {
+  position: absolute;
+  border: none;
+  background: transparent;
+  transform: scaleX(-1);
+  font-size: 2rem;
+  left: 15px;
+  top: 5px;
 }
 </style>

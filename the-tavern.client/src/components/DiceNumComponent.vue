@@ -41,7 +41,6 @@ export default {
     })
     return {
       state,
-
       async moveNum(num, index) {
         AppState.activeNum = num
         AppState.activeScore = index

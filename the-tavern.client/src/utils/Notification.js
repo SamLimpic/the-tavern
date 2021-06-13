@@ -145,6 +145,7 @@ export default class Notification {
   }
 
   static async multiModal() {
+    // eslint-disable-next-line vue/one-component-per-file
     await Swal.mixin({
       title: "Don't forget personal information!",
       input: 'text',
@@ -225,5 +226,32 @@ export default class Notification {
       `${obj.body}`,
       'info'
     )
+  }
+
+  static async editCharacter() {
+    // eslint-disable-next-line vue/one-component-per-file
+    await Swal.mixin({
+      title: 'Edit your Profile Info',
+      input: 'text',
+      confirmButtonText: 'Next &rarr;',
+      progressSteps: [1, 2]
+    }).queue([
+      {
+        title: "Update your Character's Name",
+        icon: 'info',
+        inputPlaceholder: 'Name...'
+      },
+      {
+        title: "Update your Character's Picture",
+        icon: 'info',
+        input: 'text',
+        inputPlaceholder: 'Img Url...'
+      }
+    ]).then((result) => {
+      if (result.value) {
+        AppState.character.name = result.value[0]
+        AppState.character.imgUrl = result.value[1]
+      }
+    })
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center text-light">
+      <div class="d-flex flex-column text-light">
         <h1><span><i class="fas fa-dice-d20 text-warning"></i></span> The Tavern</h1>
       </div>
     </router-link>
@@ -33,6 +33,11 @@
             About
           </router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'AccessTest' }" class="nav-link">
+            Accessibility
+          </router-link>
+        </li>
       </ul>
       <span class="navbar-text">
         <button
@@ -54,7 +59,7 @@
               height="40"
               class="rounded"
             />
-            <span class="mx-3">{{ user.name }}</span>
+            <span class="mx-3 text-light text-shadow">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
@@ -123,6 +128,6 @@ a:hover {
   text-transform: uppercase;
 }
 .nav-item .nav-link.router-link-exact-active{
-  color: var(--warning);
+  color: #e3cb9b !important;
 }
 </style>

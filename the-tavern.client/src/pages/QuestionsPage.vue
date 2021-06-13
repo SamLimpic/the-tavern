@@ -11,14 +11,50 @@
           <div id="questions results" class="progress mb-4" style="height: 2rem">
             <div class="progress-bar bg-primary"
                  role="progressbar"
-                 :style="`width: ${state.count.question * 10}%`"
-                 :aria-valuenow="`${state.count.question * 10}`"
+                 :style="`width: ${(state.count.question * 10) + 2}%`"
+                 :aria-valuenow="`${(state.count.question * 10) + 2}`"
                  aria-valuemin="0"
                  aria-valuemax="100"
             ></div>
           </div>
-          <div>
+
+          <div v-if="state.role !== null">
+            <h3 class="text-left">
+              {{ state.role }}
+            </h3>
+            <!-- The value of the 'Style' & aria-valuenow attributes will be tied to the Index of our question Array at current question -->
+            <div id="questions results" class="progress mb-4" style="height: 2rem">
+              <div :class="'progress-bar ' + state.colors[state.role.toLowerCase()]"
+                   role="progressbar"
+                   :style="`width: ${state.attributes.role[state.role.toLowerCase()] * 33}%`"
+                   :aria-valuenow="`${state.attributes.role[state.role.toLowerCase()] * 33}`"
+                   aria-valuemin="0"
+                   aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+
+          <div v-if="state.style !== null">
+            <h3 class="text-left">
+              {{ state.style }}
+            </h3>
+            <!-- The value of the 'Style' & aria-valuenow attributes will be tied to the Index of our question Array at current question -->
+            <div id="questions results" class="progress mb-4" style="height: 2rem">
+              <div :class="'progress-bar ' + state.colors[state.style.toLowerCase()]"
+                   role="progressbar"
+                   :style="`width: ${state.attributes.style[state.style.toLowerCase()] * 33}%`"
+                   :aria-valuenow="`${state.attributes.style[state.style.toLowerCase()] * 33}`"
+                   aria-valuemin="0"
+                   aria-valuemax="100"
+              ></div>
+            </div>
+          </div>
+
+          <div v-if="state.role === null">
             <ProgressComponent v-for="(a, key, index) in state.attributes.role" :key="index" :attribute-prop="key" />
+          </div>
+
+          <div v-else-if="state.style === null">
             <ProgressComponent v-for="(a, key, index) in state.attributes.style" :key="index" :attribute-prop="key" />
           </div>
         </div>
@@ -44,7 +80,18 @@ export default {
       loading: true,
       activeQuestion: computed(() => AppState.activeQuestion),
       attributes: computed(() => AppState.attributes),
-      count: computed(() => AppState.count)
+      count: computed(() => AppState.count),
+      role: computed(() => AppState.role),
+      style: computed(() => AppState.style),
+      colors: {
+        tank: 'bg-danger',
+        damage: 'bg-warning',
+        support: 'bg-success',
+        utility: 'bg-info',
+        weapons: 'bg-danger',
+        spells: 'bg-info',
+        balance: 'bg-success'
+      }
     })
     onMounted(async() => {
       try {

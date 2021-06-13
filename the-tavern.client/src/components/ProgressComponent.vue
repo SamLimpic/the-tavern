@@ -59,9 +59,8 @@ export default {
         support: 'bg-success',
         utility: 'bg-info',
         weapons: 'bg-danger',
-        spells: 'bg-primary',
+        spells: 'bg-info',
         balance: 'bg-success'
-
       }
     })
     onMounted(async() => {

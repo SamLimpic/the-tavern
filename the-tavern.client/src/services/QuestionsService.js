@@ -142,10 +142,12 @@ class QuestionsService {
       if (type === 'Role') {
         AppState.activeQuestion = questions.style[0]
         AppState.count.question = 5
+        AppState.role = AppState.character[t]
       } else {
         await resultsService.getJob()
         AppState.activeQuestion = questions.trade[0]
         AppState.count.question = 8
+        AppState.style = AppState.character[t]
       }
       AppState.tieBreakers = []
     } else {
@@ -182,10 +184,10 @@ class QuestionsService {
       AppState.count[t] = attribute
       AppState.character[t] = string
     }
-    if (attribute === 2) {
+    if (Math.floor(attribute) === 2) {
       AppState.tieBreakers.push(string)
     }
-    if (attribute === 3 || AppState.activeQuestion === questions[questions.length - 2]) {
+    if (Math.floor(attribute) === 3 || AppState.activeQuestion === questions[questions.length - 2]) {
       AppState.count.question++
       AppState.activeQuestion = questions[questions.length - 1]
     }
@@ -204,17 +206,19 @@ class QuestionsService {
     // REVIEW put in a single place and reference (set a default)
     AppState.attributes = {
       role: {
-        tank: 0,
-        damage: 0,
-        support: 0,
-        utility: 0
+        tank: 0.05,
+        damage: 0.05,
+        support: 0.05,
+        utility: 0.05
       },
       style: {
-        weapons: 0,
-        spells: 0,
-        balance: 0
+        weapons: 0.05,
+        spells: 0.05,
+        balance: 0.05
       }
     }
+    AppState.role = null
+    AppState.style = null
     AppState.count = {
       role: 0,
       style: 0,

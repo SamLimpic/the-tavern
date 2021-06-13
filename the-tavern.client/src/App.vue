@@ -7,9 +7,9 @@
   </main>
   <footer>
     <div class="bg-dark text-light text-center pt-4 pb-3">
-      <h5>
-        Made with <span><i class="fas fa-dice-d20 text-warning"></i></span> by a bunch of nerds
-      </h5>
+      <h4>
+        Made with <span><i class="fas fa-dice-d20 text-warning px-1"></i></span> by a bunch of nerds
+      </h4>
     </div>
   </footer>
 </template>

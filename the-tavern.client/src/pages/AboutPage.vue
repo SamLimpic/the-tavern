@@ -33,41 +33,41 @@
           <i>You must be new in town. Let me know if you have any questions!</i>
           <div class="row justify-content-center">
             <div class="col-12 text-center my-2">
-              <button type="button" class="btn btn-primary w-100" title="classes" @click="toggle('classes')">
+              <button type="button" class="btn btn-dark w-75 py-2" title="classes" @click="toggle('classes')">
                 Classes
               </button>
             </div>
             <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-primary w-100" title="DnD races" @click="toggle('races')">
+              <button type="button" class="btn btn-dark w-75 py-2" title="DnD races" @click="toggle('races')">
                 <span class="w-100">
                   Races
                 </span>
               </button>
             </div>
             <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-primary w-100" title="backgrounds" @click="toggle('background')">
+              <button type="button" class="btn btn-dark w-75 py-2" title="backgrounds" @click="toggle('background')">
                 Backgrounds
               </button>
             </div>
             <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-primary w-100" title="equipment" @click="toggle('equipment')">
+              <button type="button" class="btn btn-dark w-75 py-2" title="equipment" @click="toggle('equipment')">
                 Equipment
               </button>
             </div>
             <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-primary w-100" title="basic rules" @click="toggle('rules')">
+              <button type="button" class="btn btn-dark w-75 py-2" title="basic rules" @click="toggle('rules')">
                 Basic Rules
               </button>
             </div>
             <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-primary w-100" title="terminology and definitions" @click="toggle('term')">
+              <button type="button" class="btn btn-dark w-75 py-2" title="terminology and definitions" @click="toggle('term')">
                 Terminology
               </button>
             </div>
             <i>Looking for something more specific? Here are some helpful resources.</i>
           </div>
           <div class="col-12 text-center my-2">
-            <button type="button" class="btn btn-primary w-100" title="terminology and definitions" @click="toggle('rec')">
+            <button type="button" class="btn btn-dark w-75 py-2" title="terminology and definitions" @click="toggle('rec')">
               Helpful Links
             </button>
           </div>

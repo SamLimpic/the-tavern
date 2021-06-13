@@ -157,7 +157,7 @@ class CharactersService {
     AppState.activeCharacter = AppState.characters.find(c => c.id === id)
   }
 
-  async editName(body) {
+  async editCharacter(body) {
     await api.put(`api/characters/${body.id}`, body)
   }
 }

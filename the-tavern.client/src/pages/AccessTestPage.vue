@@ -22,7 +22,7 @@
             </button>
           </div>
           <div class="col-md-2 col-12 my-2">
-            <button type="button" class="btn btn-lg btn-warning">
+            <button type="button" class="btn btn-lg btn-warning" disabled>
               Warning
             </button>
           </div>
@@ -54,7 +54,7 @@
             </button>
           </div>
           <div class="col-md-2 col-12 my-2">
-            <button type="button" class="btn btn-lg btn-outline-warning">
+            <button type="button" class="btn btn-lg btn-outline-warning" disabled>
               Warning
             </button>
           </div>
@@ -84,6 +84,6 @@
 
 <script>
 export default {
-  name: 'AccessTestPage'
+  name: 'AccessTest'
 }
 </script>
