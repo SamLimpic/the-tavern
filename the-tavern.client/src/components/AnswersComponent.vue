@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-6 col-12 p-md-3 p-3">
-    <button type="button" class="btn btn-lg btn-dark shadow rounded py-2 px-3" @click="select(answerProp.value, state.activeQuestion.type)">
+  <div class="col-md-6 col-12 px-4 py-md-4 py-2">
+    <button type="button" class="btn btn-lg btn-dark shadow rounded font-md w-100 p-3" @click="select(answerProp.value, state.activeQuestion.type)">
       {{ answerProp.body }}
     </button>
   </div>
@@ -44,9 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-button {
-  height: 10rem;
-  width: 100%;
-  font-size: 1.75rem;
+.btn {
+  height: 100%;
 }
 </style>

@@ -1,46 +1,12 @@
 <template>
   <div class="bg-dark shadow rounded mt-4 py-1" v-if="state.equipment === indexProp">
-    <h3 class="text-center text-light pt-3">
-      <u> Set {{ indexProp + 1 }}</u>
+    <h3 class="text-center text-light font-lg pt-3">
+      <u> Choose 1</u>
     </h3>
-    <div class="row justify-content-around my-2 px-1">
+    <div class="row justify-content-around m-2">
       <EquipSelectComponent v-for="(e, index, key) in choiceProp" :key="key" :equipment-prop="e" />
     </div>
   </div>
-
-  <!-- <div class="col-3 my-3" v-if="choiceProp.first">
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.first.weapon">
-        <u>Weapon</u> <br> {{ choiceProp.first.weapon[0] }}
-      </button>
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.first.armor">
-        <u>Armor</u> <br>{{ choiceProp.first.armor[0] }}
-      </button>
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.first.tool">
-        <u>Tool</u> <br>{{ choiceProp.first.tool[0] }}
-      </button>
-    </div>
-    <div class="col-3 my-3" v-if="choiceProp.second">
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.second.weapon">
-        <u>Weapon</u> <br> {{ choiceProp.second.weapon[0] }}
-      </button>
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.second.armor">
-        <u>Armor</u> <br>{{ choiceProp.second.armor[0] }}
-      </button>
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.second.tool">
-        <u>Tool</u> <br>{{ choiceProp.second.tool[0] }}
-      </button>
-    </div>
-    <div class="col-3 my-3" v-if="choiceProp.third">
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.third.weapon">
-        Weapon: {{ choiceProp.third.weapon[0] }}
-      </button>
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.third.armor">
-        Armor: {{ choiceProp.third.armor[0] }}
-      </button>
-      <button type="button" class="btn btn-lg btn-outline-dark" v-if="choiceProp.third.tool">
-        Tool: {{ choiceProp.third.tool[0] }}
-      </button>
-    </div> -->
 </template>
 
 <script>
@@ -77,8 +43,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2 {
-  font-size: 2.5rem;
-}
 
 </style>

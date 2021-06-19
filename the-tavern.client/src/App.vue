@@ -6,10 +6,10 @@
     <router-view />
   </main>
   <footer>
-    <div class="bg-dark text-light text-center pt-4 pb-3">
-      <h4>
+    <div class="row justify-content-center bg-dark text-light text-center">
+      <p class="font-sm my-md-4 my-3 p-0">
         Made with <span><i class="fas fa-dice-d20 text-warning px-1"></i></span> by a bunch of nerds
-      </h4>
+      </p>
     </div>
   </footer>
 </template>

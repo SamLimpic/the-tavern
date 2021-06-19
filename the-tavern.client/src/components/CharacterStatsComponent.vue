@@ -1,27 +1,27 @@
 <template>
-  <div class="col-2 d-md-block d-none" dropzone="zone" @dragover.prevent @drop.prevent="moveNum(state.activeNum, statProp.title, statProp.mod)">
+  <div class="col-2 d-md-block d-none">
     <div class="stat-box text-center rounded bg-light">
-      <h3 class="font-md">
+      <h3 class="font-md m-0 pt-2">
         <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
       </h3>
-      <h4 class="font-xxl" v-if="statProp.value > 0">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h5 class="font-xl" v-if="statProp.mod > 0 && statProp.value < 1 ">
+      <h4 class="font-md m-0">
         +{{ statProp.mod }}
+      </h4>
+      <h5 class="font-xxl m-0 p-0">
+        {{ statProp.value }}
       </h5>
     </div>
   </div>
   <div class="col-4 d-md-none d-block mt-3">
-    <div class="stat-box text-center rounded bg-light">
-      <h3 class="font-md pt-2">
+    <div class="mobile-box text-center rounded bg-light">
+      <h3 class="font-md m-0 pt-2">
         <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
       </h3>
-      <h4 class="font-xxl" v-if="statProp.value > 0">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h5 class="font-xxl" v-if="statProp.mod > 0 && statProp.value < 1 ">
+      <h4 class="font-md m-0">
         +{{ statProp.mod }}
+      </h4>
+      <h5 class="font-xxl m-0">
+        {{ statProp.value }}
       </h5>
     </div>
   </div>
@@ -30,7 +30,7 @@
 import { AppState } from '../AppState'
 import { computed, reactive, onMounted } from 'vue'
 export default {
-  name: 'StatsComponent',
+  name: 'CharacterStats',
   props: {
     statProp: {
       type: Object,
@@ -48,14 +48,7 @@ export default {
 
     })
     return {
-      state,
-      moveNum(num, title, mod) {
-        AppState.character.scores[title.toLowerCase()].value = num
-        AppState.scores[title.toLowerCase()].value = num + mod
-        AppState.activeScores[state.activeScore] = 0
-        AppState.count.score++
-      }
-
+      state
     }
   }
 }
@@ -65,7 +58,11 @@ export default {
 <style scoped>
 .stat-box{
  border: 2px solid var(--dark);
- height: 7rem;
+ height: 10rem;
+}
+.mobile-box{
+ border: 2px solid var(--dark);
+ height: 8rem;
 }
 
 </style>

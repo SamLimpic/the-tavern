@@ -1,14 +1,23 @@
 <template>
-  <div class="col-md-4 col-10 my-2">
-    <button type="button" class="btn btn-lg btn-light" @click="addEquipment(equipmentProp)">
-      <h4 class="mb-2" v-if="equipmentProp.weapon">
-        <u>Weapon</u> <br>  {{ equipmentProp.weapon[0] }} x {{ equipmentProp.weapon.length }}
+  <div class="col-sm-4 col-8 my-2">
+    <button type="button" class="btn btn-lg btn-light w-100" @click="addEquipment(equipmentProp)">
+      <h4 class="font-sm mb-2" v-if="equipmentProp.weapon && equipmentProp.weapon.length > 1">
+        <u class="font-md">Weapon</u> <br>  {{ equipmentProp.weapon[0] }} x {{ equipmentProp.weapon.length }}
       </h4>
-      <h4 class="mb-2" v-if="equipmentProp.armor">
-        <u>Armor</u> <br> {{ equipmentProp.armor[0] }} x {{ equipmentProp.armor.length }}
+      <h4 class="font-sm mb-2" v-else-if="equipmentProp.weapon">
+        <u class="font-md">Weapon</u> <br>  {{ equipmentProp.weapon[0] }}
       </h4>
-      <h4 class="mb-2" v-if="equipmentProp.tool">
-        <u>Tool</u> <br> {{ equipmentProp.tool[0] }} x {{ equipmentProp.tool.length }}
+      <h4 class="font-sm mb-2" v-if="equipmentProp.armor && equipmentProp.armor.length > 1">
+        <u class="font-md">Armor</u> <br> {{ equipmentProp.armor[0] }} x {{ equipmentProp.armor.length }}
+      </h4>
+      <h4 class="font-sm mb-2" v-else-if="equipmentProp.armor">
+        <u class="font-md">Armor</u> <br> {{ equipmentProp.armor[0] }}
+      </h4>
+      <h4 class="font-sm mb-2" v-if="equipmentProp.tool && equipmentProp.tool.length > 1">
+        <u class="font-md">Tool</u> <br> {{ equipmentProp.tool[0] }} x {{ equipmentProp.tool.length }}
+      </h4>
+      <h4 class="font-sm mb-2" v-else-if="equipmentProp.tool">
+        <u class="font-md">Tool</u> <br> {{ equipmentProp.tool[0] }}
       </h4>
     </button>
   </div>
@@ -61,7 +70,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2 {
-  font-size: 2.5rem;
-}
+
 </style>

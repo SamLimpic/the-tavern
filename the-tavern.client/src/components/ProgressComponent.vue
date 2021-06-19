@@ -35,8 +35,6 @@
 <script>
 import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
-// import { questionsService } from '../services/QuestionsService'
-// import Notification from '../utils/Notification'
 
 export default {
   name: 'ProgressComponent',
@@ -64,14 +62,7 @@ export default {
       }
     })
     onMounted(async() => {
-      // try {
-      //   console.log(AppState.attributes.role[props.attributeProp])
-      //   questionsService.resetAttributes()
-      //   await questionsService.getQuestions()
-      //   state.loading = false
-      // } catch (error) {
-      //   Notification.toast('Error: ' + error, 'error')
-      // }
+
     })
     return {
       state

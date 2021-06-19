@@ -43,7 +43,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h2 {
-  font-size: 2.5rem;
-}
+
 </style>

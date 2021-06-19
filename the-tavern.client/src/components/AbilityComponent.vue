@@ -1,6 +1,6 @@
 <template>
-  <div class="col-12 text-center">
-    <h2 class="p-0 m-0">
+  <div class="col-12 text-center" v-if="state.abilities === indexProp">
+    <h2 class=" font-lg p-0 m-0">
       {{ abilityProp.title }}: <i>Choose {{ abilityProp.choose }}</i>
     </h2>
     <div class="row justify-content-around">
@@ -19,10 +19,15 @@ export default {
     abilityProp: {
       type: Object,
       required: true
+    },
+    indexProp: {
+      type: Number,
+      required: true
     }
   },
   setup() {
     const state = reactive({
+      abilities: computed(() => AppState.count.abilities),
       character: computed(() => AppState.character)
     })
     onMounted(async() => {

@@ -2,7 +2,9 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-light">
-        <h1><span><i class="fas fa-dice-d20 text-warning"></i></span> The Tavern</h1>
+        <h1 class="font-xl my-1 p-0">
+          <span><i class="fas fa-dice-d20 text-warning mr-2"></i></span> The Tavern
+        </h1>
       </div>
     </router-link>
     <button
@@ -75,7 +77,7 @@
               class="list-group-item list-group-item-action hoverable"
               @click="logout"
             >
-              logout
+              Logout
             </div>
           </div>
         </div>
@@ -126,8 +128,14 @@ a:hover {
 }
 .nav-link{
   text-transform: uppercase;
+  color: #cebc8e !important;
+}
+.nav-link:hover{
+  text-transform: uppercase;
+  color: var(--light) !important;
 }
 .nav-item .nav-link.router-link-exact-active{
-  color: #e3cb9b !important;
+  color: var(--warning) !important;
+  text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
 }
 </style>

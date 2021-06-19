@@ -1,38 +1,35 @@
 <template>
   <div class="row">
-    <div class="DiceImg col-12 text-center" v-if="state.mods > state.modChoice">
-      <h3>Now assign your {{ state.mods }} Ability Modifiers!</h3>
-      <i class="fas fa-dice-five fa-10x text-warning my-4"></i>
-    </div>
-    <div class="DiceImg col-12 text-center" v-else-if="state.bool">
-      <h3>Now you just need to roll your Ability Scores!</h3>
-      <i class="fas fa-dice-five fa-10x text-warning my-4" @click=" diceRoll()"></i>
-      <h3>Click the dice to generate your Scores below:</h3>
-    </div>
-    <div class="DiceImg col-12 text-center" v-else-if="state.score < 6">
-      <i class="fas fa-dice-d20 text-danger fa-10x my-4"></i>
-      <h3>Drag the numbers to your ideal Ability Scores to assign them!</h3>
-    </div>
-    <div class="DiceImg col-12 text-center" v-else>
-      <h3>
-        Congratulations!<br>Click the dice below to save your Character!
+    <div class="col-12 text-center" v-if="state.bool">
+      <h3 class="font-md">
+        Now you just need to roll your Ability Scores!
       </h3>
-      <i class="fas fa-dice-d20 text-success fa-10x my-4" @click="saveCharacter"></i>
+      <i class="fas fa-dice-d20 text-warning fa-7x text-shadow mt-2 mb-4" @click=" diceRoll()"></i>
+      <h3 class="font-md">
+        Click the dice to generate your Scores below:
+      </h3>
+    </div>
+    <div class="col-12 text-center" v-else-if="state.score < 6">
+      <i class="fas fa-dice-d20 text-danger fa-7x text-shadow my-3"></i>
+      <h3 class="font-md d-lg-block d-none">
+        Drag the numbers to your ideal Ability Scores to assign them!
+      </h3>
+      <h3 class="font-md d-lg-none d-block">
+        Click the numbers to assign them to your Ability Scores!
+      </h3>
     </div>
   </div>
-  <div class="row" v-if="state.score < 6">
-    <DiceNum v-for="(d, key) in state.activeScores" :key="key" :dice-props="d" :index-prop="key" />
+  <div class="row align-items-center" v-if="state.score < 6">
+    <DiceNum v-for="(d, key) in state.activeScores" :key="key" :dice-prop="d" :index-prop="key" />
   </div>
   <div class="row mt-2 text-center">
-    <StatsComponent v-for="(s, key) in state.characterScores" :key="key" :stat-prop="s" />
+    <StatsComponent v-for="(s, key) in state.character.scores" :key="key" :stat-prop="s" />
   </div>
 </template>
 
 <script>
 import { AppState } from '../AppState'
 import { computed, reactive } from 'vue'
-import { charactersService } from '../services/CharactersService'
-import Notification from '../utils/Notification'
 
 export default {
   name: 'AbilityScore',
@@ -56,7 +53,12 @@ export default {
         for (let i = 0; i < 6; i++) {
           const subRolls = []
           for (let j = 0; j < 4; j++) {
-            const num = Math.floor(Math.random() * 5 + 2)
+            let num = Math.floor(Math.random() * 6 + 1)
+            if (num === 1) {
+              if (Math.round(Math.random()) === 1) {
+                num = Math.floor(Math.random() * 6 + 1)
+              }
+            }
             subRolls.push(num)
           }
           subRolls.sort((a, b) => b - a)
@@ -68,14 +70,6 @@ export default {
           AppState.activeScores[i] = AppState.abilityScore[i]
         }
         state.bool = false
-      },
-      async saveCharacter() {
-        try {
-          await Notification.multiModal()
-          await charactersService.saveCharacter(state.character)
-        } catch (error) {
-          Notification.toast('Error' + error, 'error')
-        }
       }
     }
   }

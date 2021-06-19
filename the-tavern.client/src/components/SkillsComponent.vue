@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-3 col-12 text-center my-3 ">
-    <button :id="skillProp" type="button" class="btn btn-lg btn-dark" @click="addSkill(skillProp)">
-      <h3 class="p-0 m-0">
+  <div class="col-lg-4 col-md-3 col-sm-4 col-10 text-center my-2 ">
+    <button :id="skillProp" type="button" class="btn btn-lg btn-dark w-100" @click="addSkill(skillProp)">
+      <h3 class="font-md p-0 m-0">
         {{ skillProp }}
       </h3>
     </button>
@@ -45,7 +45,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-h3 {
-  font-size: 1.5rem;
+.btn {
+  height: 100%;
 }
 </style>

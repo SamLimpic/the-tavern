@@ -27,7 +27,151 @@ main {
   cursor: pointer;
 }
 
+.resources {
+  cursor: pointer;
+}
+
+.resources:hover {
+  color: var(--warning) !important;
+}
+
 .text-shadow {
   text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000,
     0.5px 0.5px 0 #000;
+}
+
+// SECTION Establishes Media Queries for responsive font sizing
+@media (min-width: 0) {
+  .font-xxxs {
+    font-size: 0.5rem;
+  }
+  .font-xxs {
+    font-size: 0.75rem;
+  }
+  .font-xs {
+    font-size: 1rem;
+  }
+  .font-sm {
+    font-size: 1.25rem;
+  }
+  .font-md {
+    font-size: 1.5rem;
+  }
+  .font-lg {
+    font-size: 1.75rem;
+  }
+  .font-xl {
+    font-size: 2rem;
+  }
+  .font-xxl {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .font-xxxs {
+    font-size: 0.25rem;
+  }
+  .font-xxs {
+    font-size: 0.5rem;
+  }
+  .font-xs {
+    font-size: 0.75rem;
+  }
+  .font-sm {
+    font-size: 1rem;
+  }
+  .font-md {
+    font-size: 1.25rem;
+  }
+  .font-lg {
+    font-size: 1.5rem;
+  }
+  .font-xl {
+    font-size: 1.75rem;
+  }
+  .font-xxl {
+    font-size: 2.75rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .font-xxxs {
+    font-size: 0.5rem;
+  }
+  .font-xxs {
+    font-size: 0.75rem;
+  }
+  .font-xs {
+    font-size: 1rem;
+  }
+  .font-sm {
+    font-size: 1.25rem;
+  }
+  .font-md {
+    font-size: 1.5rem;
+  }
+  .font-lg {
+    font-size: 1.75rem;
+  }
+  .font-xl {
+    font-size: 2rem;
+  }
+  .font-xxl {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .font-xxxs {
+    font-size: 0.75rem;
+  }
+  .font-xxs {
+    font-size: 1rem;
+  }
+  .font-xs {
+    font-size: 1.25rem;
+  }
+  .font-sm {
+    font-size: 1.5rem;
+  }
+  .font-md {
+    font-size: 1.75rem;
+  }
+  .font-lg {
+    font-size: 2rem;
+  }
+  .font-xl {
+    font-size: 2.25rem;
+  }
+  .font-xxl {
+    font-size: 3.25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .font-xxs {
+    font-size: 1rem;
+  }
+  .font-xxs {
+    font-size: 1.25rem;
+  }
+  .font-xs {
+    font-size: 1.5rem;
+  }
+  .font-sm {
+    font-size: 1.75rem;
+  }
+  .font-md {
+    font-size: 2rem;
+  }
+  .font-lg {
+    font-size: 2.25rem;
+  }
+  .font-xl {
+    font-size: 2.5rem;
+  }
+  .font-xxl {
+    font-size: 3.5rem;
+  }
 }

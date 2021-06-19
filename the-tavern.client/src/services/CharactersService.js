@@ -42,66 +42,11 @@ class CharactersService {
     })
   }
 
-  // getProficiencies(job, race, background) {
-  //   AppState.proficiencies += {
-  //     weapons: job.proficiencies.weapons !== undefined ? job.proficiencies.weapons : [],
-  //     armor: job.proficiencies.armor !== undefined ? job.proficiencies.armor : [],
-  //     tools: job.proficiencies.tools !== undefined ? job.proficiencies.tools : []
-  //   }
-
-  //   AppState.proficiencies += {
-  //     weapons: race.proficiencies.weapons !== undefined ? race.proficiencies.weapons : [],
-  //     armor: race.proficiencies.armor !== undefined ? race.proficiencies.armor : [],
-  //     tools: race.proficiencies.tools !== undefined ? race.proficiencies.tools : [],
-  //     skills: race.proficiencies.skills !== undefined ? race.proficiencies.skills : []
-  //   }
-
-  //   AppState.proficiencies += {
-  //     weapons: background.proficiencies.weapons !== undefined ? background.proficiencies.weapons : [],
-  //     armor: background.proficiencies.armor !== undefined ? background.proficiencies.armor : [],
-  //     tools: background.proficiencies.tools !== undefined ? background.proficiencies.tools : [],
-  //     skills: background.proficiencies.skills !== undefined ? background.proficiencies.skills : []
-  //   }
-  //   console.log(AppState.proficiencies)
-  // }
-
-  // getLanguages() {
-  //   const race = AppState.race
-  //   const background = AppState.background
-  //   // const languages = AppState.character.languages
-  //   if (race.languages[race.languages.length - 1].from !== undefined && background.languages[0]) {
-  //     AppState.languages.from = race.languages[race.languages.length - 1].from
-  //     AppState.languages.choose += race.languages[race.languages.length - 1].choose + background.languages[0].choose
-  //     console.log(AppState.languages.from)
-  //   } else if (race.languages[race.languages.length - 1].from !== undefined) {
-  //     AppState.languages.from = race.languages[race.languages.length - 1].from
-  //     AppState.languages.choose += race.languages[race.languages.length - 1].choose
-  //     console.log(AppState.languages.from)
-  //   } else if (background.languages[0]) {
-  //     AppState.languages.from = background.languages[0].from
-  //     AppState.languages.choose += race.languages[race.languages.length - 1].choose
-  //     console.log(AppState.languages.from)
-  //   }
-  //   // if (race.languages.choose) {
-  //   //   race.languages.from.forEach(l => AppState.languages.from.push(l))
-  //   //   choose += race.languages.choose
-  //   // }
-  //   // if (background.languages.choose) {
-  //   //   choose = +background.languages.choose
-  //   // }
-  //   // for (let i = 0; i < languages.length; i++) {
-  //   //   AppState.languages.from = AppState.languages.from.filter(l => l !== languages[i])
-  //   // }
-  //   // AppState.languages.choose = choose
-  // }
-
   createCharacter() {
     const job = AppState.job
     const race = AppState.race
     const background = AppState.background
     const proficiencies = AppState.proficiencies
-
-    // this.getProficiencies(job, race, background)
 
     AppState.character = {
       name: '',
@@ -118,7 +63,7 @@ class CharactersService {
       speed: race.speed,
       health: job.health,
       proBonus: 2,
-      imgUrl: 'http://www.fillmurray.com/g/300/300',
+      imgUrl: 'http://www.geocities.ws/Area51/Orion/3107/Lance21.jpg',
       scores: AppState.characterScores,
       languages: race.languages,
       abilities: [],
@@ -143,13 +88,34 @@ class CharactersService {
         tools: job.tools
       }
     }
-
+    this.getSkills()
     this.getAbilities()
+    this.getAbilityModifiers()
+    window.localStorage.setItem('count', JSON.stringify(AppState.count))
+    window.localStorage.setItem('job', JSON.stringify(AppState.job))
+    window.localStorage.setItem('race', JSON.stringify(AppState.race))
+    window.localStorage.setItem('background', JSON.stringify(AppState.background))
+    window.localStorage.setItem('scores', JSON.stringify(AppState.chooseScores))
+    window.localStorage.setItem('abilities', JSON.stringify(AppState.chooseAbilities))
+    window.localStorage.setItem('character', JSON.stringify(AppState.character))
   }
 
-  async saveCharacter(body) {
+  setModifiers() {
+    // eslint-disable-next-line prefer-const
+    let scores = AppState.scores
+    scores.strength.mod = Math.floor((scores.strength.value - 10) / 2)
+    scores.dexterity.mod = Math.floor((scores.dexterity.value - 10) / 2)
+    scores.constitution.mod = Math.floor((scores.constitution.value - 10) / 2)
+    scores.intelligence.mod = Math.floor((scores.intelligence.value - 10) / 2)
+    scores.wisdom.mod = Math.floor((scores.wisdom.value - 10) / 2)
+    scores.charisma.mod = Math.floor((scores.charisma.value - 10) / 2)
+    AppState.character.scores = scores
+  }
+
+  async saveCharacter() {
+    this.setModifiers()
     AppState.activeCharacter = AppState.character
-    await api.post('api/characters', body)
+    await api.post('api/characters', AppState.activeCharacter)
     router.push('Account')
   }
 
@@ -159,6 +125,10 @@ class CharactersService {
 
   async editCharacter(body) {
     await api.put(`api/characters/${body.id}`, body)
+  }
+
+  async deleteCharacter(id) {
+    await api.delete(`api/characters/${id}`)
   }
 }
 

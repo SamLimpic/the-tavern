@@ -3,13 +3,12 @@
   <div class="row justify-content-center">
     <div class="col-12 mt-3">
       <button type="button" class="btn btn-lg btn-dark w-100" @click="setActiveCharacter(character.id)">
-        <h3>
+        <h2 class="font-sm">
           <u>{{ character.name }}</u>
+        </h2>
+        <h3 class="font-xs">
+          The {{ character.race }} {{ character.job }}
         </h3>
-        <h4>The {{ character.race }} {{ character.job }}</h4>
-        <h5 class="p-0 m-0">
-          {{ character.alignment }}
-        </h5>
       </button>
       <transition name="fade">
         <div class="d-md-none d-block" v-if="state.show">
@@ -60,7 +59,5 @@ export default {
 }
 </script>
 <style scoped>
-h3{
-  font-size: 2rem;
-}
+
 </style>

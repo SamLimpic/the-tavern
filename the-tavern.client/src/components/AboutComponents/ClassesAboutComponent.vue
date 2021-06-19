@@ -1,16 +1,22 @@
 <template>
-  <div class="shadow rounded bg-light text-center m-3 p-md-5 p-4">
-    <h2><u>DnD Classes</u></h2>
-    <h3>
-      This is where the definition of classes will go.
-    </h3>
-    <i class="d-md-block d-none">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-      Non laudantium aspernatur quod, possimus culpa temporibus perferendis sed sapiente excepturi?
-      Sapiente, nemo quae? Ex, dolores rem. Explicabo cumque provident magni? Obcaecati, dolor. Cupiditate
-      accusamus soluta provident nobis, deserunt in neque dignissimos error assumenda, consequuntur recusandae,
-      totam laborum. Inventore accusantium sint, reprehenderit et exercitationem dolorem tempore esse praesentium,
-      cumque culpa saepe eaque harum ad. Dolorem perspiciatis, praesentium amet doloribus dolore officia ipsam
-      nemo harum ipsum distinctio voluptas.</i>
+  <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
+    <div>
+      <h2 class="d-md-block d-none font-lg">
+        <u>Character Classes</u>
+      </h2>
+      <h2 class="d-md-none d-block font-lg">
+        <u>Classes</u>
+      </h2>
+      <div class="mx-md-4">
+        <p class="font-md mx-1 my-2">
+          What kind of role you want to take in your adventuring party?
+        </p>
+        <p class="font-sm text-left mx-2 mb-2">
+          <i class="d-md-block d-none">There are 12 core Classes in Dungeons and Dragons. From robed spellcasters, to great axe-wielding warriors, to enigmatic druids, fantasy fans are spoiled for choice. However, at first glance, the options may appear overwhelming when trying to build a character for your next bold. Each of the classes has unique mechanics and exciting roleplaying possibilities which will govern how you progress in your campaign, making them a key component in your D&D experience. </i>
+          <i class="d-md-none d-block">Each of the classes has unique mechanics and exciting roleplaying possibilities which will govern how you progress in your campaign, making them a key component in your D&D experience.</i>
+        </p>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -22,20 +28,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h2 {
-   font-size: 2.5rem;
- }
- p {
-   font-size: 2rem;
- }
- i {
-   font-size: 1.5rem;
- }
- button {
-   font-size: 1.25rem;
- }
- img{
-   height: 30rem;
-   width: 25;
- }
+
 </style>

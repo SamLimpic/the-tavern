@@ -22,19 +22,9 @@ export class CharactersController extends BaseController {
       next(error)
     }
   }
-  // async getCharacters(req, res, next) {
-  //   try {
-  //     req.creatorId = req.userInfo.id
-  //     const data = await charactersService.getCharacters(req.creatorId)
-  //     return res.send(data)
-  //   } catch (error) {
-  //     next(error)
-  //   }
-  // }
 
   async saveCharacter(req, res, next) {
     try {
-      // NOTE NEVER TRUST THE CLIENT TO ADD THE CREATOR ID
       req.body.creatorId = req.userInfo.id
       const data = await charactersService.saveCharacter(req.body)
       res.send(data)

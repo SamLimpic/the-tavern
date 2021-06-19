@@ -1,17 +1,26 @@
 <template>
-  <div class="shadow rounded bg-light text-center m-3 p-md-5 p-4">
+  <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
     <div class="StartingComponent">
-      <h2><u>DnD Game Basics</u></h2>
-      <h3>
-        Basic rules for DnD 5e and a glossary of terms.
+      <h2 class="font-lg mx-2">
+        <u>Dungeons & Dragons Rules Index</u>
+      </h2>
+      <h3 class="font-md">
+        In this fantasy world, the possibilities are limitless.
       </h3>
-      <i class="d-md-block d-none">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-        Non laudantium aspernatur quod, possimus culpa temporibus perferendis sed sapiente excepturi?
-        Sapiente, nemo quae? Ex, dolores rem. Explicabo cumque provident magni? Obcaecati, dolor. Cupiditate
-        accusamus soluta provident nobis, deserunt in neque dignissimos error assumenda, consequuntur recusandae,
-        totam laborum. Inventore accusantium sint, reprehenderit et exercitationem dolorem tempore esse praesentium,
-        cumque culpa saepe eaque harum ad. Dolorem perspiciatis, praesentium amet doloribus dolore officia ipsam
-        nemo harum ipsum distinctio voluptas.</i>
+      <div class="text-left font-sm mx-md-4">
+        <p class="d-sm-block d-none mb-2 mx-3">
+          The Dungeons & Dragons roleplaying game is about storytelling in worlds of swords and sorcery. Like games of make-believe, D&D is driven by imagination. It’s about picturing a crumbling castle in a darkening forest and imagining how a fantasy adventurer might react to the challenges that scene presents.
+        </p>
+        <p class="d-sm-block d-none mb-2 mx-3">
+          Players roll dice to determine whether their attacks hit or miss and whether their characters can scale a cliff, roll away from the strike of a magical lightning bolt, or pull off some other dangerous task.
+        </p>
+        <p class="d-sm-none d-block text-center mb-2 mx-3">
+          These tips might be of use to you!
+        </p>
+      </div>
+    </div>
+    <div class="row justify-content-center d-lg-none d-flex mt-3">
+      <TavernKeeper />
     </div>
   </div>
 </template>
@@ -24,20 +33,5 @@ export default {
 </script>
 
 <style scoped lang="scss">
-h2 {
-   font-size: 2.5rem;
- }
- p {
-   font-size: 2rem;
- }
- i {
-   font-size: 1.5rem;
- }
- button {
-   font-size: 1.25rem;
- }
- img{
-   height: 30rem;
-   width: 25;
- }
+
 </style>

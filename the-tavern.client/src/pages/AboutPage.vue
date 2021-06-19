@@ -1,101 +1,60 @@
 <template>
   <div class="about container-fluid">
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-12 p-md-5" v-if="state.show=='basics'">
+    <div class="row justify-content-center position-relative h-100">
+      <button type="button" class="btn btn-outline-dark btn-overlay d-md-block d-none m-md-3 m-0" @click="toggle('basics')" v-if="state.show !== 'basics'">
+        <i class="fas fa-backward font-lg"></i>
+      </button>
+      <div class="col-lg-8 col-12 p-md-4 p-2" v-if="state.show === 'basics'">
         <StartingComponent />
       </div>
-      <div class="col-md-8 col-12 p-md-5" v-if="state.show=='classes'">
+      <div class="col-lg-8 col-12 p-md-4 p-2" v-if="state.show === 'classes'">
         <ClassesAboutComponent />
       </div>
-      <div class="col-md-8 col-12 p-md-5" v-if="state.show=='races'">
+      <div class="col-lg-8 col-12 p-md-4 p-2" v-if="state.show === 'races'">
         <RaceComponent />
       </div>
-      <div class="col-md-8 col-12 p-md-5" v-if="state.show=='background'">
+      <div class="col-lg-8 col-12 p-md-4 p-2" v-if="state.show === 'background'">
         <BackgroundComponent />
       </div>
-      <div class="col-md-8 col-12 p-md-5" v-if="state.show=='equipment'">
+      <div class="col-lg-8 col-12 p-md-4 p-2" v-if="state.show === 'equipment'">
         <EquipmentComponent />
       </div>
-      <div class="col-md-8 col-12 p-md-5" v-if="state.show=='rules'">
-        <RulesComponent />
-      </div>
-      <div class="col-md-8 col-12 p-md-5" v-if="state.show=='term'">
-        <TermComponent />
-      </div>
-      <div class="col-md-8 col-12 p-md-5" v-if="state.show=='rec'">
+      <div class="col-lg-8 col-12 p-md-4 p-2" v-if="state.show === 'rec'">
         <RecComponent />
       </div>
-      <div class="TavernKeeper col-4 d-md-block d-none bg-primary p-xl-5">
-        <div class="shadow rounded bg-light text-center m-3 p-5">
-          <!-- <div>
-            <img src="https://ibb.co/7jQxfhV" alt="Friendly Tavern Keeper">
-          </div> -->
-          <i>You must be new in town. Let me know if you have any questions!</i>
+      <div class="TavernKeeper col-4 d-lg-block d-none bg-primary p-md-4">
+        <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
+          <h2 class="font-md mb-3">
+            These tips might be of use to you!
+          </h2>
           <div class="row justify-content-center">
-            <div class="col-12 text-center my-2">
-              <button type="button" class="btn btn-dark w-75 py-2" title="classes" @click="toggle('classes')">
-                Classes
-              </button>
-            </div>
-            <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-dark w-75 py-2" title="DnD races" @click="toggle('races')">
-                <span class="w-100">
-                  Races
-                </span>
-              </button>
-            </div>
-            <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-dark w-75 py-2" title="backgrounds" @click="toggle('background')">
-                Backgrounds
-              </button>
-            </div>
-            <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-dark w-75 py-2" title="equipment" @click="toggle('equipment')">
-                Equipment
-              </button>
-            </div>
-            <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-dark w-75 py-2" title="basic rules" @click="toggle('rules')">
-                Basic Rules
-              </button>
-            </div>
-            <div class="col-12 text-center mb-2">
-              <button type="button" class="btn btn-dark w-75 py-2" title="terminology and definitions" @click="toggle('term')">
-                Terminology
-              </button>
-            </div>
-            <i>Looking for something more specific? Here are some helpful resources.</i>
-          </div>
-          <div class="col-12 text-center my-2">
-            <button type="button" class="btn btn-dark w-75 py-2" title="terminology and definitions" @click="toggle('rec')">
-              Helpful Links
-            </button>
+            <TavernKeeper />
           </div>
         </div>
+      </div>
+      <div class="col-12 text-center d-lg-none d-block mt-auto mb-2">
+        <button type="button" class="btn btn-dark font-lg mb-4" @click="toggle('basics')" v-if="state.show !== 'basics'">
+          Back to Index
+        </button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
+import { AppState } from '../AppState'
 export default {
   name: 'AboutPage',
-  props: {
-    character: {
-      type: Object,
-      required: true
-    }
-  },
   setup() {
     const state = reactive({
-      show: 'basics'
+      show: computed(() => AppState.show)
     })
 
     return {
       state,
       toggle(str) {
-        state.show = str
+        AppState.show = str
       }
     }
   },
@@ -104,20 +63,15 @@ export default {
 </script>
 
 <style scoped lang="scss">
- h2 {
-   font-size: 2.5rem;
- }
- p {
-   font-size: 2rem;
- }
- i {
-   font-size: 1.5rem;
- }
- button {
-   font-size: 1.25rem;
- }
- img{
-   height: 30rem;
-   width: 25;
- }
+.btn-overlay {
+  position: absolute;
+  border: none;
+  background: transparent;
+  left: 45px;
+  top: 45px;
+  z-index: 10;
+}
+.btn-overlay:hover {
+  color: var(--warning);
+}
 </style>

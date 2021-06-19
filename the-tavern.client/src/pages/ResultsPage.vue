@@ -1,50 +1,98 @@
 <template>
   <div class="results container-fluid">
-    <div class="row justify-content-center h-100" v-if="!state.loading">
-      <div class="col-md-8 col-12 p-md-5">
-        <div class="shadow rounded bg-light text-center m-3 p-md-5 p-4">
-          <h2><u> You have selected a {{ state.character.race }} {{ state.character.job }}!</u> </h2>
-          <!-- <div v-if="state.languages.choose > 0 && state.languages < state.languagess.from.length">
-            <h3>You can learn {{ state.languagess.choose }} additional languages!</h3>
-            <div class="row justify-content-center">
-              <LanguagesComponent v-for="l in state.languagess.from" :key="l" :skill-prop="l" />
-            </div>
-          </div> -->
+    <div class="row justify-content-center h-100">
+      <div class="col-lg-8 col-12 p-md-4">
+        <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
+          <h2 class="font-xl">
+            <u>Loading your Character</u><br>
+            <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
+          </h2>
+        </div>
+        <div class="shadow rounded bg-light text-center m-4 p-sm-4 p-3" v-else>
+          <h2 class="font-xl">
+            <u> You have selected a {{ state.character.race }} {{ state.character.job }}!</u>
+          </h2>
           <div v-if="state.skills < state.job.proficiencies.skills.choose">
-            <h3>Choose {{ state.job.proficiencies.skills.choose }} of your available Skills!</h3>
+            <h3 class="font-md">
+              Choose {{ state.job.proficiencies.skills.choose }} of your available Skills!
+            </h3>
             <div class="row justify-content-center">
               <SkillsComponent v-for="s in state.job.proficiencies.skills.from" :key="s" :skill-prop="s" />
             </div>
           </div>
           <div v-else-if="state.equipment < state.job.equipment[0].choices.length">
-            <h3>Choose from these sets of available Equipment</h3>
+            <h3 class="font-md">
+              Choose from these sets of available Equipment
+            </h3>
             <div>
               <ChoicesComponent v-for="(c, key) in state.job.equipment[0].choices" :key="key" :choice-prop="c" :index-prop="key" />
             </div>
           </div>
           <div v-else-if="state.chooseAbilities && state.chooseAbilities.length > state.abilities">
-            <h3>Time to choose some of your abilities!</h3>
+            <h3 class="font-md">
+              Time to choose some of your abilities!
+            </h3>
             <div class="row justify-content-around">
-              <AbilityComponent v-for="a in state.chooseAbilities" :key="a" :ability-prop="a" />
+              <AbilityComponent v-for="(a, index) in state.chooseAbilities" :key="index" :ability-prop="a" :index-prop="index" />
             </div>
           </div>
-          <div v-else>
-            <div class="row justify-content-around" v-if="state.chooseScores && state.mods > state.modChoice">
+          <div v-else-if="state.chooseScores && state.mods > state.modChoice">
+            <h3 class="font-md">
+              Now assign your {{ state.mods }} Ability Modifiers!
+            </h3>
+            <div class="row justify-content-around">
               <AbilityModsComponent v-for="m in state.chooseScores" :key="m" :mod-prop="m" />
             </div>
+          </div>
+          <div v-else-if="state.score < 6">
             <AbilityScore />
+          </div>
+          <div class="col-12 text-center" v-else>
+            <i class="fas fa-dice-d20 text-success fa-7x text-shadow mt-3 mb-4" @click="saveCharacter"></i>
+            <h3 class="font-md">
+              Congratulations!<br>Click the dice above to save your Character!
+            </h3>
           </div>
         </div>
       </div>
-      <div class="col-4 d-md-block d-none bg-primary h-100 p-5 pt-5">
-        <div class="shadow rounded bg-light text-center m-3 p-5">
-          <h2><u>Character Profile</u></h2>
-          <h3>Party Role: {{ state.character.role }}</h3>
-          <h3>Play Style: {{ state.character.style }}</h3>
-          <h3>Race: {{ state.character.race }}</h3>
-          <h3>Class: {{ state.character.job }}</h3>
-          <h3>Sub-Class: {{ state.character.subJob }}</h3>
-          <h3>Background: {{ state.character.background }}</h3>
+      <div class="col-4 d-lg-block d-none bg-primary h-100 p-md-4">
+        <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
+          <h2 class="font-xl">
+            <u>Character Profile</u><br>
+            <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
+          </h2>
+        </div>
+        <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-else>
+          <h2 class="font-xl d-xl-block d-none">
+            <u>Character Profile</u>
+          </h2>
+          <h2 class="font-xl d-xl-none d-block">
+            <u>Profile</u>
+          </h2>
+          <h3 class="font-md d-xl-block d-none">
+            Party Role: <span :class="state.colors[state.character.role.toLowerCase()] + ' font-sm'"><i>{{ state.character.role }}</i> </span>
+          </h3>
+          <h3 class="font-md d-xl-none d-block">
+            Role: <span :class="state.colors[state.character.role.toLowerCase()] + ' font-sm'"><i>{{ state.character.role }}</i> </span>
+          </h3>
+          <h3 class="font-md d-xl-block d-none">
+            Play Style: <span :class="state.colors[state.character.style.toLowerCase()] + ' font-sm'"><i>{{ state.character.style }}</i></span>
+          </h3>
+          <h3 class="font-md d-xl-none d-block">
+            Style: <span :class="state.colors[state.character.style.toLowerCase()] + ' font-sm'"><i>{{ state.character.style }}</i></span>
+          </h3>
+          <h3 class="font-sm">
+            Race: <span class="font-sm text-muted"><i>{{ state.character.race }}</i></span>
+          </h3>
+          <h3 class="font-sm">
+            Class: <span class="font-sm text-muted"><i>{{ state.character.job }}</i></span>
+          </h3>
+          <h3 class="font-sm" v-if="state.character.subJob !== undefined">
+            Sub-Class: <span class="font-sm text-muted"><i>{{ state.character.subJob }}</i></span>
+          </h3>
+          <h3 class="font-sm">
+            Background: <span class="font-sm text-muted"><i>{{ state.character.background }}</i></span>
+          </h3>
         </div>
       </div>
     </div>
@@ -54,8 +102,9 @@
 <script>
 import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
+import { resultsService } from '../services/ResultsService'
 import { charactersService } from '../services/CharactersService'
-// import { resultsService } from '../services/ResultsService'
+import Notification from '../utils/Notification'
 
 export default {
   name: 'Results',
@@ -74,34 +123,42 @@ export default {
       modChoice: computed(() => AppState.count.modChoice),
       score: computed(() => AppState.count.score),
       abilities: computed(() => AppState.count.abilities),
-      from: computed(() => AppState.languages)
+      from: computed(() => AppState.languages),
+      colors: {
+        tank: 'text-danger',
+        damage: 'text-warning',
+        support: 'text-success',
+        utility: 'text-info',
+        weapons: 'text-danger',
+        spells: 'text-info',
+        balance: 'text-success'
+      }
     })
     onMounted(async() => {
-      charactersService.createCharacter()
-      charactersService.getSkills()
-      charactersService.getAbilityModifiers()
-      // await resultsService.getEquipment()
-      // charactersService.getLanguages()
+      if (AppState.built === 'true') {
+        charactersService.createCharacter()
+      } else {
+        resultsService.loadBuild()
+      }
       AppState.activeCharacter = AppState.character
-      state.loading = false
+      setTimeout(function() { state.loading = false }, 1000)
     })
     return {
       state,
-      user: computed(() => AppState.user)
+      user: computed(() => AppState.user),
+      async saveCharacter() {
+        try {
+          await Notification.multiModal()
+          await charactersService.saveCharacter()
+        } catch (error) {
+          Notification.toast('Error' + error, 'error')
+        }
+      }
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
- h2 {
-   font-size: 2.5rem;
- }
- p {
-   font-size: 2rem;
- }
 
- button {
-   font-size: 1.5rem;
- }
 </style>

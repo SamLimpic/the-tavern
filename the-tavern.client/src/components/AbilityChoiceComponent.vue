@@ -1,7 +1,7 @@
 <template>
-  <div class="col-md-2 col-4 text-center my-3 ">
-    <button :id="choiceProp" type="button" class="btn btn-dark" @click="choose(choiceProp, abilityProp)">
-      <h4 class="p-0 m-0">
+  <div class="col-lg-4 col-sm-3 col-6 text-center mt-3">
+    <button :id="choiceProp" type="button" class="btn btn-dark w-100" @click="choose(choiceProp, abilityProp)">
+      <h4 class="font-sm p-0 m-0">
         {{ choiceProp }}
       </h4>
     </button>

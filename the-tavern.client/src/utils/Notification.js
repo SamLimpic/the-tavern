@@ -90,11 +90,6 @@ export default class Notification {
 
       if (weapon) {
         this.toast(`You chose a ${weapon}!`, 'success')
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: `You chose a ${weapon}!`,
-        //   text: 'Quite a fine choice!'
-        // })
         AppState.character.equipment.weapons.push(weapon)
       }
     } else if (type === 'Simple') {
@@ -134,11 +129,6 @@ export default class Notification {
 
       if (weapon) {
         this.toast(`You chose a ${weapon}!`, 'success')
-        // Swal.fire({
-        //   icon: 'success',
-        //   title: `You chose a ${weapon}!`,
-        //   text: 'Quite a fine choice!'
-        // })
         AppState.character.equipment.weapons.push(weapon)
       }
     }
@@ -249,8 +239,8 @@ export default class Notification {
       }
     ]).then((result) => {
       if (result.value) {
-        AppState.character.name = result.value[0]
-        AppState.character.imgUrl = result.value[1]
+        AppState.activeCharacter.name = result.value[0]
+        AppState.activeCharacter.imgUrl = result.value[1]
       }
     })
   }

@@ -1,17 +1,22 @@
 <template>
   <div class="col-2 d-md-block d-none text-center">
-    <div class="bg-light diceRoll" draggable="true" @dragstart="moveNum(diceProps, indexProp)">
-      <h3 v-if="diceProps > 0">
-        {{ diceProps }}
+    <div class="bg-light dice-roll rounded" draggable="true" @dragstart="moveNum(diceProp, indexProp)">
+      <h3 class="font-xxl" v-if="diceProp > 0">
+        {{ diceProp }}
       </h3>
     </div>
   </div>
 
-  <div class="col-4 d-md-none d-block text-center my-2">
-    <div class="bg-light diceRoll" draggable="true" @dragstart="moveNum(diceProps, indexProp)">
-      <h3 v-if="diceProps > 0">
-        {{ diceProps }}
-      </h3>
+  <div class="col-4 d-md-none d-block text-center mt-3">
+    <div class="btn-group dropup w-100">
+      <button type="button" class="btn dice-roll btn-outline-dark rounded" data-toggle="dropdown">
+        <h3 class="font-xxl" v-if="diceProp > 0">
+          {{ diceProp }}
+        </h3>
+      </button>
+      <div class="dropdown-menu font-sm">
+        <DropDown v-for="d in state.stats" :key="d" :drop-prop="d" :dice-prop="diceProp" :index-prop="indexProp" />
+      </div>
     </div>
   </div>
 </template>
@@ -23,7 +28,7 @@ import { computed, reactive, onMounted } from 'vue'
 export default {
   name: 'DiceNum',
   props: {
-    diceProps: {
+    diceProp: {
       type: Number,
       required: true
     },
@@ -34,7 +39,8 @@ export default {
   },
   setup() {
     const state = reactive({
-      abilityScore: computed(() => AppState.abilityScore)
+      abilityScore: computed(() => AppState.abilityScore),
+      stats: computed(() => AppState.stats)
     })
     onMounted(async() => {
 
@@ -53,13 +59,8 @@ export default {
 </script>
 
 <style scoped>
-.diceRoll{
- border: 1px solid black;
- height: 5rem;
+.dice-roll{
+ border: 2px solid var(--dark);
+ height: 4rem;
 }
-
-h3 {
-  font-size: 4rem
-}
-
 </style>

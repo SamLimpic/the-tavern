@@ -35,6 +35,16 @@ class ResultsService {
     const armor = await api.get('api/armor')
     AppState.armor = armor.data
   }
+
+  loadBuild() {
+    AppState.count = JSON.parse(window.localStorage.getItem('count'))
+    AppState.job = JSON.parse(window.localStorage.getItem('job'))
+    AppState.race = JSON.parse(window.localStorage.getItem('race'))
+    AppState.background = JSON.parse(window.localStorage.getItem('background'))
+    AppState.chooseScores = JSON.parse(window.localStorage.getItem('scores'))
+    AppState.chooseAbilities = JSON.parse(window.localStorage.getItem('abilities'))
+    AppState.character = JSON.parse(window.localStorage.getItem('character'))
+  }
 }
 
 export const resultsService = new ResultsService()
