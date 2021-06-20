@@ -1,16 +1,28 @@
 <template>
-  <div class="col-2 d-md-block d-none text-center">
+  <div class="col-2 d-md-block d-none text-center px-xl-2 px-lg-1 px-md-2">
     <div class="bg-light dice-roll rounded" draggable="true" @dragstart="moveNum(diceProp, indexProp)">
-      <h3 class="font-xxl" v-if="diceProp > 0">
+      <h3 class="font-xxl text-danger" v-if="diceProp > 0 && diceProp < 11">
+        {{ diceProp }}
+      </h3>
+      <h3 class="font-xxl text-muted" v-else-if="diceProp === 10">
+        {{ diceProp }}
+      </h3>
+      <h3 class="font-xxl text-success" v-else-if="diceProp > 10">
         {{ diceProp }}
       </h3>
     </div>
   </div>
 
-  <div class="col-4 d-md-none d-block text-center mt-3">
+  <div class="col-4 d-md-none d-block text-center mt-3 px-sm-4 px-2">
     <div class="btn-group dropup w-100">
-      <button type="button" class="btn dice-roll btn-outline-dark rounded" data-toggle="dropdown">
-        <h3 class="font-xxl" v-if="diceProp > 0">
+      <button type="button" class="btn dice-roll btn-outline-dark rounded p-0" data-toggle="dropdown">
+        <h3 class="font-xxl text-danger" v-if="diceProp > 0 && diceProp < 11">
+          {{ diceProp }}
+        </h3>
+        <h3 class="font-xxl text-muted" v-else-if="diceProp === 10">
+          {{ diceProp }}
+        </h3>
+        <h3 class="font-xxl text-success" v-else-if="diceProp > 10">
           {{ diceProp }}
         </h3>
       </button>
@@ -60,7 +72,52 @@ export default {
 
 <style scoped>
 .dice-roll{
- border: 2px solid var(--dark);
- height: 4rem;
+ border: 3px solid var(--dark);
 }
+
+@media (min-width: 0) {
+.dice-roll{
+ height: 4rem;
+  }
+.font-xxl {
+      font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 576px) {
+.dice-roll{
+ height: 4.5rem;
+  }
+.font-xxl {
+      font-size: 4rem;
+  }
+}
+
+@media (min-width: 768px) {
+.dice-roll{
+ height: 4.5rem;
+  }
+.font-xxl {
+      font-size: 4rem;
+  }
+}
+
+@media (min-width: 992px) {
+.dice-roll{
+ height: 4rem;
+  }
+.font-xxl {
+      font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+.dice-roll{
+ height: 4.5rem;
+  }
+.font-xxl {
+      font-size: 4rem;
+  }
+}
+
 </style>

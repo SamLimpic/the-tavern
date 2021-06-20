@@ -21,7 +21,7 @@
           </h2>
         </div>
         <div class="shadow rounded bg-light m-4 p-md-4 p-3" v-else-if="state.user.isAuthenticated && state.characters">
-          <h2 class="m-0 p-0">
+          <h2 class="font-lg m-0 p-0">
             <u>Your Characters</u>
           </h2>
           <h3 class="font-md" v-if="state.characters.length === 0">

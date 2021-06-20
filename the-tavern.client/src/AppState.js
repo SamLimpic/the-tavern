@@ -94,6 +94,7 @@ export const AppState = reactive({
   characters: [],
   rawData: [],
   showActive: false,
+  showStats: false,
   show: 'basics',
   abilityScore: [],
   activeScore: 0,

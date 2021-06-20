@@ -138,9 +138,10 @@ export default class Notification {
     // eslint-disable-next-line vue/one-component-per-file
     await Swal.mixin({
       title: "Don't forget personal information!",
+      text: 'You can change this later...',
       input: 'text',
       confirmButtonText: 'Next &rarr;',
-      progressSteps: [1, 2, 3, 4]
+      progressSteps: [1, 2, 3, 4, 5]
     }).queue([
       {
         title: "What is your character's name?",
@@ -191,13 +192,40 @@ export default class Notification {
           }
         },
         inputPlaceholder: 'Alignment...'
+      },
+      {
+        title: 'What does your character look like?',
+        icon: 'info',
+        input: 'text',
+        inputPlaceholder: 'Img Url...'
       }
     ]).then((result) => {
       if (result.value) {
-        AppState.character.name = result.value[0]
-        AppState.character.age = result.value[1]
-        AppState.character.gender = result.value[2]
-        AppState.character.alignment = result.value[3].replace('_', ' ')
+        if (result.value[0] === '') {
+          AppState.activeCharacter.name = 'The Nameless One'
+        } else {
+          AppState.activeCharacter.name = result.value[0]
+        }
+        if (result.value[1] === '') {
+          AppState.activeCharacter.age = 'Ageless'
+        } else {
+          AppState.activeCharacter.age = parseInt(result.value[1])
+        }
+        if (result.value[2] === '') {
+          AppState.activeCharacter.gender = 'Non-Binary'
+        } else {
+          AppState.activeCharacter.gender = result.value[2]
+        }
+        if (result.value[3] === '') {
+          AppState.activeCharacter.alignment = 'True-Neutral'
+        } else {
+          AppState.activeCharacter.alignment = result.value[3].replace('_', ' ')
+        }
+        if (result.value[4] === '') {
+          AppState.activeCharacter.imgUrl = 'http://www.geocities.ws/Area51/Orion/3107/Lance21.jpg'
+        } else {
+          AppState.activeCharacter.imgUrl = result.value[4]
+        }
       }
     })
   }

@@ -1,7 +1,7 @@
 <template>
-  <div class="col-xl-2 col-lg-3 col-md-2 col-sm-3 col-6 text-center my-3 ">
+  <div class="col-xl-2 col-lg-3 col-md-2 col-sm-3 col-6 text-center mt-3 ">
     <button :id="modProp" type="button" class="btn btn-dark w-100" @click="addMod(modProp)">
-      <h4 class="font-md p-0 m-0">
+      <h4 class="font-lg p-0 m-0">
         {{ modProp.substring(0,3).toUpperCase() }}
       </h4>
     </button>

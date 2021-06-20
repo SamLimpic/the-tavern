@@ -1,7 +1,7 @@
 <template>
   <div class="shadow rounded row justify-content-center bg-light text-center m-4 p-md-4 p-3">
     <div class="col-12">
-      <h2 class="font-lg">
+      <h2 class="font-md">
         <u>{{ state.activeQuestion.query }}</u>
       </h2>
       <div class="row justify-content-center">

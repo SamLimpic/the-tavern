@@ -8,10 +8,13 @@
         <u>Resources</u>
       </h2>
       <div class="mx-md-4">
-        <p class="font-md mx-1 my-2">
+        <p class="font-md d-sm-block d-none mx-1 my-2">
           Here are some helpful Links to provide further information.
         </p>
-        <ul class="font-sm text-left d-md-block d-none mx-2 mb-2">
+        <p class="font-sm d-sm-none d-block mx-1 my-2">
+          Here are some helpful Links to provide further information.
+        </p>
+        <ul class="font-sm text-left d-sm-block d-none mx-2 mb-2">
           <li>
             <i class="text-secondary resources" onclick="window.open('https://www.dndbeyond.com/essentials')">Welcome to Dungeons & Dragons</i>
           </li>
@@ -31,7 +34,7 @@
             <i class="text-secondary resources" onclick="window.open('https://www.dnd-compendium.com/dm-resources/character-sheets')">Downloadable Character Sheets</i>
           </li>
         </ul>
-        <ul class="font-sm text-left d-md-none d-block mx-2 mb-2">
+        <ul class="font-xs text-left d-sm-none d-block mx-2 mb-2">
           <li>
             <i class="text-secondary resources" onclick="window.open('https://www.dndbeyond.com/essentials')">Welcome to D&D</i>
           </li>

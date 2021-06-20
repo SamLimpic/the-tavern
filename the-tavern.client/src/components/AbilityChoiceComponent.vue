@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-4 col-sm-3 col-6 text-center mt-3">
+  <div class="col-xl-4 col-lg-6 col-md-4 col-sm-6 col-10 text-center mt-3">
     <button :id="choiceProp" type="button" class="btn btn-dark w-100" @click="choose(choiceProp, abilityProp)">
       <h4 class="font-sm p-0 m-0">
         {{ choiceProp }}
@@ -47,5 +47,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.btn {
+  height: 100%;
+}
 </style>

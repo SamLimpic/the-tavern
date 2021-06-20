@@ -1,6 +1,6 @@
 <template>
   <div class="col-12 text-center" v-if="state.abilities === indexProp">
-    <h2 class=" font-lg p-0 m-0">
+    <h2 class=" font-md p-0 m-0">
       {{ abilityProp.title }}: <i>Choose {{ abilityProp.choose }}</i>
     </h2>
     <div class="row justify-content-around">

@@ -40,89 +40,44 @@ main {
     0.5px 0.5px 0 #000;
 }
 
+.strike-through {
+  text-decoration: line-through;
+}
+
+.transition {
+  transition: all 0.5s ease-in-out;
+}
+
+.icon {
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  z-index: 10;
+}
+.icon-show {
+  transform: scaleX(-1);
+  opacity: 0.5;
+  color: var(--info);
+}
+.icon-hide {
+  transform: scaleX(1);
+  opacity: 0.5;
+  color: var(--warning);
+}
+.transition:hover .icon-show {
+  transition: all 0.5s ease-in;
+  transform: scaleX(1);
+  opacity: 1;
+  color: var(--warning);
+}
+.transition:hover .icon-hide {
+  transition: all 0.5s ease-in;
+  transform: scaleX(-1);
+  opacity: 1;
+  color: var(--info);
+}
+
 // SECTION Establishes Media Queries for responsive font sizing
 @media (min-width: 0) {
-  .font-xxxs {
-    font-size: 0.5rem;
-  }
-  .font-xxs {
-    font-size: 0.75rem;
-  }
-  .font-xs {
-    font-size: 1rem;
-  }
-  .font-sm {
-    font-size: 1.25rem;
-  }
-  .font-md {
-    font-size: 1.5rem;
-  }
-  .font-lg {
-    font-size: 1.75rem;
-  }
-  .font-xl {
-    font-size: 2rem;
-  }
-  .font-xxl {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 576px) {
-  .font-xxxs {
-    font-size: 0.25rem;
-  }
-  .font-xxs {
-    font-size: 0.5rem;
-  }
-  .font-xs {
-    font-size: 0.75rem;
-  }
-  .font-sm {
-    font-size: 1rem;
-  }
-  .font-md {
-    font-size: 1.25rem;
-  }
-  .font-lg {
-    font-size: 1.5rem;
-  }
-  .font-xl {
-    font-size: 1.75rem;
-  }
-  .font-xxl {
-    font-size: 2.75rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .font-xxxs {
-    font-size: 0.5rem;
-  }
-  .font-xxs {
-    font-size: 0.75rem;
-  }
-  .font-xs {
-    font-size: 1rem;
-  }
-  .font-sm {
-    font-size: 1.25rem;
-  }
-  .font-md {
-    font-size: 1.5rem;
-  }
-  .font-lg {
-    font-size: 1.75rem;
-  }
-  .font-xl {
-    font-size: 2rem;
-  }
-  .font-xxl {
-    font-size: 3rem;
-  }
-}
-
-@media (min-width: 992px) {
   .font-xxxs {
     font-size: 0.75rem;
   }
@@ -147,10 +102,15 @@ main {
   .font-xxl {
     font-size: 3.25rem;
   }
+  .icon {
+    font-size: 1rem;
+    bottom: 0.25rem;
+    right: 0.25rem;
+  }
 }
 
-@media (min-width: 1200px) {
-  .font-xxs {
+@media (min-width: 576px) {
+  .font-xxxs {
     font-size: 1rem;
   }
   .font-xxs {
@@ -173,5 +133,106 @@ main {
   }
   .font-xxl {
     font-size: 3.5rem;
+  }
+  .icon {
+    font-size: 1rem;
+    bottom: 0.25rem;
+    right: 0.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .font-xxxs {
+    font-size: 1.25rem;
+  }
+  .font-xxs {
+    font-size: 1.5rem;
+  }
+  .font-xs {
+    font-size: 1.75rem;
+  }
+  .font-sm {
+    font-size: 2rem;
+  }
+  .font-md {
+    font-size: 2.25rem;
+  }
+  .font-lg {
+    font-size: 2.5rem;
+  }
+  .font-xl {
+    font-size: 2.75rem;
+  }
+  .font-xxl {
+    font-size: 3.75rem;
+  }
+  .icon {
+    font-size: 1.25rem;
+    bottom: 0.25rem;
+    right: 0.25rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .font-xxxs {
+    font-size: 1rem;
+  }
+  .font-xxs {
+    font-size: 1.25rem;
+  }
+  .font-xs {
+    font-size: 1.5rem;
+  }
+  .font-sm {
+    font-size: 1.75rem;
+  }
+  .font-md {
+    font-size: 2rem;
+  }
+  .font-lg {
+    font-size: 2.25rem;
+  }
+  .font-xl {
+    font-size: 2.5rem;
+  }
+  .font-xxl {
+    font-size: 3.5rem;
+  }
+  .icon {
+    font-size: 1rem;
+    bottom: 0.25rem;
+    right: 0.25rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .font-xxs {
+    font-size: 1.25rem;
+  }
+  .font-xxs {
+    font-size: 1.5rem;
+  }
+  .font-xs {
+    font-size: 1.75rem;
+  }
+  .font-sm {
+    font-size: 2rem;
+  }
+  .font-md {
+    font-size: 2.25rem;
+  }
+  .font-lg {
+    font-size: 2.5rem;
+  }
+  .font-xl {
+    font-size: 2.75rem;
+  }
+  .font-xxl {
+    font-size: 3.75rem;
+  }
+  .icon {
+    font-size: 1.25rem;
+    bottom: 0.25rem;
+    right: 0.25rem;
   }
 }

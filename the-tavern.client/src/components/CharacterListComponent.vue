@@ -11,7 +11,7 @@
         </h3>
       </button>
       <transition name="fade">
-        <div class="d-md-none d-block" v-if="state.show">
+        <div class="row justify-content-between text-left d-lg-none d-flex" v-if="state.show">
           <ActiveCharacter />
         </div>
       </transition>

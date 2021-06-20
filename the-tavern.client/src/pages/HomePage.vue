@@ -3,35 +3,35 @@
     <div class="row justify-content-center h-100">
       <div class="col-lg-8 col-12 shadow p-md-4 p-2">
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
-          <h2 class="font-xl">
-            <u>Welcome Adventurer!</u>
+          <h2 class="font-lg m-0">
+            <u>Welcome Traveller!</u>
           </h2>
-          <p class="font-md mb-1 mx-2">
-            The Tavern is an interactive character creation experience for Dungeons and Dragons 5th Edition, designed for both new players and seasoned veterans!
+          <p class="font-md mb-1 mx-lg-2 mx-3">
+            The Tavern is an interactive character creation experience for Dungeons and Dragons 5th Edition, designed for both new players and seasoned veterans alike!
           </p>
-          <p class="font-sm d-lg-block d-none mb-1 mx-2">
+          <p class="font-sm d-sm-block d-none mb-1 mx-lg-2 mx-3">
             This application was made to streamline the process of creating a fresh, customized, and ready-to-play character for any Dungeons and Dragons game.
           </p>
-          <p class="font-sm mx-2">
+          <p class="font-sm d-md-block d-none mx-lg-2 mx-3">
             Simply follow the promps to easily create your ideal character and start your adventure!
           </p>
           <div class="row justify-content-center align-items-center mb-1">
             <div class="col-4 d-md-block d-none text-right">
               <router-link :to="{name: 'About'}">
-                <button type="button" class="btn btn-primary w-75 font-sm">
+                <button type="button" class="btn btn-primary w-75 font-xs">
                   About
                 </button>
               </router-link>
             </div>
             <div class="col-md-4 col-sm-6 col-10 mb-1">
               <router-link :to="{name: 'Questions'}">
-                <button type="button" class="btn btn-lg btn-primary w-75 font-md">
+                <button type="button" class="btn btn-lg btn-primary w-100 font-sm">
                   Get Started!
                 </button>
               </router-link>
             </div>
             <div class="col-4 d-md-block d-none text-left">
-              <button type="button" class="btn btn-primary w-75 font-sm">
+              <button type="button" class="btn btn-primary w-75 font-xs">
                 Random
               </button>
             </div>

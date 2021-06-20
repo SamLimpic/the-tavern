@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-light">
-        <h1 class="font-xl my-1 p-0">
+        <h1 class="font-lg my-1 p-0">
           <span><i class="fas fa-dice-d20 text-warning mr-2"></i></span> The Tavern
         </h1>
       </div>
@@ -19,7 +19,7 @@
       <span class="navbar-toggler-icon" />
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav font-md mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
             Home
@@ -43,7 +43,7 @@
       </ul>
       <span class="navbar-text">
         <button
-          class="btn btn-outline-light text-uppercase"
+          class="btn btn-outline-light text-right text-uppercase"
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -61,7 +61,7 @@
               height="40"
               class="rounded"
             />
-            <span class="mx-3 text-light text-shadow">{{ user.name }}</span>
+            <span class="mx-3 text-light text-shadow font-sm">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
@@ -137,5 +137,65 @@ a:hover {
 .nav-item .nav-link.router-link-exact-active{
   color: var(--warning) !important;
   text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
+}
+
+@media (min-width: 0) {
+.font-sm {
+        font-size: 1rem;
+    }
+.font-md {
+    font-size: 1.25rem;
+  }
+.font-lg {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 576px) {
+  .font-sm {
+        font-size: 1rem;
+    }
+.font-md {
+    font-size: 1.25rem;
+  }
+.font-lg {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .font-sm {
+        font-size: 1.25rem;
+    }
+.font-md {
+    font-size: 1.5rem;
+  }
+.font-lg {
+    font-size: 3.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .font-sm {
+        font-size: 1rem;
+    }
+.font-md {
+    font-size: 1rem;
+  }
+.font-lg {
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .font-sm {
+        font-size: 1.25rem;
+    }
+.font-md {
+    font-size: 1.25rem;
+  }
+.font-lg {
+    font-size: 3rem;
+  }
 }
 </style>

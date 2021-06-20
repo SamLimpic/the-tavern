@@ -33,7 +33,7 @@
         </div>
       </div>
       <div class="col-12 text-center d-lg-none d-block mt-auto mb-2">
-        <button type="button" class="btn btn-dark font-lg mb-4" @click="toggle('basics')" v-if="state.show !== 'basics'">
+        <button type="button" class="btn btn-dark font-md mb-4" @click="toggle('basics')" v-if="state.show !== 'basics'">
           Back to Index
         </button>
       </div>

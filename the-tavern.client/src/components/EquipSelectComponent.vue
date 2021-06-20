@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-4 col-8 my-2">
+  <div class="col-sm-6 col-10 my-2">
     <button type="button" class="btn btn-lg btn-light w-100" @click="addEquipment(equipmentProp)">
       <h4 class="font-sm mb-2" v-if="equipmentProp.weapon && equipmentProp.weapon.length > 1">
         <u class="font-md">Weapon</u> <br>  {{ equipmentProp.weapon[0] }} x {{ equipmentProp.weapon.length }}

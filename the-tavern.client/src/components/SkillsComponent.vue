@@ -1,7 +1,7 @@
 <template>
   <div class="col-lg-4 col-md-3 col-sm-4 col-10 text-center my-2 ">
     <button :id="skillProp" type="button" class="btn btn-lg btn-dark w-100" @click="addSkill(skillProp)">
-      <h3 class="font-md p-0 m-0">
+      <h3 class="font-sm p-0 m-0">
         {{ skillProp }}
       </h3>
     </button>
