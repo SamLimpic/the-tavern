@@ -100,22 +100,9 @@ class CharactersService {
     window.localStorage.setItem('character', JSON.stringify(AppState.character))
   }
 
-  // setModifiers() {
-  //   // eslint-disable-next-line prefer-const
-  //   let scores = AppState.scores
-  //   scores.strength.mod = Math.floor((scores.strength.value - 10) / 2)
-  //   scores.dexterity.mod = Math.floor((scores.dexterity.value - 10) / 2)
-  //   scores.constitution.mod = Math.floor((scores.constitution.value - 10) / 2)
-  //   scores.intelligence.mod = Math.floor((scores.intelligence.value - 10) / 2)
-  //   scores.wisdom.mod = Math.floor((scores.wisdom.value - 10) / 2)
-  //   scores.charisma.mod = Math.floor((scores.charisma.value - 10) / 2)
-  // AppState.character.scores = scores
-  // }
-
   async saveCharacter() {
     AppState.character.scores = AppState.scores
     AppState.activeCharacter = AppState.character
-    console.log(AppState.activeCharacter)
     await api.post('api/characters', AppState.activeCharacter)
     router.push('Account')
   }
