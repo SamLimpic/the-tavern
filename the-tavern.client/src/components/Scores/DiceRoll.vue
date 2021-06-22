@@ -1,5 +1,7 @@
 <template>
+  <!-- ANCHOR Displays the randomly-generated Ability Score rolls -->
   <div class="col-2 d-md-block d-none text-center px-xl-2 px-lg-1 px-md-2">
+    <!-- SECTION Desktop Column Layout utilizing Drag and Drop-->
     <div class="bg-light dice-roll rounded" draggable="true" @dragstart="moveNum(diceProp, indexProp)">
       <h3 class="font-xxl text-danger" v-if="diceProp > 0 && diceProp < 11">
         {{ diceProp }}
@@ -14,6 +16,7 @@
   </div>
 
   <div class="col-4 d-md-none d-block text-center mt-3 px-sm-4 px-2">
+    <!-- SECTION Mobile Column Layout -->
     <div class="btn-group dropup w-100">
       <button type="button" class="btn dice-roll btn-outline-dark rounded p-0" data-toggle="dropdown">
         <h3 class="font-xxl text-danger" v-if="diceProp > 0 && diceProp < 11">
@@ -27,18 +30,19 @@
         </h3>
       </button>
       <div class="dropdown-menu font-sm">
-        <DropDown v-for="d in state.stats" :key="d" :drop-prop="d" :dice-prop="diceProp" :index-prop="indexProp" />
+        <!-- SECTION Mobile Dropdown Menu in place of the Desktop Drag and Drop -->
+        <DiceDropDown v-for="d in state.stats" :key="d" :drop-prop="d" :dice-prop="diceProp" :index-prop="indexProp" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { AppState } from '../AppState'
+import { AppState } from '../../AppState'
 import { computed, reactive, onMounted } from 'vue'
 
 export default {
-  name: 'DiceNum',
+  name: 'DiceRoll',
   props: {
     diceProp: {
       type: Number,
@@ -74,6 +78,8 @@ export default {
 .dice-roll{
  border: 3px solid var(--dark);
 }
+
+/* SECTION Establishes Media Queries for responsive font sizing */
 
 @media (min-width: 0) {
 .dice-roll{

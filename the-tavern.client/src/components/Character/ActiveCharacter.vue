@@ -1,4 +1,5 @@
 <template>
+  <!-- ANCHOR Displays all Toggle Buttons to specify further Information -->
   <div class="col-sm-6 col-12 mt-md-4 mt-3">
     <div class="img-container position-relative">
       <img :src="state.activeCharacter.imgUrl" class="w-100 bg-warning p-1 shadow rounded" alt="">
@@ -28,6 +29,7 @@
   </div>
   <div class="col-12 mt-md-4 mt-sm-3 mb-md-3 mt-sm-1 mt-3">
     <div class="row justify-content-center transition mx-xl-2 mx-0">
+      <!-- SECTION Displays Ability Scores & Modifiers for the Active Character -->
       <CharacterStats v-for="(s, key) in state.activeCharacter.scores" :key="key" :stat-prop="s" />
     </div>
   </div>
@@ -36,30 +38,33 @@
       <u>{{ state.activeCharacter.name }}'s Abilities</u>
     </h2>
     <div class="row justify-content-center mt-3">
-      <AbilityListComponent v-for="a in state.activeCharacter.abilities" :key="a" :ability-prop="a" />
+      <!-- SECTION Displays available Abilities for the Active Character -->
+      <AbilityList v-for="a in state.activeCharacter.abilities" :key="a" :ability-prop="a" />
     </div>
     <div v-if="state.activeCharacter.spellcasting.spells[0]">
       <h2 class="mt-3">
         <u>{{ state.activeCharacter.name }}'s Cantrips</u>
       </h2>
       <div class="row justify-content-center mt-3">
-        <SpellListComponent v-for="c in state.activeCharacter.spellcasting.cantrips" :key="c" :spell-prop="c" />
+        <!-- SECTION Displays available Cantrips for the Active Character -->
+        <SpellList v-for="c in state.activeCharacter.spellcasting.cantrips" :key="c" :spell-prop="c" />
       </div>
       <h2 class="mt-3">
         <u>{{ state.activeCharacter.name }}'s Spells</u>
       </h2>
       <div class="row justify-content-center mt-3">
-        <SpellListComponent v-for="s in state.activeCharacter.spellcasting.spells" :key="s" :spell-prop="s" />
+        <!-- SECTION Displays available Spells for the Active Character -->
+        <SpellList v-for="s in state.activeCharacter.spellcasting.spells" :key="s" :spell-prop="s" />
       </div>
     </div>
   </div>
 </template>
 <script>
 import { computed, reactive } from 'vue'
-import { AppState } from '../AppState'
-import { charactersService } from '../services/CharactersService'
-import Notification from '../utils/Notification'
-import { resultsService } from '../services/ResultsService'
+import { AppState } from '../../AppState'
+import { charactersService } from '../../services/CharactersService'
+import Notification from '../../utils/Notification'
+import { resultsService } from '../../services/ResultsService'
 export default {
   name: 'ActiveCharacter',
   setup() {
@@ -112,6 +117,11 @@ export default {
   object-fit: cover;
 } */
 
+.text-shadow {
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000,
+    1.5px 1.5px 0 #000;
+}
+
 .btn-overlay {
   position: absolute;
   border: none;
@@ -143,6 +153,8 @@ export default {
 }
 
 @media (min-width: 0) {
+  /* SECTION Establishes Media Queries for responsive font sizing */
+
 .img-container {
   width: 90%;
   margin: auto;

@@ -5,7 +5,6 @@ import { resultsService } from './ResultsService'
 
 class QuestionsService {
   async getQuestions() {
-    // TODO rename question to res (question to res.data)
     const res = await api.get('api/questions')
     AppState.questions.role = res.data.filter(q => q.type === 'Role')
     AppState.questions.style = res.data.filter(q => q.type === 'Style')
@@ -14,19 +13,25 @@ class QuestionsService {
     AppState.activeQuestion = AppState.questions.role[0]
   }
 
+  // ANCHOR Interprets Questionnaire results and updates potential outcomes
   async buildCharacter(string, type) {
     if (type === 'Role' || type === 'Style') {
+      // SECTION Establishes Character Role & Style, which determine Character Class
       await this.buildPrimary(string, type)
     } else {
+      // SECTION Establishes Character Race, Background, & Subclass
       await this.buildSecondary(string, type)
     }
   }
 
+  // ANCHOR Establishes Character Role & Style, which determine Character Class
   async buildPrimary(string, type) {
+    // SECTION Takes in Answer Data and updates Role / Style counts
     this.updateCount(string, type)
     const t = type.toLowerCase()
     const questions = AppState.questions
     if (AppState.tieBreakers.length === 2) {
+      // SECTION Incorporates Tiebreaker questions if the Tiebreaker count hits 2
       this.tieBreaker(type, AppState.tieBreakers)
     } else if (AppState.activeQuestion.number === questions[t].length - 1) {
       if (type === 'Role') {
@@ -34,6 +39,7 @@ class QuestionsService {
         AppState.count.question = 5
         AppState.role = AppState.character[t]
       } else {
+        // SECTION Pulls Character Class from database once Role & Style are established
         await resultsService.getJob()
         AppState.activeQuestion = questions.trade[0]
         AppState.count.question = 8
@@ -46,16 +52,21 @@ class QuestionsService {
     }
   }
 
+  // ANCHOR Establishes Character Race, Background, & Subclass
   async buildSecondary(string, type) {
     const questions = AppState.questions
     if (type === 'Race') {
+      // SECTION Pulls Character Race from database based on selection
       await resultsService.getRace(string)
     } else if (type === 'Background') {
+      // SECTION Pulls Character Background from database based on selection
       await resultsService.getBackground(string)
     } else if (type === 'SubJob') {
+      // SECTION Pulls Character Subclass from database based on selection
       AppState.job.subJobs = AppState.job.subJobs.find(j => j.title === string)
     }
     if (AppState.activeQuestion.number === questions.trade.length - 1) {
+      // SECTION Completes the Build process and reroutes to the Results page
       AppState.built = 'true'
       router.push('Results')
     } else {
@@ -64,6 +75,7 @@ class QuestionsService {
     }
   }
 
+  // ANCHOR Takes in Answer Data and updates Role / Style counts
   updateCount(string, type) {
     // eslint-disable-next-line prefer-const
     const t = type.toLowerCase()
@@ -72,29 +84,34 @@ class QuestionsService {
     const attribute = AppState.attributes[t][str]
     const questions = AppState.questions[t]
     if (AppState.count[t] < attribute) {
+      // SECTION Updates the Active Role / Style if its count is the current highest
       AppState.count[t] = attribute
       AppState.character[t] = string
     }
     if (Math.floor(attribute) === 2) {
+      // SECTION Pushes a potential Tiebreaker selection if its count hits 2
       AppState.tieBreakers.push(string)
     }
     if (Math.floor(attribute) === 3 || AppState.activeQuestion === questions[questions.length - 2]) {
+      // SECTION Sets the Active Role / Style if its count hits 3
       AppState.count.question++
       AppState.activeQuestion = questions[questions.length - 1]
     }
   }
 
+  // ANCHOR Incorporates Tiebreaker questions if the Tiebreaker count hits 2
   tieBreaker(type, arr) {
     const t = type.toLowerCase()
     const questions = AppState.questions[t]
     AppState.count.question++
     AppState.activeQuestion = questions[questions.length - 1]
+    // SECTION Displays only the required Tiebreaker attirbutes to be tested
     AppState.activeQuestion.answers = AppState.activeQuestion.answers.filter(a => a.value === arr[0] || a.value === arr[1])
     AppState.tieBreakers = []
   }
 
+  // ANCHOR Refreshes all temporary attributes at the start of the Questionnaire
   resetAttributes() {
-    // REVIEW put in a single place and reference (set a default)
     AppState.attributes = {
       role: {
         tank: 0.05,

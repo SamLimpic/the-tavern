@@ -1,4 +1,5 @@
 <template>
+  <!-- ANCHOR The Ability Score Roll Function -->
   <div class="row">
     <div class="col-12 text-center" v-if="state.bool">
       <h3 class="font-sm">
@@ -20,19 +21,21 @@
     </div>
   </div>
   <div class="row align-items-center mx-xl-1 mx-lg-0 mx-md-1 mx-sm-3 mx-1" v-if="state.score < 6">
-    <DiceNum v-for="(d, key) in state.activeScores" :key="key" :dice-prop="d" :index-prop="key" />
+    <!-- SECTION Displays the randomly-generated Ability Score rolls -->
+    <DiceRoll v-for="(d, key) in state.activeScores" :key="key" :dice-prop="d" :index-prop="key" />
   </div>
   <div class="row mt-2 text-center mx-xl-1 mx-lg-0 mx-md-1 mx-sm-3 mx-1 mb-1">
-    <StatsComponent v-for="(s, key) in state.character.scores" :key="key" :stat-prop="s" />
+    <!-- SECTION Displays Ability Scores & Stat Modifiers -->
+    <Stat v-for="(s, key) in state.character.scores" :key="key" :stat-prop="s" />
   </div>
 </template>
 
 <script>
-import { AppState } from '../AppState'
+import { AppState } from '../../AppState'
 import { computed, reactive } from 'vue'
 
 export default {
-  name: 'AbilityScore',
+  name: 'Score',
   setup() {
     const state = reactive({
       bool: true,

@@ -1,4 +1,6 @@
 <template>
+  <!-- ANCHOR Developer page designed to test Color Theme Accessibility.
+  Disabled buttons do not pass Accessibility and are not to be used. -->
   <div class="access-test container">
     <div class="row justify-content-center">
       <div class="col-md-12 col-8 text-center">

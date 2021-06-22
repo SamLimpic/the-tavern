@@ -36,6 +36,7 @@ class ResultsService {
     AppState.armor = armor.data
   }
 
+  // ANCHOR Loads Local Storage data from Questionnaire if the Results Page is refreshed
   loadBuild() {
     AppState.count = JSON.parse(window.localStorage.getItem('count'))
     AppState.job = JSON.parse(window.localStorage.getItem('job'))

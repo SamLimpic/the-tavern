@@ -1,5 +1,5 @@
 <template>
-  <!-- TODO get the toggle to dissappear on anything larger than a medium -->
+  <!-- ANCHOR Displays the list of available Account Characters -->
   <div class="row justify-content-center">
     <div class="col-12 mt-3">
       <button type="button" class="btn btn-lg btn-dark w-100" @click="setActiveCharacter(character.id)">
@@ -12,6 +12,7 @@
       </button>
       <transition name="fade">
         <div class="row justify-content-between text-left d-lg-none d-flex" v-if="state.show">
+          <!-- SECTION On Mobile, displays all Character information as a Drop Down -->
           <ActiveCharacter />
         </div>
       </transition>
@@ -20,10 +21,10 @@
 </template>
 <script>
 import { computed, reactive } from 'vue'
-import { AppState } from '../AppState'
-import { charactersService } from '../services/CharactersService'
+import { AppState } from '../../AppState'
+import { charactersService } from '../../services/CharactersService'
 export default {
-  name: 'CharacterListComponent',
+  name: 'CharacterList',
   props: {
     character: {
       type: Object,

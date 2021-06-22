@@ -13,19 +13,13 @@ const routes = [
   },
   {
     path: '/questions',
-    name: 'Questions',
-    component: loadPage('QuestionsPage')
+    name: 'Questionnaire',
+    component: loadPage('QuestionnairePage')
   },
   {
     path: '/results',
     name: 'Results',
     component: loadPage('ResultsPage')
-  },
-  {
-    path: '/characters',
-    name: 'Characters',
-    component: loadPage('CharactersPage'),
-    beforeEnter: authGuard
   },
   {
     path: '/access-test',

@@ -11,6 +11,8 @@ export default class Notification {
  * -----------------------------------
  * {@link https://sweetalert2.github.io/#configuration|Check out Sweet Alerts}
  */
+
+  // SECTION Confirmation Modal
   static async confirmAction(title = 'Final Answer?', text = 'Is this the answer you want to choose?', icon = 'warning', confirmButtonText = "I'm sure!") {
     try {
       const res = await Swal.fire({
@@ -41,6 +43,8 @@ export default class Notification {
  * -----------------------------------
  * {@link https://sweetalert2.github.io/#configuration|Check out Sweet Alerts}
  */
+
+  // SECTION Notification Modal
   static toast(title = 'Warning!', display = 'warning', position = 'top-end', timer = 3000, progressBar = true) {
     Swal.fire({
       title: title,
@@ -53,6 +57,7 @@ export default class Notification {
     })
   }
 
+  // SECTION Weapon Selection Modal
   static async weaponChoice(type) {
     if (type === 'Martial') {
       const { value: weapon } = await Swal.fire({
@@ -134,6 +139,7 @@ export default class Notification {
     }
   }
 
+  // SECTION Character Info Modal
   static async multiModal() {
     // eslint-disable-next-line vue/one-component-per-file
     await Swal.mixin({
@@ -197,7 +203,7 @@ export default class Notification {
         title: 'What does your character look like?',
         icon: 'info',
         input: 'text',
-        inputPlaceholder: 'Img Url...'
+        inputPlaceholder: "We'll provide you a placeholder by default"
       }
     ]).then((result) => {
       if (result.value) {
@@ -230,6 +236,7 @@ export default class Notification {
     })
   }
 
+  // SECTION Custom Notification Modal
   static notify(str) {
     Swal.fire({
       icon: 'success',
@@ -238,38 +245,12 @@ export default class Notification {
     })
   }
 
+  // SECTION Information Modal
   static expand(obj) {
     Swal.fire(
       `${obj.title}`,
       `${obj.body}`,
       'info'
     )
-  }
-
-  static async editCharacter() {
-    // eslint-disable-next-line vue/one-component-per-file
-    await Swal.mixin({
-      title: 'Edit your Profile Info',
-      input: 'text',
-      confirmButtonText: 'Next &rarr;',
-      progressSteps: [1, 2]
-    }).queue([
-      {
-        title: "Update your Character's Name",
-        icon: 'info',
-        inputPlaceholder: 'Name...'
-      },
-      {
-        title: "Update your Character's Picture",
-        icon: 'info',
-        input: 'text',
-        inputPlaceholder: 'Img Url...'
-      }
-    ]).then((result) => {
-      if (result.value) {
-        AppState.activeCharacter.name = result.value[0]
-        AppState.activeCharacter.imgUrl = result.value[1]
-      }
-    })
   }
 }

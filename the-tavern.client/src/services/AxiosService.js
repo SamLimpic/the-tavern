@@ -4,11 +4,6 @@ export const api = Axios.create({
   baseURL,
   timeout: 8000
 })
-
-export const dungeonApi = Axios.create({
-  baseURL: 'https://www.dnd5eapi.co/api/',
-  timeout: 3000
-})
 export const setBearer = function(bearer) {
   api.defaults.headers.authorization = bearer
 }

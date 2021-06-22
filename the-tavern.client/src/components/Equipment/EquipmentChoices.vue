@@ -1,20 +1,22 @@
 <template>
+  <!-- ANCHOR Displays available Equipment Choices to be selected -->
   <div class="bg-dark shadow rounded mt-4 py-1" v-if="state.equipment === indexProp">
     <h3 class="text-center text-light font-md pt-3">
       <u> Choose 1</u>
     </h3>
     <div class="row justify-content-around m-2">
-      <EquipSelectComponent v-for="(e, index, key) in choiceProp" :key="key" :equipment-prop="e" />
+      <!-- SECTION Displays specific Equipment options to be selected -->
+      <Equipment v-for="(e, index, key) in choiceProp" :key="key" :equipment-prop="e" />
     </div>
   </div>
 </template>
 
 <script>
 import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../AppState'
+import { AppState } from '../../AppState'
 
 export default {
-  name: 'ChoicesComponent',
+  name: 'EquipmentChoice',
   props: {
     choiceProp: {
       type: Object,

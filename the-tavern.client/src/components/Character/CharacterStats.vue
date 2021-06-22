@@ -1,5 +1,8 @@
 <template>
+  <!-- ANCHOR Displays Ability Scores & Modifiers for Active Character -->
   <div class="col-2 hoverable d-sm-flex d-none p-1 text-center">
+    <!-- SECTION Desktop Column Layout
+    Toggles between Raw Scores & Modifiers on Click -->
     <div class="stat-box rounded position-relative bg-light" @click="toggle(false)" v-if="state.show">
       <i class="fas fa-adjust icon icon-show"></i>
       <h3 class="font-xl m-0 pt-2 pb-1">
@@ -32,6 +35,8 @@
     </div>
   </div>
   <div class="col-4 hoverable d-sm-none d-flex px-1 text-center">
+    <!-- SECTION Mobile Column Layout
+    Toggles between Raw Scores & Modifiers on Click -->
     <div class="stat-box rounded position-relative bg-light" @click="toggle(false)" v-if="state.show">
       <i class="fas fa-adjust icon icon-show"></i>
       <h3 class="font-xl m-0 pt-2 pb-1">
@@ -65,7 +70,7 @@
   </div>
 </template>
 <script>
-import { AppState } from '../AppState'
+import { AppState } from '../../AppState'
 import { computed, reactive, onMounted } from 'vue'
 
 export default {
@@ -105,6 +110,8 @@ export default {
  margin-top: 1rem;
  width: 100%;
 }
+
+/* SECTION Establishes Media Queries for responsive font sizing */
 
 @media (min-width: 0) {
 .stat-box{

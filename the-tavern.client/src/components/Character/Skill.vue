@@ -1,4 +1,5 @@
 <template>
+  <!-- ANCHOR Displays available Skills to be selected -->
   <div class="col-lg-4 col-md-3 col-sm-4 col-10 text-center my-2 ">
     <button :id="skillProp" type="button" class="btn btn-lg btn-dark w-100" @click="addSkill(skillProp)">
       <h3 class="font-sm p-0 m-0">
@@ -10,11 +11,11 @@
 
 <script>
 import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../AppState'
-import Notification from '../utils/Notification'
+import { AppState } from '../../AppState'
+import Notification from '../../utils/Notification'
 
 export default {
-  name: 'SkillsComponent',
+  name: 'Skill',
   props: {
     skillProp: {
       type: String,

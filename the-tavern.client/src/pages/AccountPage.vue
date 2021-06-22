@@ -1,8 +1,10 @@
 <template>
+  <!-- ANCHOR Displays all Characters connected to the active Account -->
   <div class="account container-fluid">
     <div class="row justify-content-center h-100">
       <div class="col-lg-8 d-lg-block d-none p-md-4">
         <div class="row justify-content-between shadow rounded bg-light m-4 p-md-4 p-3">
+          <!-- SECTION Pulls info from the Active Character object. -->
           <ActiveCharacter v-if="state.activeCharacter.job" />
           <div class="col-12 text-center" v-else>
             <h1 class="font-xl">
@@ -15,6 +17,7 @@
         </div>
       </div>
       <div class="col-lg-4 col-12 bg-primary text-center h-100 p-md-4 p-2">
+        <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="my-5 font-xxl">
             <i class="fas fa-dice-d20 fa-spin text-warning"></i>
@@ -27,7 +30,8 @@
           <h3 class="font-md" v-if="state.characters.length === 0">
             Looks like you need to make some characters!
           </h3>
-          <CharacterListComponent v-for="c in state.characters" :key="c.id" :character="c" />
+          <!-- SECTION Displays list of Account Characters to be selected. -->
+          <CharacterList v-for="c in state.characters" :key="c.id" :character="c" />
         </div>
         <div class="shadow rounded bg-light text-center m-3 p-5" v-else>
           <h2>Log in to view your character list!</h2>
@@ -54,6 +58,7 @@ export default {
       AppState: computed(() => AppState)
     })
     onMounted(async() => {
+      // NOTE This timeout ensures consistent loading time across all pages
       setTimeout(function() { state.loading = false }, 1000)
       await charactersService.getCharacters(state.account.id)
     })

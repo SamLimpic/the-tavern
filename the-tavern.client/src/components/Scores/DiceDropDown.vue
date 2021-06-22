@@ -1,14 +1,15 @@
 <template>
+  <!-- ANCHOR Mobile Dropdown Menu in place of the Desktop Drag and Drop -->
   <a class="dropdown-item font-sm" @click="addStat(dropProp, diceProp, indexProp)">{{ dropProp }}</a>
 </template>
 
 <script>
 import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../AppState'
-import Notification from '../utils/Notification'
+import { AppState } from '../../AppState'
+import Notification from '../../utils/Notification'
 
 export default {
-  name: 'DropDown',
+  name: 'DiceDropDown',
   props: {
     dropProp: {
       type: String,

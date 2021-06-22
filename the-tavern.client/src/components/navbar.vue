@@ -1,4 +1,5 @@
 <template>
+  <!-- ANCHOR Template NavBar component, modified to accomodate specific application -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-light">
@@ -138,6 +139,8 @@ a:hover {
   color: var(--warning) !important;
   text-shadow: -0.5px -0.5px 0 #000, 0.5px -0.5px 0 #000, -0.5px 0.5px 0 #000, 0.5px 0.5px 0 #000;
 }
+
+/* SECTION Establishes Media Queries for responsive font sizing */
 
 @media (min-width: 0) {
 .font-sm {

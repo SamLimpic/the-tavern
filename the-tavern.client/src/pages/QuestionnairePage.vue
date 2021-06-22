@@ -1,15 +1,18 @@
 <template>
-  <div class="questions container-fluid">
+  <!-- ANCHOR The main Questionnaire page, loads Question and Answer components. -->
+  <div class="questionnaire container-fluid">
     <div class="row justify-content-center h-100" v-if="state.activeQuestion && !state.loading">
       <div class="col-lg-8 col-12 p-md-4">
-        <QuestionComponent />
+        <!-- SECTION Loads the Active Question and Answers -->
+        <Question />
       </div>
       <div class="col-4 d-lg-block d-none bg-primary h-100 p-md-4">
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
           <h2 class="font-lg">
             <u>Progress</u>
           </h2>
-          <div id="questions results" class="progress mb-4" style="height: 2rem">
+          <!-- SECTION General Progress Bar for Questionnaire -->
+          <div class="progress mb-4" style="height: 2rem">
             <div class="progress-bar bg-primary"
                  role="progressbar"
                  :style="`width: ${(state.count.question * 10) + 2}%`"
@@ -19,11 +22,12 @@
             ></div>
           </div>
 
+          <!-- SECTION The established Character Role -->
           <div v-if="state.role !== null">
             <h3 class="text-left font-md">
               {{ state.role }}
             </h3>
-            <div id="questions results" class="progress mb-4" style="height: 2rem">
+            <div class="progress mb-4" style="height: 2rem">
               <div :class="'progress-bar ' + state.colors[state.role.toLowerCase()]"
                    role="progressbar"
                    :style="`width: ${state.attributes.role[state.role.toLowerCase()] * 33}%`"
@@ -34,6 +38,7 @@
             </div>
           </div>
 
+          <!-- SECTION The established Character Style -->
           <div v-if="state.style !== null">
             <h3 class="text-left font-md">
               {{ state.style }}
@@ -49,17 +54,20 @@
             </div>
           </div>
 
+          <!-- SECTION The Progress Bar for Potential Character Roles -->
           <div v-if="state.role === null">
-            <ProgressComponent v-for="(a, key, index) in state.attributes.role" :key="index" :attribute-prop="key" />
+            <ProgressBar v-for="(a, key, index) in state.attributes.role" :key="index" :attribute-prop="key" />
           </div>
 
+          <!-- SECTION The Progress Bar for Potential Character Styles -->
           <div v-else-if="state.style === null">
-            <ProgressComponent v-for="(a, key, index) in state.attributes.style" :key="index" :attribute-prop="key" />
+            <ProgressBar v-for="(a, key, index) in state.attributes.style" :key="index" :attribute-prop="key" />
           </div>
         </div>
       </div>
     </div>
 
+    <!-- STUB Loading Icon is visible while data is pulled from Server-->
     <div class="row justify-content-center m-5" v-else>
       <h2><i class="fas fa-dice-d20 fa-spin text-warning"></i></h2>
     </div>
@@ -73,7 +81,7 @@ import { questionsService } from '../services/QuestionsService'
 import Notification from '../utils/Notification'
 
 export default {
-  name: 'Quiz',
+  name: 'Questionnaire',
   setup() {
     const state = reactive({
       loading: true,
@@ -82,6 +90,8 @@ export default {
       count: computed(() => AppState.count),
       role: computed(() => AppState.role),
       style: computed(() => AppState.style),
+
+      // NOTE determines the Progress Bar Color depending on Selected Role / Style
       colors: {
         tank: 'bg-danger',
         damage: 'bg-warning',
@@ -94,9 +104,11 @@ export default {
     })
     onMounted(async() => {
       try {
+        localStorage.clear()
         questionsService.resetAttributes()
         await questionsService.getQuestions()
-        state.loading = false
+        // NOTE This timeout ensures consistent loading time across all pages
+        setTimeout(function() { state.loading = false }, 1000)
       } catch (error) {
         Notification.toast('Error: ' + error, 'error')
       }

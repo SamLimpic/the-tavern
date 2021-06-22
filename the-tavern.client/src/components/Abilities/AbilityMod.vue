@@ -1,4 +1,5 @@
 <template>
+  <!-- ANCHOR Renders available choices of Character Ability Modifiers -->
   <div class="col-xl-2 col-lg-3 col-md-2 col-sm-3 col-6 text-center mt-3 ">
     <button :id="modProp" type="button" class="btn btn-dark w-100" @click="addMod(modProp)">
       <h4 class="font-lg p-0 m-0">
@@ -10,11 +11,11 @@
 
 <script>
 import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../AppState'
-import Notification from '../utils/Notification'
+import { AppState } from '../../AppState'
+import Notification from '../../utils/Notification'
 
 export default {
-  name: 'AbilityModsComponent',
+  name: 'AbilityMod',
   props: {
     modProp: {
       type: String,

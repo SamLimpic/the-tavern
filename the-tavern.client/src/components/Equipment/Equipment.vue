@@ -1,4 +1,5 @@
 <template>
+  <!-- ANCHOR Displays specific Equipment options to be selected -->
   <div class="col-sm-6 col-10 my-2">
     <button type="button" class="btn btn-lg btn-light w-100" @click="addEquipment(equipmentProp)">
       <h4 class="font-sm mb-2" v-if="equipmentProp.weapon && equipmentProp.weapon.length > 1">
@@ -25,11 +26,11 @@
 
 <script>
 import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../AppState'
-import Notification from '../utils/Notification'
+import { AppState } from '../../AppState'
+import Notification from '../../utils/Notification'
 
 export default {
-  name: 'EquipSelectComponent',
+  name: 'Equipment',
   props: {
     equipmentProp: {
       type: Object,

@@ -91,6 +91,8 @@ class CharactersService {
     this.getSkills()
     this.getAbilities()
     this.getAbilityModifiers()
+
+    // NOTE Saves temporary build stats to Local Storage, allowing the user to refresh the Results Page and retain their Questionnaire information
     window.localStorage.setItem('count', JSON.stringify(AppState.count))
     window.localStorage.setItem('job', JSON.stringify(AppState.job))
     window.localStorage.setItem('race', JSON.stringify(AppState.race))

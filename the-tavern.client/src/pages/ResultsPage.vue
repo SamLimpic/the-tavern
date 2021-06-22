@@ -1,7 +1,10 @@
 <template>
+  <!-- ANCHOR This page displays cascading Character Information components after the Character Class, Race, and Background has been determined. -->
   <div class="results container-fluid">
     <div class="row justify-content-center h-100">
+      <!-- SECTION Cascading Character Attribute selection options -->
       <div class="col-lg-8 col-12 p-md-4">
+        <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="font-xl">
             <u>Loading your Character</u><br>
@@ -12,41 +15,51 @@
           <h2 class="font-lg">
             <u> You have selected a {{ state.character.race }} {{ state.character.job }}!</u>
           </h2>
+
+          <!-- SECTION The available Skill options -->
           <div v-if="state.skills < state.job.proficiencies.skills.choose">
             <h3 class="font-sm">
               Choose {{ state.job.proficiencies.skills.choose }} of your available Skills!
             </h3>
             <div class="row justify-content-center">
-              <SkillsComponent v-for="s in state.job.proficiencies.skills.from" :key="s" :skill-prop="s" />
+              <Skill v-for="s in state.job.proficiencies.skills.from" :key="s" :skill-prop="s" />
             </div>
           </div>
+
+          <!-- SECTION The available Equipment options -->
           <div v-else-if="state.equipment < state.job.equipment[0].choices.length">
             <h3 class="font-sm">
               Choose from these sets of available Equipment
             </h3>
-            <div>
-              <ChoicesComponent v-for="(c, key) in state.job.equipment[0].choices" :key="key" :choice-prop="c" :index-prop="key" />
-            </div>
+            <EquipmentChoice v-for="(c, key) in state.job.equipment[0].choices" :key="key" :choice-prop="c" :index-prop="key" />
           </div>
+
+          <!-- SECTION The available Ability options -->
           <div v-else-if="state.chooseAbilities && state.chooseAbilities.length > state.abilities">
             <h3 class="font-sm">
               Time to choose some of your abilities!
             </h3>
             <div class="row justify-content-around">
-              <AbilityComponent v-for="(a, index) in state.chooseAbilities" :key="index" :ability-prop="a" :index-prop="index" />
+              <ActiveAbility v-for="(a, index) in state.chooseAbilities" :key="index" :ability-prop="a" :index-prop="index" />
             </div>
           </div>
           <div v-else-if="state.chooseScores && state.mods > state.modChoice">
             <h3 class="font-sm">
               Now assign your {{ state.mods }} Ability Modifiers!
             </h3>
+
+            <!-- SECTION The available Ability Modifier options -->
             <div class="row justify-content-around">
-              <AbilityModsComponent v-for="m in state.chooseScores" :key="m" :mod-prop="m" />
+              <AbilityMod v-for="m in state.chooseScores" :key="m" :mod-prop="m" />
             </div>
           </div>
+
+          <!-- SECTION The Ability Score Roll Function -->
           <div v-else-if="state.score < 6">
-            <AbilityScore />
+            <Score />
           </div>
+
+          <!-- SECTION Save your Character once all other criteria have been met -->
           <div class="col-12 text-center" v-else>
             <i class="fas fa-dice-d20 text-success fa-7x text-shadow mt-3 mb-4" @click="saveCharacter"></i>
             <h3 class="font-sm">
@@ -55,7 +68,10 @@
           </div>
         </div>
       </div>
+
+      <!-- SECTION Character Profile Sidebar based on Results -->
       <div class="col-4 d-lg-block d-none bg-primary h-100 p-md-4">
+        <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="font-lg">
             <u>Character Profile</u><br>
@@ -69,15 +85,9 @@
           <h3 class="font-sm">
             Party Role: <span :class="state.colors[state.character.role.toLowerCase()] + ' font-xs'"><i>{{ state.character.role }}</i> </span>
           </h3>
-          <!-- <h3 class="font-sm d-xl-none d-block">
-            Role: <span :class="state.colors[state.character.role.toLowerCase()] + ' font-xs'"><i>{{ state.character.role }}</i> </span>
-          </h3> -->
           <h3 class="font-sm">
             Play Style: <span :class="state.colors[state.character.style.toLowerCase()] + ' font-xs'"><i>{{ state.character.style }}</i></span>
           </h3>
-          <!-- <h3 class="font-sm d-xl-none d-block">
-            Style: <span :class="state.colors[state.character.style.toLowerCase()] + ' font-xs'"><i>{{ state.character.style }}</i></span>
-          </h3> -->
           <h3 class="font-sm">
             Race: <span class="font-xs"><i>{{ state.character.race }}</i></span>
           </h3>
@@ -121,6 +131,8 @@ export default {
       score: computed(() => AppState.count.score),
       abilities: computed(() => AppState.count.abilities),
       from: computed(() => AppState.languages),
+
+      // NOTE determines the Progress Bar Color depending on Selected Role / Style
       colors: {
         tank: 'text-danger',
         damage: 'text-warning',
@@ -138,6 +150,7 @@ export default {
         resultsService.loadBuild()
       }
       AppState.activeCharacter = AppState.character
+      // NOTE This timeout ensures consistent loading time across all pages
       setTimeout(function() { state.loading = false }, 1000)
     })
     return {

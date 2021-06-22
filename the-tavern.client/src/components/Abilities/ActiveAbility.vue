@@ -1,20 +1,22 @@
 <template>
+  <!-- ANCHOR Renders current Character Ability to be modified -->
   <div class="col-12 text-center" v-if="state.abilities === indexProp">
     <h2 class=" font-md p-0 m-0">
       {{ abilityProp.title }}: <i>Choose {{ abilityProp.choose }}</i>
     </h2>
     <div class="row justify-content-around">
-      <AbilityChoiceComponent v-for="c in abilityProp.from" :key="c" :choice-prop="c" :ability-prop="abilityProp" />
+      <!-- SECTION Renders available modifiers for Active Ability -->
+      <AbilityChoice v-for="c in abilityProp.from" :key="c" :choice-prop="c" :ability-prop="abilityProp" />
     </div>
   </div>
 </template>
 
 <script>
 import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../AppState'
+import { AppState } from '../../AppState'
 
 export default {
-  name: 'AbilityComponent',
+  name: 'ActiveAbility',
   props: {
     abilityProp: {
       type: Object,

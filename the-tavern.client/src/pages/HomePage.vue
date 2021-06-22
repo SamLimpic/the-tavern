@@ -1,4 +1,5 @@
 <template>
+  <!-- ANCHOR The Home Page introduces the Application to the User. -->
   <div class="home container-fluid">
     <div class="row justify-content-center h-100">
       <div class="col-lg-8 col-12 shadow p-md-4 p-2">
@@ -18,19 +19,22 @@
           <div class="row justify-content-center align-items-center mb-1">
             <div class="col-4 d-md-block d-none text-right">
               <router-link :to="{name: 'About'}">
+                <!-- NOTE Redirects to About Page -->
                 <button type="button" class="btn btn-primary w-75 font-xs">
                   About
                 </button>
               </router-link>
             </div>
             <div class="col-md-4 col-sm-6 col-10 mb-1">
-              <router-link :to="{name: 'Questions'}">
+              <!-- NOTE Starts a fresh Questionnaire -->
+              <router-link :to="{name: 'Questionnaire'}">
                 <button type="button" class="btn btn-lg btn-primary w-100 font-sm">
                   Get Started!
                 </button>
               </router-link>
             </div>
             <div class="col-4 d-md-block d-none text-left">
+              <!-- NOTE Creates a randomized character, sets that character as Active, and redirects to the Account Page. -->
               <button type="button" class="btn btn-primary w-75 font-xs">
                 Random
               </button>
@@ -39,6 +43,7 @@
         </div>
       </div>
       <div class="col-4 d-lg-block d-none bg-primary shadow h-100 p-md-4">
+        <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="my-5 font-xxl">
             <i class="fas fa-dice-d20 fa-spin text-warning"></i>
@@ -52,7 +57,9 @@
             Looks like you need to make some characters!
           </h3>
           <router-link :to="{name: 'Account'}">
-            <CharacterListComponent v-for="c in state.characters" :key="c.id" :character="c" />
+            <!-- SECTION Displays list of Account Characters to be selected.
+            Redirects to the Account Page and sets selected character as Active. -->
+            <CharacterList v-for="c in state.characters" :key="c.id" :character="c" />
           </router-link>
         </div>
         <div class="shadow rounded bg-light text-center m-3 p-5" v-else>
@@ -81,6 +88,7 @@ export default {
       characters: computed(() => AppState.characters)
     })
     onMounted(async() => {
+      // NOTE This timeout ensures consistent loading time across all pages
       setTimeout(function() { state.loading = false }, 1000)
       await charactersService.getCharacters(state.account.id)
     })

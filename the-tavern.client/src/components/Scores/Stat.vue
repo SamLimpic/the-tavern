@@ -1,5 +1,7 @@
 <template>
+  <!-- ANCHOR Displays Ability Scores & Stat Modifiers -->
   <div class="col-2 d-md-block d-none px-xl-2 px-lg-1 px-md-2" dropzone="zone" @dragover.prevent @drop.prevent="moveNum(state.activeNum, statProp.title, statProp.mod)">
+    <!-- SECTION Desktop Column Layout utilizing Drag and Drop-->
     <div class="stat-box text-center rounded bg-light">
       <h3 class="font-md m-0">
         <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
@@ -18,7 +20,9 @@
       </h5>
     </div>
   </div>
+
   <div class="col-4 d-md-none d-block mt-3 px-sm-4 px-2">
+    <!-- SECTION Mobile Column Layout -->
     <div class="stat-box text-center rounded bg-light">
       <h3 class="font-md m-0 pt-2">
         <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
@@ -39,10 +43,10 @@
   </div>
 </template>
 <script>
-import { AppState } from '../AppState'
+import { AppState } from '../../AppState'
 import { computed, reactive, onMounted } from 'vue'
 export default {
-  name: 'StatsComponent',
+  name: 'Stat',
   props: {
     statProp: {
       type: Object,
@@ -79,6 +83,8 @@ export default {
 .stat-box{
  border: 3px solid var(--dark);
 }
+
+/* SECTION Establishes Media Queries for responsive font sizing */
 
 @media (min-width: 0) {
 .stat-box{
