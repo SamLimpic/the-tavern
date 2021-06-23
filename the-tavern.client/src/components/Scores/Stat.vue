@@ -1,6 +1,26 @@
 <template>
   <!-- ANCHOR Displays Ability Scores & Stat Modifiers -->
-  <div class="col-2 d-md-block d-none px-xl-2 px-lg-1 px-md-2" dropzone="zone" @dragover.prevent @drop.prevent="moveNum(state.activeNum, statProp.title, statProp.mod)">
+  <div class="col-2 d-md-block d-none px-xl-2 px-lg-1 px-md-2" dropzone="zone" @dragover.prevent @drop.prevent="moveNum(state.activeNum, statProp.title, statProp.mod)" v-if="state.drop">
+    <!-- SECTION Desktop Column Layout utilizing Drag and Drop-->
+    <div class="stat-box text-center rounded bg-light">
+      <h3 class="font-md m-0">
+        <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
+      </h3>
+      <h4 class="font-xl text-danger" v-if="statProp.value > 0 && statProp.value < 11">
+        {{ statProp.value + statProp.mod }}
+      </h4>
+      <h4 class="font-xl text-muted" v-else-if="statProp.value === 10">
+        {{ statProp.value + statProp.mod }}
+      </h4>
+      <h4 class="font-xl text-success" v-if="statProp.value > 11">
+        {{ statProp.value + statProp.mod }}
+      </h4>
+      <h5 class="font-lg text-success pt-1" v-if="statProp.mod > 0 && statProp.value < 1 ">
+        +{{ statProp.mod }}
+      </h5>
+    </div>
+  </div>
+  <div class="col-2 d-md-block d-none px-xl-2 px-lg-1 px-md-2" v-else>
     <!-- SECTION Desktop Column Layout utilizing Drag and Drop-->
     <div class="stat-box text-center rounded bg-light">
       <h3 class="font-md m-0">
@@ -55,6 +75,7 @@ export default {
   },
   setup() {
     const state = reactive({
+      drop: true,
       character: computed(() => AppState.character),
       abilityScore: computed(() => AppState.abilityScore),
       activeNum: computed(() => AppState.activeNum),
@@ -71,6 +92,7 @@ export default {
         AppState.scores[title.toLowerCase()].mod = Math.floor((AppState.scores[title.toLowerCase()].value - 10) / 2)
         AppState.activeScores[state.activeScore] = 0
         AppState.count.score++
+        state.drop = false
       }
 
     }

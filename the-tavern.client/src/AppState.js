@@ -9,19 +9,17 @@ export const AppState = reactive({
   job: {},
   race: {},
   background: {},
-  proficiencies: {},
   character: {},
   activeCharacter: {},
 
   // SECTION Base Arrays
   tieBreakers: [],
   characters: [],
-  rawData: [],
   abilityScore: [],
   chooseAbilities: [],
   chooseScores: [],
 
-  // SECTION Base Variables
+  // SECTION Base Variable,s
   showActive: false,
   showStats: false,
   show: 'start',
@@ -101,6 +99,31 @@ export const AppState = reactive({
       mod: 0
     }
   },
+  skills: {
+    choose: 0,
+    from: []
+  },
+  languages: {
+    choose: 0,
+    from: []
+  },
+  questions: {
+    role: [],
+    style: [],
+    trade: []
+  },
+  count: {
+    role: 0,
+    style: 0,
+    question: 0,
+    languages: 0,
+    skills: 0,
+    equipment: 0,
+    mods: 0,
+    modChoice: 0,
+    abilities: 0,
+    score: 0
+  },
   jobs: [
     {
       title: 'Barbarian',
@@ -163,22 +186,5 @@ export const AppState = reactive({
       style: 'Balance'
     }
   ],
-  questions: {
-    role: [],
-    style: [],
-    trade: []
-  },
-  count: {
-    role: 0,
-    style: 0,
-    question: 0,
-    languages: 0,
-    skills: 0,
-    equipment: 0,
-    mods: 0,
-    modChoice: 0,
-    abilities: 0,
-    score: 0
-  },
   stats: ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma']
 })

@@ -1,5 +1,7 @@
 import { AppState } from '../AppState'
+import router from '../router'
 import { api } from './AxiosService'
+import { questionsService } from './QuestionsService'
 
 class ResultsService {
   async getJob() {
@@ -43,8 +45,26 @@ class ResultsService {
     AppState.race = JSON.parse(window.localStorage.getItem('race'))
     AppState.background = JSON.parse(window.localStorage.getItem('background'))
     AppState.chooseScores = JSON.parse(window.localStorage.getItem('scores'))
+    AppState.skills = JSON.parse(window.localStorage.getItem('skills'))
     AppState.chooseAbilities = JSON.parse(window.localStorage.getItem('abilities'))
     AppState.character = JSON.parse(window.localStorage.getItem('character'))
+  }
+
+  async randomCharacter() {
+    questionsService.resetAttributes()
+    let index = Math.floor(Math.random() * AppState.jobs.length)
+    const res = await api.get(`api/jobs?title=${AppState.jobs[index].title}`)
+    AppState.job = res.data[0]
+    let num = Math.floor(Math.random() * 3)
+    await this.getRace(AppState.job.races[num].value)
+    num = Math.floor(Math.random() * 3)
+    await this.getBackground(AppState.job.backgrounds[num].value)
+    if (AppState.job.subJobs[0]) {
+      index = Math.floor(Math.random() * AppState.job.subJobs.length)
+      AppState.job.subJobs = AppState.job.subJobs[index]
+    }
+    AppState.built = 'true'
+    router.push('Results')
   }
 }
 

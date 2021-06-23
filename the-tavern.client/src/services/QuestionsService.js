@@ -112,6 +112,19 @@ class QuestionsService {
 
   // ANCHOR Refreshes all temporary attributes at the start of the Questionnaire
   resetAttributes() {
+    AppState.character = {}
+    AppState.activeCharacter = {}
+    AppState.job = {}
+    AppState.race = {}
+    AppState.background = {}
+    AppState.skills = {
+      choose: 0,
+      from: []
+    }
+    AppState.languages = {
+      choose: 0,
+      from: []
+    }
     AppState.attributes = {
       role: {
         tank: 0.05,
@@ -125,10 +138,99 @@ class QuestionsService {
         balance: 0.05
       }
     }
+    AppState.count = {
+      role: 0,
+      style: 0,
+      question: 0,
+      languages: 0,
+      skills: 0,
+      equipment: 0,
+      mods: 0,
+      modChoice: 0,
+      abilities: 0,
+      score: 0
+    }
+    AppState.activeScores = {
+      0: 0,
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0,
+      5: 0
+    }
+    AppState.characterScores = {
+      strength: {
+        title: 'Strength',
+        value: 0,
+        mod: 0
+      },
+      dexterity: {
+        title: 'Dexterity',
+        value: 0,
+        mod: 0
+      },
+      constitution: {
+        title: 'Constitution',
+        value: 0,
+        mod: 0
+      },
+      intelligence: {
+        title: 'Intelligence',
+        value: 0,
+        mod: 0
+      },
+      wisdom: {
+        title: 'Wisdom',
+        value: 0,
+        mod: 0
+      },
+      charisma: {
+        title: 'Charisma',
+        value: 0,
+        mod: 0
+      }
+    }
+    AppState.scores = {
+      strength: {
+        title: 'Strength',
+        value: 0,
+        mod: 0
+      },
+      dexterity: {
+        title: 'Dexterity',
+        value: 0,
+        mod: 0
+      },
+      constitution: {
+        title: 'Constitution',
+        value: 0,
+        mod: 0
+      },
+      intelligence: {
+        title: 'Intelligence',
+        value: 0,
+        mod: 0
+      },
+      wisdom: {
+        title: 'Wisdom',
+        value: 0,
+        mod: 0
+      },
+      charisma: {
+        title: 'Charisma',
+        value: 0,
+        mod: 0
+      }
+    }
+    AppState.built = 'false'
     AppState.role = null
     AppState.style = null
+    AppState.activeScore = 0
+    AppState.activeNum = 0
     AppState.tieBreakers = []
-    AppState.built = 'false'
+    AppState.abilityScore = []
+    AppState.chooseAbilities = []
+    AppState.chooseScores = []
   }
 }
 

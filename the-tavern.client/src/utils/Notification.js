@@ -20,9 +20,10 @@ export default class Notification {
         text: text,
         icon: icon,
         showCancelButton: true,
-        confirmButtonColor: '#27ae60',
-        cancelButtonColor: '#eb5757',
-        confirmButtonText: confirmButtonText
+        confirmButtonColor: '#587439',
+        cancelButtonColor: '#ae2d26',
+        confirmButtonText: confirmButtonText,
+        background: '#faf6dd'
       })
       if (res.isConfirmed) {
         return true
@@ -53,7 +54,9 @@ export default class Notification {
       timer: timer,
       timerProgressBar: progressBar,
       toast: true,
-      showConfirmButton: false
+      showConfirmButton: false,
+      confirmButtonColor: '#587439',
+      background: '#faf6dd'
     })
   }
 
@@ -90,7 +93,10 @@ export default class Notification {
           }
         },
         inputPlaceholder: 'Select a weapon',
-        showCancelButton: true
+        showCancelButton: true,
+        confirmButtonColor: '#587439',
+        cancelButtonColor: '#ae2d26',
+        background: '#faf6dd'
       })
 
       if (weapon) {
@@ -129,7 +135,10 @@ export default class Notification {
           }
         },
         inputPlaceholder: 'Select a weapon',
-        showCancelButton: true
+        showCancelButton: true,
+        confirmButtonColor: '#587439',
+        cancelButtonColor: '#ae2d26',
+        background: '#faf6dd'
       })
 
       if (weapon) {
@@ -140,19 +149,22 @@ export default class Notification {
   }
 
   // SECTION Character Info Modal
-  static async multiModal() {
+  static async multiModal(name = AppState.activeCharacter.name, age = AppState.activeCharacter.age, gender = AppState.activeCharacter.gender, alignment = AppState.activeCharacter.alignment, imgUrl = AppState.activeCharacter.imgUrl) {
     // eslint-disable-next-line vue/one-component-per-file
     await Swal.mixin({
       title: "Don't forget personal information!",
       text: 'You can change this later...',
       input: 'text',
       confirmButtonText: 'Next &rarr;',
+      confirmButtonColor: '#587439',
+      background: '#faf6dd',
       progressSteps: [1, 2, 3, 4, 5]
     }).queue([
       {
         title: "What is your character's name?",
         icon: 'question',
-        text: 'Name...'
+        text: 'Name...',
+        inputValue: name
       },
       {
         title: 'How old is your character?',
@@ -163,7 +175,8 @@ export default class Notification {
           min: `${AppState.race.age.min}`,
           max: `${AppState.race.age.max}`,
           step: 1
-        }
+        },
+        inputValue: age
       },
       {
         title: "What is your character's gender?",
@@ -174,7 +187,8 @@ export default class Notification {
           NonBinary: 'Non-Binary',
           Female: 'Female'
         },
-        inputPlaceholder: 'Gender...'
+        inputPlaceholder: 'Gender...',
+        inputValue: gender
       },
       {
         title: "What is your character's alignment?",
@@ -197,13 +211,15 @@ export default class Notification {
             Chaotic_Evil: 'Evil'
           }
         },
-        inputPlaceholder: 'Alignment...'
+        inputPlaceholder: 'Alignment...',
+        inputValue: alignment.replace(' ', '_')
       },
       {
         title: 'What does your character look like?',
         icon: 'info',
         input: 'text',
-        inputPlaceholder: "We'll provide you a placeholder by default"
+        inputPlaceholder: "We'll provide you a placeholder by default",
+        inputValue: imgUrl
       }
     ]).then((result) => {
       if (result.value) {
@@ -241,16 +257,20 @@ export default class Notification {
     Swal.fire({
       icon: 'success',
       title: `${str}!`,
-      text: 'Quite a fine choice!'
+      text: 'Quite a fine choice!',
+      confirmButtonColor: '#247c78',
+      background: '#faf6dd'
     })
   }
 
   // SECTION Information Modal
   static expand(obj) {
-    Swal.fire(
-      `${obj.title}`,
-      `${obj.body}`,
-      'info'
-    )
+    Swal.fire({
+      icon: 'info',
+      title: `${obj.title}!`,
+      text: `${obj.body}`,
+      confirmButtonColor: '#247c78',
+      background: '#faf6dd'
+    })
   }
 }

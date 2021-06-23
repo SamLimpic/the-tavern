@@ -7,35 +7,35 @@
           <h2 class="font-lg m-0">
             <u>Welcome Traveller!</u>
           </h2>
-          <p class="font-md mb-1 mx-lg-2 mx-3">
-            The Tavern is an interactive character creation experience for Dungeons and Dragons 5th Edition, designed for both new players and seasoned veterans alike!
+          <p class="font-sm mb-1 mx-lg-2 mx-3">
+            The Tavern is an interactive character creation experience for Dungeons and Dragons 5th Edition, made for new players and seasoned veterans alike!
           </p>
-          <p class="font-sm d-sm-block d-none mb-1 mx-lg-2 mx-3">
+          <p class="font-xs d-lg-block d-none mb-1 mx-lg-2 mx-3">
             This application was made to streamline the process of creating a fresh, customized, and ready-to-play character for any Dungeons and Dragons game.
           </p>
-          <p class="font-sm d-md-block d-none mx-lg-2 mx-3">
+          <p class="font-xs d-md-block d-none mx-lg-2 mx-3">
             Simply follow the promps to easily create your ideal character and start your adventure!
           </p>
           <div class="row justify-content-center align-items-center mb-1">
-            <div class="col-4 d-md-block d-none text-right">
+            <div class="col-md-3 col-5 order-md-1 order-2 mt-md-0 mt-3 text-right">
               <router-link :to="{name: 'About'}">
                 <!-- NOTE Redirects to About Page -->
-                <button type="button" class="btn btn-primary w-75 font-xs">
+                <button type="button" class="btn btn-primary w-100 font-xs">
                   About
                 </button>
               </router-link>
             </div>
-            <div class="col-md-4 col-sm-6 col-10 mb-1">
+            <div class="col-md-5 col-sm-6 col-8 order-md-2 order-1 mt-md-0 mt-2 mx-md-0 mx-5">
               <!-- NOTE Starts a fresh Questionnaire -->
               <router-link :to="{name: 'Questionnaire'}">
-                <button type="button" class="btn btn-lg btn-primary w-100 font-sm">
+                <button type="button" class="btn btn-primary w-100 font-sm py-md-3">
                   Get Started!
                 </button>
               </router-link>
             </div>
-            <div class="col-4 d-md-block d-none text-left">
+            <div class="col-md-3 col-5 order-md-3 order-3 mt-md-0 mt-3 text-left">
               <!-- NOTE Creates a randomized character, sets that character as Active, and redirects to the Account Page. -->
-              <button type="button" class="btn btn-primary w-75 font-xs">
+              <button type="button" class="btn btn-primary w-100 font-xs" @click="random">
                 Random
               </button>
             </div>
@@ -74,6 +74,8 @@
 import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { charactersService } from '../services/CharactersService'
+import Notification from '../utils/Notification'
+import { resultsService } from '../services/ResultsService'
 
 export default {
   name: 'Home',
@@ -88,12 +90,20 @@ export default {
       characters: computed(() => AppState.characters)
     })
     onMounted(async() => {
+      localStorage.clear()
       // NOTE This timeout ensures consistent loading time across all pages
       setTimeout(function() { state.loading = false }, 1000)
       await charactersService.getCharacters(state.account.id)
     })
     return {
-      state
+      state,
+      async random() {
+        try {
+          await resultsService.randomCharacter()
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      }
     }
   }
 }

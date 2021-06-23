@@ -1,29 +1,28 @@
 <template>
-  <!-- ANCHOR Displays available Spells of the Active Character -->
+  <!-- ANCHOR Displays Character Languages -->
   <div class="col-md-4 col-10 text-center mb-3">
     <button type="button" class="btn btn-secondary no-hover text-shadow h-100 w-100">
-      <h4 class="font-sm p-0 m-0">
-        {{ spellProp }}
-      </h4>
+      <h3 class="font-xs p-0 m-0">
+        {{ languageProp }}
+      </h3>
     </button>
   </div>
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../../AppState'
+import { onMounted, reactive } from 'vue'
 
 export default {
-  name: 'SpellList',
+  name: 'LanguageList',
   props: {
-    spellProp: {
+    languageProp: {
       type: String,
       required: true
     }
   },
   setup() {
     const state = reactive({
-      character: computed(() => AppState.character)
+
     })
     onMounted(async() => {
 
@@ -37,5 +36,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.btn {
+  height: 100%;
+}
 </style>

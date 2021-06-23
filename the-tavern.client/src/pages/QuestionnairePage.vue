@@ -69,7 +69,7 @@
 
     <!-- STUB Loading Icon is visible while data is pulled from Server-->
     <div class="row justify-content-center m-5" v-else>
-      <h2><i class="fas fa-dice-d20 fa-spin text-warning"></i></h2>
+      <h2><i class="fas fa-dice-d20 fa-spin font-xxl text-warning"></i></h2>
     </div>
   </div>
 </template>
@@ -104,7 +104,6 @@ export default {
     })
     onMounted(async() => {
       try {
-        localStorage.clear()
         questionsService.resetAttributes()
         await questionsService.getQuestions()
         // NOTE This timeout ensures consistent loading time across all pages

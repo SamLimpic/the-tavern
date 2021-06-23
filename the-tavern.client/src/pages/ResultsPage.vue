@@ -17,12 +17,22 @@
           </h2>
 
           <!-- SECTION The available Skill options -->
-          <div v-if="state.skills < state.job.proficiencies.skills.choose">
+          <div v-if="state.skills < state.chooseSkills.choose">
             <h3 class="font-sm">
-              Choose {{ state.job.proficiencies.skills.choose }} of your available Skills!
+              Choose {{ state.chooseSkills.choose }} of your available Skills!
             </h3>
             <div class="row justify-content-center">
-              <Skill v-for="s in state.job.proficiencies.skills.from" :key="s" :skill-prop="s" />
+              <Skill v-for="s in state.chooseSkills.from" :key="s" :skill-prop="s" />
+            </div>
+          </div>
+
+          <!-- SECTION The available Skill options -->
+          <div v-else-if="state.languages < state.chooseLanguages.choose">
+            <h3 class="font-sm">
+              Choose {{ state.chooseLanguages.choose }} of your available Languages!
+            </h3>
+            <div class="row justify-content-center">
+              <Language v-for="l in state.chooseLanguages.from" :key="l" :language-prop="l" />
             </div>
           </div>
 
@@ -121,16 +131,17 @@ export default {
       character: computed(() => AppState.character),
       activeCharacter: computed(() => AppState.activeCharacter),
       job: computed(() => AppState.job),
-      chooseScores: computed(() => AppState.chooseScores),
-      chooseAbilities: computed(() => AppState.chooseAbilities),
       skills: computed(() => AppState.count.skills),
+      chooseSkills: computed(() => AppState.skills),
       equipment: computed(() => AppState.count.equipment),
-      languages: computed(() => AppState.count.languages),
       mods: computed(() => AppState.count.mods),
       modChoice: computed(() => AppState.count.modChoice),
       score: computed(() => AppState.count.score),
+      chooseScores: computed(() => AppState.chooseScores),
       abilities: computed(() => AppState.count.abilities),
-      from: computed(() => AppState.languages),
+      chooseAbilities: computed(() => AppState.chooseAbilities),
+      chooseLanguages: computed(() => AppState.languages),
+      languages: computed(() => AppState.count.languages),
 
       // NOTE determines the Progress Bar Color depending on Selected Role / Style
       colors: {

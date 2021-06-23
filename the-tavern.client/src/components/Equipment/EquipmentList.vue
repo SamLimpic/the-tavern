@@ -1,32 +1,30 @@
 <template>
-  <!-- ANCHOR Displays available Spells of the Active Character -->
-  <div class="col-md-4 col-10 text-center mb-3">
+  <!-- ANCHOR Displays specific Equipment options to be selected -->
+  <div class="col-md-4 col-10 mb-3">
     <button type="button" class="btn btn-secondary no-hover text-shadow h-100 w-100">
-      <h4 class="font-sm p-0 m-0">
-        {{ spellProp }}
-      </h4>
+      <h3 class="font-xs p-0 m-0">
+        {{ equipmentProp }}
+      </h3>
     </button>
   </div>
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
-import { AppState } from '../../AppState'
+import { onMounted, reactive } from 'vue'
 
 export default {
-  name: 'SpellList',
+  name: 'EquipmentList',
   props: {
-    spellProp: {
+    equipmentProp: {
       type: String,
       required: true
     }
   },
   setup() {
     const state = reactive({
-      character: computed(() => AppState.character)
+
     })
     onMounted(async() => {
-
     })
     return {
       state

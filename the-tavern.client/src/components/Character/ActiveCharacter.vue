@@ -35,6 +35,20 @@
   </div>
   <div class="col-12 text-center mt-3">
     <h2>
+      <u>{{ state.activeCharacter.name }}'s Skills</u>
+    </h2>
+    <div class="row justify-content-center mt-3">
+      <!-- SECTION Displays available Abilities for the Active Character -->
+      <SkillList v-for="s in state.activeCharacter.proficiencies.skills" :key="s" :skill-prop="s" />
+    </div>
+    <h2 class="mt-3">
+      <u>{{ state.activeCharacter.name }}'s Languages</u>
+    </h2>
+    <div class="row justify-content-center mt-3">
+      <!-- SECTION Displays available Abilities for the Active Character -->
+      <LanguageList v-for="l in state.activeCharacter.languages" :key="l" :language-prop="l" />
+    </div>
+    <h2 class="mt-3">
       <u>{{ state.activeCharacter.name }}'s Abilities</u>
     </h2>
     <div class="row justify-content-center mt-3">
@@ -55,6 +69,33 @@
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Spells for the Active Character -->
         <SpellList v-for="s in state.activeCharacter.spellcasting.spells" :key="s" :spell-prop="s" />
+      </div>
+    </div>
+    <div v-if="state.activeCharacter.equipment.weapons[0]">
+      <h2 class="mt-3">
+        <u>{{ state.activeCharacter.name }}'s Weapons</u>
+      </h2>
+      <div class="row justify-content-center mt-3">
+        <!-- SECTION Displays available Abilities for the Active Character -->
+        <EquipmentList v-for="e in state.activeCharacter.equipment.weapons" :key="e" :equipment-prop="e" />
+      </div>
+    </div>
+    <div v-if="state.activeCharacter.equipment.armor[0]">
+      <h2 class="mt-3">
+        <u>{{ state.activeCharacter.name }}'s Armor</u>
+      </h2>
+      <div class="row justify-content-center mt-3">
+        <!-- SECTION Displays available Abilities for the Active Character -->
+        <EquipmentList v-for="e in state.activeCharacter.equipment.armor" :key="e" :equipment-prop="e" />
+      </div>
+    </div>
+    <div v-if="state.activeCharacter.equipment.tools[0]">
+      <h2 class="mt-3">
+        <u>{{ state.activeCharacter.name }}'s Tools</u>
+      </h2>
+      <div class="row justify-content-center mt-3">
+        <!-- SECTION Displays available Abilities for the Active Character -->
+        <EquipmentList v-for="e in state.activeCharacter.equipment.tools" :key="e" :equipment-prop="e" />
       </div>
     </div>
   </div>

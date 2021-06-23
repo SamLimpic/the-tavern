@@ -1,8 +1,8 @@
 <template>
   <!-- ANCHOR Renders available Character Abilities -->
   <div class="col-md-4 col-10 text-center mb-3">
-    <button :id="abilityProp" type="button" class="btn btn-dark w-100" @click="expand(abilityProp)">
-      <h4 class="p-0 m-0">
+    <button type="button" class="btn btn-secondary no-hover text-shadow h-100 w-100">
+      <h4 class="font-sm p-0 m-0">
         {{ abilityProp.title }}
       </h4>
     </button>

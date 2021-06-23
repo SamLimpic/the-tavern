@@ -5,7 +5,7 @@
       <div class="col-lg-8 d-lg-block d-none p-md-4">
         <div class="row justify-content-between shadow rounded bg-light m-4 p-md-4 p-3">
           <!-- SECTION Pulls info from the Active Character object. -->
-          <ActiveCharacter v-if="state.activeCharacter.job" />
+          <ActiveCharacter v-if="state.activeCharacter.id" />
           <div class="col-12 text-center" v-else>
             <h1 class="font-xl">
               <u>Please select a Character for more details</u>
