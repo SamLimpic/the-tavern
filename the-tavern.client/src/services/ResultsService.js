@@ -47,6 +47,7 @@ class ResultsService {
     AppState.chooseScores = JSON.parse(window.localStorage.getItem('scores'))
     AppState.skills = JSON.parse(window.localStorage.getItem('skills'))
     AppState.chooseAbilities = JSON.parse(window.localStorage.getItem('abilities'))
+    AppState.languages = JSON.parse(window.localStorage.getItem('languages'))
     AppState.character = JSON.parse(window.localStorage.getItem('character'))
   }
 

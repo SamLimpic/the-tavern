@@ -2,7 +2,7 @@
   <!-- ANCHOR Displays Character Languages -->
   <div class="col-md-4 col-10 text-center mb-3">
     <button type="button" class="btn btn-secondary no-hover text-shadow h-100 w-100">
-      <h3 class="font-xs p-0 m-0">
+      <h3 class="font-sm p-0 m-0">
         {{ languageProp }}
       </h3>
     </button>

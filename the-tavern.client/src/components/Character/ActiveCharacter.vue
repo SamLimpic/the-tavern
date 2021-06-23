@@ -35,21 +35,21 @@
   </div>
   <div class="col-12 text-center mt-3">
     <h2>
-      <u>{{ state.activeCharacter.name }}'s Skills</u>
+      <u>Skills</u>
     </h2>
     <div class="row justify-content-center mt-3">
       <!-- SECTION Displays available Abilities for the Active Character -->
       <SkillList v-for="s in state.activeCharacter.proficiencies.skills" :key="s" :skill-prop="s" />
     </div>
     <h2 class="mt-3">
-      <u>{{ state.activeCharacter.name }}'s Languages</u>
+      <u>Languages</u>
     </h2>
     <div class="row justify-content-center mt-3">
       <!-- SECTION Displays available Abilities for the Active Character -->
       <LanguageList v-for="l in state.activeCharacter.languages" :key="l" :language-prop="l" />
     </div>
     <h2 class="mt-3">
-      <u>{{ state.activeCharacter.name }}'s Abilities</u>
+      <u>Abilities</u>
     </h2>
     <div class="row justify-content-center mt-3">
       <!-- SECTION Displays available Abilities for the Active Character -->
@@ -57,14 +57,14 @@
     </div>
     <div v-if="state.activeCharacter.spellcasting.spells[0]">
       <h2 class="mt-3">
-        <u>{{ state.activeCharacter.name }}'s Cantrips</u>
+        <u>Cantrips</u>
       </h2>
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Cantrips for the Active Character -->
         <SpellList v-for="c in state.activeCharacter.spellcasting.cantrips" :key="c" :spell-prop="c" />
       </div>
       <h2 class="mt-3">
-        <u>{{ state.activeCharacter.name }}'s Spells</u>
+        <u>Spells</u>
       </h2>
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Spells for the Active Character -->
@@ -73,7 +73,7 @@
     </div>
     <div v-if="state.activeCharacter.equipment.weapons[0]">
       <h2 class="mt-3">
-        <u>{{ state.activeCharacter.name }}'s Weapons</u>
+        <u>Weapons</u>
       </h2>
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Abilities for the Active Character -->
@@ -82,7 +82,7 @@
     </div>
     <div v-if="state.activeCharacter.equipment.armor[0]">
       <h2 class="mt-3">
-        <u>{{ state.activeCharacter.name }}'s Armor</u>
+        <u>Armor</u>
       </h2>
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Abilities for the Active Character -->
@@ -91,7 +91,7 @@
     </div>
     <div v-if="state.activeCharacter.equipment.tools[0]">
       <h2 class="mt-3">
-        <u>{{ state.activeCharacter.name }}'s Tools</u>
+        <u>Tools</u>
       </h2>
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Abilities for the Active Character -->

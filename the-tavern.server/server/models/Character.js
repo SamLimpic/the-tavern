@@ -70,12 +70,8 @@ const Character = new Schema(
       weapons: { type: Array },
       armor: { type: Array },
       tools: { type: Array },
-      skills: {
-        type: Array,
-        title: { type: String },
-        expertise: { type: Boolean },
-        saves: { type: Array }
-      }
+      skills: { type: Array },
+      saves: { type: Array }
     },
     equipment: {
       weapons: { type: Array },

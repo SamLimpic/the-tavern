@@ -22,7 +22,7 @@
   </div>
   <div class="col-2 d-md-block d-none px-xl-2 px-lg-1 px-md-2" v-else>
     <!-- SECTION Desktop Column Layout utilizing Drag and Drop-->
-    <div class="stat-box text-center rounded bg-light">
+    <div class="stat-box text-center text-muted rounded bg-light">
       <h3 class="font-md m-0">
         <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
       </h3>
@@ -79,7 +79,12 @@ export default {
       character: computed(() => AppState.character),
       abilityScore: computed(() => AppState.abilityScore),
       activeNum: computed(() => AppState.activeNum),
-      activeScore: computed(() => AppState.activeScore)
+      activeScore: computed(() => AppState.activeScore),
+      border: {
+        success: 'border-success',
+        warning: 'border-warning',
+        danger: 'border-danger'
+      }
     })
     onMounted(async() => {
 
@@ -94,7 +99,6 @@ export default {
         AppState.count.score++
         state.drop = false
       }
-
     }
   }
 }
@@ -104,6 +108,15 @@ export default {
 <style scoped>
 .stat-box{
  border: 3px solid var(--dark);
+}
+.success-border{
+  border: 3px solid var(--success) !important;
+}
+.warning-border{
+ border: 3px solid var(--warning) !important;
+}
+.danger-border{
+ border: 3px solid var(--danger) !important;
 }
 
 /* SECTION Establishes Media Queries for responsive font sizing */

@@ -3,13 +3,13 @@
   <div class="col-2 d-md-block d-none text-center px-xl-2 px-lg-1 px-md-2">
     <!-- SECTION Desktop Column Layout utilizing Drag and Drop-->
     <div class="bg-light dice-roll rounded" draggable="true" @dragstart="moveNum(diceProp, indexProp)">
-      <h3 class="font-xxl text-danger" v-if="diceProp > 0 && diceProp < 11">
-        {{ diceProp }}
-      </h3>
-      <h3 class="font-xxl text-muted" v-else-if="diceProp === 10">
+      <h3 class="font-xxl text-danger" v-if="diceProp > 0 && diceProp < 10">
         {{ diceProp }}
       </h3>
       <h3 class="font-xxl text-success" v-else-if="diceProp > 10">
+        {{ diceProp }}
+      </h3>
+      <h3 class="font-xxl text-muted" v-else-if="diceProp === 10">
         {{ diceProp }}
       </h3>
     </div>

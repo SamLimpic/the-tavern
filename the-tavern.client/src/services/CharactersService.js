@@ -127,7 +127,7 @@ class CharactersService {
       })
     }
     abilities.forEach(a => {
-      if (a.choose !== undefined) {
+      if (a.choose) {
         AppState.chooseAbilities.push(a)
       }
     })
@@ -237,7 +237,7 @@ class CharactersService {
     window.localStorage.setItem('scores', JSON.stringify(AppState.chooseScores))
     window.localStorage.setItem('skills', JSON.stringify(AppState.skills))
     window.localStorage.setItem('abilities', JSON.stringify(AppState.chooseAbilities))
-    window.localStorage.setItem('languages', JSON.stringify(AppState.chooselanguages))
+    window.localStorage.setItem('languages', JSON.stringify(AppState.languages))
     window.localStorage.setItem('character', JSON.stringify(AppState.character))
   }
 
