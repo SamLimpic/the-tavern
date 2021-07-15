@@ -157,7 +157,6 @@ export default class Notification {
       input: 'text',
       confirmButtonText: 'Next &rarr;',
       confirmButtonColor: '#587439',
-      background: '#faf6dd',
       progressSteps: [1, 2, 3, 4, 5]
     }).queue([
       {
