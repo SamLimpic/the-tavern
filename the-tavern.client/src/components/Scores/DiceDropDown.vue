@@ -4,7 +4,7 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { AppState } from '../../AppState'
 import Notification from '../../utils/Notification'
 
@@ -26,19 +26,23 @@ export default {
   },
   setup() {
     const state = reactive({
-      stats: computed(() => AppState.stats)
-    })
-    onMounted(async() => {
-
+      stats: computed(() => AppState.stats),
+      character: computed(() => AppState.character)
     })
     return {
       state,
-      addStat(stat, num, index) {
+      async addStat(stat, num, index) {
         try {
+          const title = stat.toLowerCase()
+          const mod = AppState.character.scores[title].mod
+          AppState.scores[title].value = num + mod
+          AppState.scores[title].mod = Math.floor((AppState.scores[title].value - 10) / 2)
           AppState.stats = AppState.stats.filter(s => s !== stat)
-          AppState.character.scores[stat.toLowerCase()].value = num
-          AppState.activeScores[index] = 0
+          AppState.activeRolls[index] = 0
           AppState.count.score++
+          if (AppState.count.score === 6) {
+            AppState.confirm = true
+          }
         } catch (error) {
           Notification.toast('Error' + error, 'error')
         }

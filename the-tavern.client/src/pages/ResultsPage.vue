@@ -53,28 +53,21 @@
               <ActiveAbility v-for="(a, index) in state.chooseAbilities" :key="index" :ability-prop="a" :index-prop="index" />
             </div>
           </div>
+
+          <!-- SECTION The available Ability Modifier options -->
           <div v-else-if="state.chooseScores && state.mods > state.modChoice">
             <h3 class="font-sm">
               Now assign your {{ state.mods }} Ability Modifiers!
             </h3>
 
-            <!-- SECTION The available Ability Modifier options -->
             <div class="row justify-content-around">
               <AbilityMod v-for="m in state.chooseScores" :key="m" :mod-prop="m" />
             </div>
           </div>
 
           <!-- SECTION The Ability Score Roll Function -->
-          <div v-else-if="state.score < 6">
+          <div v-else>
             <Score />
-          </div>
-
-          <!-- SECTION Save your Character once all other criteria have been met -->
-          <div class="col-12 text-center" v-else>
-            <i class="fas fa-dice-d20 text-success fa-7x text-shadow mt-3 mb-4" @click="saveCharacter"></i>
-            <h3 class="font-sm">
-              Congratulations!<br>Click the dice above to save your Character!
-            </h3>
           </div>
         </div>
       </div>
@@ -121,15 +114,15 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { resultsService } from '../services/ResultsService'
 import { charactersService } from '../services/CharactersService'
-import Notification from '../utils/Notification'
 
 export default {
   name: 'Results',
   setup() {
     const state = reactive({
       loading: true,
+      built: computed(() => AppState.built),
+      confirm: computed(() => AppState.confirm),
       character: computed(() => AppState.character),
-      activeCharacter: computed(() => AppState.activeCharacter),
       job: computed(() => AppState.job),
       skills: computed(() => AppState.count.skills),
       chooseSkills: computed(() => AppState.skills),
@@ -155,7 +148,7 @@ export default {
       }
     })
     onMounted(async() => {
-      if (AppState.built === 'true') {
+      if (state.built) {
         charactersService.createCharacter()
       } else {
         resultsService.loadBuild()
@@ -166,15 +159,7 @@ export default {
     })
     return {
       state,
-      user: computed(() => AppState.user),
-      async saveCharacter() {
-        try {
-          await Notification.multiModal()
-          await charactersService.saveCharacter()
-        } catch (error) {
-          Notification.toast('Error' + error, 'error')
-        }
-      }
+      user: computed(() => AppState.user)
     }
   }
 }

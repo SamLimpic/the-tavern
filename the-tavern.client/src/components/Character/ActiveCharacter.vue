@@ -3,8 +3,8 @@
   <div class="col-sm-6 col-12 mt-md-4 mt-3">
     <div class="img-container position-relative">
       <img :src="state.activeCharacter.imgUrl" class="w-100 bg-warning p-1 shadow rounded" alt="">
-      <i class="fas fa-edit btn-overlay text-shadow font-lg" aria-label="Edit Character" @click="editCharacter" v-if="state.activeCharacter.id"></i>
-      <i class="fas fa-ban btn-delete text-shadow font-lg" aria-label="Delete Character" @click="deleteCharacter(state.activeCharacter.id)" v-if="state.activeCharacter.id"></i>
+      <i class="fas fa-edit btn-overlay text-shadow hoverable font-lg" title="Edit Character" aria-label="Edit Character" @click="editCharacter" v-if="state.activeCharacter.id"></i>
+      <i class="fas fa-ban btn-delete text-shadow hoverable font-lg" title="Delete Character" aria-label="Delete Character" @click="deleteCharacter(state.activeCharacter.id)" v-if="state.activeCharacter.id"></i>
     </div>
   </div>
   <div class="col-sm-6 col-12 mt-md-4 mt-3 pl-sm-0 ml-sm-0 ml-3 pl-3">
@@ -132,7 +132,7 @@ export default {
       async editCharacter() {
         try {
           await resultsService.getRace(state.activeCharacter.race)
-          await Notification.multiModal()
+          await Notification.multiModal(state.activeCharacter.name, state.activeCharacter.age, state.activeCharacter.gender, state.activeCharacter.alignment, state.activeCharacter.imgUrl)
           await charactersService.editCharacter(state.activeCharacter)
           Notification.toast('Your character was updated!', 'success')
         } catch (error) {

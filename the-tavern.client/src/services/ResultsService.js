@@ -40,6 +40,7 @@ class ResultsService {
 
   // ANCHOR Loads Local Storage data from Questionnaire if the Results Page is refreshed
   loadBuild() {
+    questionsService.resetAttributes()
     AppState.count = JSON.parse(window.localStorage.getItem('count'))
     AppState.job = JSON.parse(window.localStorage.getItem('job'))
     AppState.race = JSON.parse(window.localStorage.getItem('race'))
@@ -49,6 +50,7 @@ class ResultsService {
     AppState.chooseAbilities = JSON.parse(window.localStorage.getItem('abilities'))
     AppState.languages = JSON.parse(window.localStorage.getItem('languages'))
     AppState.character = JSON.parse(window.localStorage.getItem('character'))
+    AppState.built = true
   }
 
   async randomCharacter() {
@@ -64,7 +66,7 @@ class ResultsService {
       index = Math.floor(Math.random() * AppState.job.subJobs.length)
       AppState.job.subJobs = AppState.job.subJobs[index]
     }
-    AppState.built = 'true'
+    AppState.built = true
     router.push('Results')
   }
 }

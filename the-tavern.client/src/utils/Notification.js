@@ -22,8 +22,7 @@ export default class Notification {
         showCancelButton: true,
         confirmButtonColor: '#587439',
         cancelButtonColor: '#ae2d26',
-        confirmButtonText: confirmButtonText,
-        background: '#faf6dd'
+        confirmButtonText: confirmButtonText
       })
       if (res.isConfirmed) {
         return true
@@ -55,8 +54,7 @@ export default class Notification {
       timerProgressBar: progressBar,
       toast: true,
       showConfirmButton: false,
-      confirmButtonColor: '#587439',
-      background: '#faf6dd'
+      confirmButtonColor: '#587439'
     })
   }
 
@@ -95,17 +93,17 @@ export default class Notification {
         inputPlaceholder: 'Select a weapon',
         showCancelButton: true,
         confirmButtonColor: '#587439',
-        cancelButtonColor: '#ae2d26',
-        background: '#faf6dd'
+        cancelButtonColor: '#ae2d26'
       })
 
       if (weapon) {
         this.toast(`You chose a ${weapon}!`, 'success')
         AppState.character.equipment.weapons.push(weapon)
       }
-    } else if (type === 'Simple') {
+    }
+    if (type === 'Simple') {
       const { value: weapon } = await Swal.fire({
-        title: 'Select field validation',
+        title: `Select your ${type} Weapon`,
         input: 'select',
         inputOptions: {
           Melee: {
@@ -137,8 +135,7 @@ export default class Notification {
         inputPlaceholder: 'Select a weapon',
         showCancelButton: true,
         confirmButtonColor: '#587439',
-        cancelButtonColor: '#ae2d26',
-        background: '#faf6dd'
+        cancelButtonColor: '#ae2d26'
       })
 
       if (weapon) {
@@ -149,11 +146,9 @@ export default class Notification {
   }
 
   // SECTION Character Info Modal
-  static async multiModal(name = AppState.activeCharacter.name, age = AppState.activeCharacter.age, gender = AppState.activeCharacter.gender, alignment = AppState.activeCharacter.alignment, imgUrl = AppState.activeCharacter.imgUrl) {
+  static async multiModal(name = '', age = AppState.race.age.max / 2, gender = 'Androgynous', alignment = 'True_Neutral', imgUrl = '') {
     // eslint-disable-next-line vue/one-component-per-file
     await Swal.mixin({
-      title: "Don't forget personal information!",
-      text: 'You can change this later...',
       input: 'text',
       confirmButtonText: 'Next &rarr;',
       confirmButtonColor: '#587439',
@@ -162,14 +157,13 @@ export default class Notification {
       {
         title: "What is your character's name?",
         icon: 'question',
-        text: 'Name...',
+        inputPlaceholder: 'The Nameless One',
         inputValue: name
       },
       {
         title: 'How old is your character?',
         icon: 'question',
         input: 'range',
-        inputLabel: 'Age...',
         inputAttributes: {
           min: `${AppState.race.age.min}`,
           max: `${AppState.race.age.max}`,
@@ -183,10 +177,9 @@ export default class Notification {
         input: 'select',
         inputOptions: {
           Male: 'Male',
-          NonBinary: 'Non-Binary',
+          Androgynous: 'Androgynous',
           Female: 'Female'
         },
-        inputPlaceholder: 'Gender...',
         inputValue: gender
       },
       {
@@ -195,29 +188,29 @@ export default class Notification {
         input: 'select',
         inputOptions: {
           Lawful: {
-            Lawful_Good: 'Good',
-            Lawful_Neutral: 'Neutral',
-            Lawful_Evil: 'Evil'
+            Lawful_Good: 'Lawful Good',
+            Lawful_Neutral: 'Lawful Neutral',
+            Lawful_Evil: 'Lawful Evil'
           },
           Neutral: {
-            Neutral_Good: 'Good',
-            True_Neutral: 'Neutral',
-            Neutral_Evil: 'Evil'
+            Neutral_Good: 'Neutral Good',
+            True_Neutral: 'True Neutral',
+            Neutral_Evil: 'Neutral Evil'
           },
           Chaotic: {
-            Chaotic_Good: 'Good',
-            Chaotic_Neutral: 'Neutral',
-            Chaotic_Evil: 'Evil'
+            Chaotic_Good: 'Chaotic Good',
+            Chaotic_Neutral: 'Chaotic Neutral',
+            Chaotic_Evil: 'Chaotic Evil'
           }
         },
-        inputPlaceholder: 'Alignment...',
         inputValue: alignment.replace(' ', '_')
       },
       {
         title: 'What does your character look like?',
         icon: 'info',
         input: 'text',
-        inputPlaceholder: "We'll provide you a placeholder by default",
+        text: 'Paste an Image URL below',
+        inputPlaceholder: "We've provided you a placeholder",
         inputValue: imgUrl
       }
     ]).then((result) => {
@@ -233,12 +226,12 @@ export default class Notification {
           AppState.activeCharacter.age = parseInt(result.value[1])
         }
         if (result.value[2] === '') {
-          AppState.activeCharacter.gender = 'Non-Binary'
+          AppState.activeCharacter.gender = 'Androgynous'
         } else {
           AppState.activeCharacter.gender = result.value[2]
         }
         if (result.value[3] === '') {
-          AppState.activeCharacter.alignment = 'True-Neutral'
+          AppState.activeCharacter.alignment = 'True Neutral'
         } else {
           AppState.activeCharacter.alignment = result.value[3].replace('_', ' ')
         }
@@ -247,18 +240,20 @@ export default class Notification {
         } else {
           AppState.activeCharacter.imgUrl = result.value[4]
         }
+        AppState.save = true
+      } else {
+        AppState.save = false
       }
     })
   }
 
   // SECTION Custom Notification Modal
-  static notify(str) {
+  static notify(icon = 'success', title = 'Success!', text = 'Quite a fine choice!') {
     Swal.fire({
-      icon: 'success',
-      title: `${str}!`,
-      text: 'Quite a fine choice!',
-      confirmButtonColor: '#247c78',
-      background: '#faf6dd'
+      icon: icon,
+      title: title,
+      text: text,
+      confirmButtonColor: '#247c78'
     })
   }
 
@@ -268,8 +263,7 @@ export default class Notification {
       icon: 'info',
       title: `${obj.title}!`,
       text: `${obj.body}`,
-      confirmButtonColor: '#247c78',
-      background: '#faf6dd'
+      confirmButtonColor: '#247c78'
     })
   }
 }

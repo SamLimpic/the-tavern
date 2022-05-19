@@ -201,7 +201,7 @@ class CharactersService {
       health: job.health,
       proBonus: 2,
       imgUrl: '',
-      scores: AppState.characterScores,
+      scores: AppState.scores,
       languages: [],
       abilities: [],
       spellcasting: {
@@ -258,9 +258,9 @@ class CharactersService {
   async saveCharacter() {
     this.sortStats()
     AppState.character.scores = AppState.scores
-    AppState.activeCharacter = AppState.character
-    await api.post('api/characters', AppState.activeCharacter)
-    router.push('Account')
+    const res = await api.post('api/characters', AppState.character)
+    AppState.activeCharacter = res.data
+    await router.push('Account')
   }
 
   setActiveCharacter(id) {

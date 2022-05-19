@@ -67,7 +67,7 @@ class QuestionsService {
     }
     if (AppState.activeQuestion.number === questions.trade.length - 1) {
       // SECTION Completes the Build process and reroutes to the Results page
-      AppState.built = 'true'
+      AppState.built = true
       router.push('Results')
     } else {
       AppState.count.question++
@@ -150,45 +150,13 @@ class QuestionsService {
       abilities: 0,
       score: 0
     }
-    AppState.activeScores = {
+    AppState.activeRolls = {
       0: 0,
       1: 0,
       2: 0,
       3: 0,
       4: 0,
       5: 0
-    }
-    AppState.characterScores = {
-      strength: {
-        title: 'Strength',
-        value: 0,
-        mod: 0
-      },
-      dexterity: {
-        title: 'Dexterity',
-        value: 0,
-        mod: 0
-      },
-      constitution: {
-        title: 'Constitution',
-        value: 0,
-        mod: 0
-      },
-      intelligence: {
-        title: 'Intelligence',
-        value: 0,
-        mod: 0
-      },
-      wisdom: {
-        title: 'Wisdom',
-        value: 0,
-        mod: 0
-      },
-      charisma: {
-        title: 'Charisma',
-        value: 0,
-        mod: 0
-      }
     }
     AppState.scores = {
       strength: {
@@ -222,11 +190,9 @@ class QuestionsService {
         mod: 0
       }
     }
-    AppState.built = 'false'
+    AppState.built = false
     AppState.role = null
     AppState.style = null
-    AppState.activeScore = 0
-    AppState.activeNum = 0
     AppState.tieBreakers = []
     AppState.abilityScore = []
     AppState.chooseAbilities = []
