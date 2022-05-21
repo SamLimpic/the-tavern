@@ -5,7 +5,6 @@ export const AppState = reactive({
   user: {},
   account: {},
   activeQuestion: {},
-  attributes: {},
   job: {},
   race: {},
   background: {},
@@ -26,6 +25,8 @@ export const AppState = reactive({
   show: 'start',
   save: true,
   confirm: false,
+  role: null,
+  style: null,
 
   // SECTION Dictionaries
   activeRolls: {
@@ -35,6 +36,19 @@ export const AppState = reactive({
     3: 0,
     4: 0,
     5: 0
+  },
+  attributes: {
+    role: {
+      tank: 0.05,
+      damage: 0.05,
+      support: 0.05,
+      utility: 0.05
+    },
+    style: {
+      weapons: 0.05,
+      spells: 0.05,
+      balance: 0.05
+    }
   },
   scores: {
     strength: {

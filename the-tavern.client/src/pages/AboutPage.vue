@@ -3,8 +3,8 @@
   It features separate components for each About section, which can be selected from the main menu. -->
   <div class="about container-fluid">
     <div class="row justify-content-center position-relative h-100">
-      <button type="button" class="btn btn-outline-dark btn-overlay d-md-block d-none m-md-3 m-0" @click="toggle('basics')" v-if="state.show !== 'basics'">
-        <i class="fas fa-backward font-lg"></i>
+      <button type="button" class="btn btn-outline-secondary btn-overlay d-md-block d-none m-md-3 m-0" @click="toggle('start')" v-if="state.show !== 'start'">
+        <i class="fas fa-backward font-lg text-shadow"></i>
       </button>
 
       <div class="col-lg-8 col-12 p-md-4 p-2" v-if="state.show === 'start'">

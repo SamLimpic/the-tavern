@@ -1,10 +1,20 @@
 <template>
   <!-- ANCHOR The main Questionnaire page, loads Question and Answer components. -->
   <div class="questionnaire container-fluid">
-    <div class="row justify-content-center h-100" v-if="state.activeQuestion && !state.loading">
+    <div class="row justify-content-center h-100">
       <div class="col-lg-8 col-12 p-md-4">
-        <!-- SECTION Loads the Active Question and Answers -->
-        <Question />
+        <div class="shadow rounded row justify-content-center bg-light text-center m-4 p-md-4 p-3">
+          <!-- SECTION Loads the Active Question and Answers -->
+          <div v-if="state.activeQuestion && !state.loading">
+            <Question />
+          </div>
+          <div class="col-12" v-else>
+            <h2 class="font-md">
+              <u>Loading your Questionnaire</u>
+            </h2>
+            <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
+          </div>
+        </div>
       </div>
       <div class="col-4 d-lg-block d-none bg-primary h-100 p-md-4">
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
@@ -66,11 +76,6 @@
         </div>
       </div>
     </div>
-
-    <!-- STUB Loading Icon is visible while data is pulled from Server-->
-    <div class="row justify-content-center m-5" v-else>
-      <h2><i class="fas fa-dice-d20 fa-spin font-xxl text-warning"></i></h2>
-    </div>
   </div>
 </template>
 
@@ -107,7 +112,7 @@ export default {
         questionsService.resetAttributes()
         await questionsService.getQuestions()
         // NOTE This timeout ensures consistent loading time across all pages
-        setTimeout(function() { state.loading = false }, 1000)
+        setTimeout(function() { state.loading = false }, 1500)
       } catch (error) {
         Notification.toast('Error: ' + error, 'error')
       }

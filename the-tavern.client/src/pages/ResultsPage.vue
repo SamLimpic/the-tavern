@@ -7,9 +7,9 @@
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="font-xl">
-            <u>Loading your Character</u><br>
-            <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
+            <u>Loading your Character</u>
           </h2>
+          <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
         </div>
         <div class="shadow rounded bg-light text-center m-4 p-sm-4 p-3" v-else>
           <h2 class="font-lg">
@@ -77,9 +77,9 @@
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="font-lg">
-            <u>Character Profile</u><br>
-            <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
+            <u>Character Profile</u>
           </h2>
+          <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
         </div>
         <div class="shadow rounded bg-light text-left m-4 p-md-4 p-3" v-else>
           <h2 class="font-lg">
@@ -155,7 +155,7 @@ export default {
       }
       AppState.activeCharacter = AppState.character
       // NOTE This timeout ensures consistent loading time across all pages
-      setTimeout(function() { state.loading = false }, 1000)
+      setTimeout(function() { state.loading = false }, 1500)
     })
     return {
       state,

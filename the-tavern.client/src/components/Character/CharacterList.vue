@@ -2,7 +2,7 @@
   <!-- ANCHOR Displays the list of available Account Characters -->
   <div class="row justify-content-center">
     <div class="col-12 mt-3">
-      <button type="button" class="btn btn-lg btn-dark w-100" @click="setActiveCharacter(character.id)">
+      <button type="button" class="btn btn-lg btn-dark text-shadow w-100" @click="setActiveCharacter(character.id)">
         <h2 class="font-sm">
           <u>{{ character.name }}</u>
         </h2>

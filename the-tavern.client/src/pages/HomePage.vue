@@ -8,19 +8,21 @@
             <u>Welcome Traveller!</u>
           </h2>
           <p class="font-sm mb-1 mx-lg-2 mx-3">
-            The Tavern is an interactive character creation experience for Dungeons and Dragons 5th Edition, made for new players and seasoned veterans alike!
+            The Tavern is an interactive character creation experience for Dungeons & Dragons 5th Edition, made for new players and seasoned veterans alike!
           </p>
           <p class="font-xs d-lg-block d-none mb-1 mx-lg-2 mx-3">
             This application was made to streamline the process of creating a fresh, customized, and ready-to-play character for any Dungeons and Dragons game.
           </p>
-          <p class="font-xs d-md-block d-none mx-lg-2 mx-3">
-            Simply follow the promps to easily create your ideal character and start your adventure!
+          <span class="text-warning text-shadow text-center font-xxl"><i class="fab fa-d-and-d"></i></span>
+          <p class="font-xs mx-lg-2 mx-3">
+            <i>Simply follow the promps to easily create your ideal character and start your adventure!
+            </i>
           </p>
           <div class="row justify-content-center align-items-center mb-1">
             <div class="col-md-3 col-5 order-md-1 order-2 mt-md-0 mt-3 text-right">
               <router-link :to="{name: 'About'}">
                 <!-- NOTE Redirects to About Page -->
-                <button type="button" class="btn btn-primary w-100 font-xs">
+                <button type="button" class="btn btn-primary text-shadow w-100 font-xs">
                   About
                 </button>
               </router-link>
@@ -28,14 +30,14 @@
             <div class="col-md-5 col-sm-6 col-8 order-md-2 order-1 mt-md-0 mt-2 mx-md-0 mx-5">
               <!-- NOTE Starts a fresh Questionnaire -->
               <router-link :to="{name: 'Questionnaire'}">
-                <button type="button" class="btn btn-primary w-100 font-sm py-md-3">
+                <button type="button" class="btn btn-primary text-shadow w-100 font-sm py-md-3">
                   Get Started!
                 </button>
               </router-link>
             </div>
             <div class="col-md-3 col-5 order-md-3 order-3 mt-md-0 mt-3 text-left">
               <!-- NOTE Creates a randomized character, sets that character as Active, and redirects to the Account Page. -->
-              <button type="button" class="btn btn-primary w-100 font-xs" @click="random">
+              <button type="button" class="btn btn-primary text-shadow w-100 font-xs" @click="random">
                 Random
               </button>
             </div>
@@ -44,26 +46,26 @@
       </div>
       <div class="col-4 d-lg-block d-none bg-primary shadow h-100 p-md-4">
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
-        <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
-          <h2 class="my-5 font-xxl">
-            <i class="fas fa-dice-d20 fa-spin text-warning"></i>
-          </h2>
-        </div>
-        <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-else-if="state.user.isAuthenticated && state.characters">
+        <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
           <h2 class="font-lg m-0 p-0">
             <u>Your Characters</u>
           </h2>
-          <h3 class="font-md" v-if="state.characters.length === 0">
-            Looks like you need to make some characters!
-          </h3>
-          <router-link :to="{name: 'Account'}">
-            <!-- SECTION Displays list of Account Characters to be selected.
+          <div v-if="state.loading">
+            <i class="fas fa-dice-d20 fa-spin text-warning mt-3 font-xxl"></i>
+          </div>
+          <div v-else-if="state.user.isAuthenticated && state.characters">
+            <h3 class="font-md" v-if="state.characters.length === 0">
+              Looks like you need to make some characters!
+            </h3>
+            <router-link :to="{name: 'Account'}">
+              <!-- SECTION Displays list of Account Characters to be selected.
             Redirects to the Account Page and sets selected character as Active. -->
-            <CharacterList v-for="c in state.characters" :key="c.id" :character="c" />
-          </router-link>
-        </div>
-        <div class="shadow rounded bg-light text-center m-3 p-5" v-else>
-          <h2>Log in to view your character list!</h2>
+              <CharacterList v-for="c in state.characters" :key="c.id" :character="c" />
+            </router-link>
+          </div>
+          <div v-else>
+            <h2>Log in to view your character list!</h2>
+          </div>
         </div>
       </div>
     </div>
@@ -91,9 +93,9 @@ export default {
     })
     onMounted(async() => {
       localStorage.clear()
-      // NOTE This timeout ensures consistent loading time across all pages
-      setTimeout(function() { state.loading = false }, 1000)
       await charactersService.getCharacters(state.account.id)
+      // NOTE This timeout ensures consistent loading time across all pages
+      setTimeout(function() { state.loading = false }, 1500)
     })
     return {
       state,

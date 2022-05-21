@@ -193,9 +193,8 @@ export default {
   color: var(--warning);
 }
 
-@media (min-width: 0) {
   /* SECTION Establishes Media Queries for responsive font sizing */
-
+@media (min-width: 0) {
 .img-container {
   width: 90%;
   margin: auto;
