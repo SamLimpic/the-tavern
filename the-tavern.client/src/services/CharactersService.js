@@ -36,8 +36,8 @@ class CharactersService {
     })
     skills.choose += jobProf.skills.choose
 
-    if (AppState.job.subJobs[0]) {
-      const subProf = AppState.job.subJob[0].proficiencies
+    if (AppState.job.subJobs) {
+      const subProf = AppState.job.subJobs.proficiencies
       if (subProf.weapons[0]) {
         subProf.weapons.forEach(p => {
           proficiencies.weapons.push(p)
@@ -121,8 +121,8 @@ class CharactersService {
     AppState.race.abilities.forEach(a => {
       abilities.push(a)
     })
-    if (AppState.job.subJobs[0]) {
-      AppState.job.subJobs[0].abilities.forEach(a => {
+    if (AppState.job.subJobs) {
+      AppState.job.subJobs.abilities.forEach(a => {
         abilities.push(a)
       })
     }
@@ -155,9 +155,9 @@ class CharactersService {
       }
     })
 
-    if (AppState.job.subJobs[0]) {
-      if (AppState.job.subJobs[0].proficiencies.languages[0]) {
-        AppState.job.subJobs[0].proficiencies.languages.forEach(l => {
+    if (AppState.job.subJobs) {
+      if (AppState.job.subJobs.proficiencies.languages[0]) {
+        AppState.job.subJobs.proficiencies.languages.forEach(l => {
           languages.filter(c => c !== l)
           languages.push(l)
         })
@@ -166,6 +166,40 @@ class CharactersService {
     languages.forEach(l => {
       AppState.languages.from = AppState.languages.from.filter(c => c !== l)
     })
+  }
+
+  getSpells() {
+    const spellcasting = AppState.character.spellcasting
+
+    if (AppState.race.spells.from) {
+      if (AppState.race.spells.from.length > 1) {
+        AppState.cantrips.from = AppState.race.spells.from
+        AppState.cantrips.choose++
+      } else {
+        spellcasting.cantrips = AppState.race.spells.from
+      }
+      spellcasting.totalCantrips++
+    }
+    AppState.spellbook.forEach(s => {
+      if (s.jobs.includes(AppState.character.job)) {
+        if (s.level === 0) {
+          AppState.cantrips.from.push(s)
+        }
+        if (s.level === 1) {
+          AppState.spells.from.push(s)
+        }
+      }
+    })
+    if (AppState.job.subJobs) {
+      if (AppState.job.subJobs.spells) {
+        AppState.job.subJobs.spells.forEach(s => spellcasting.spells.push(AppState.spellbook.find(p => p.name === s)))
+      }
+      if (AppState.job.subJobs.cantrips) {
+        AppState.job.subJobs.cantrips.forEach(s => spellcasting.cantrips.push(AppState.spellbook.find(p => p.name === s)))
+      }
+    }
+    AppState.spells.choose = spellcasting.totalSpells
+    AppState.cantrips.choose = spellcasting.totalCantrips
   }
 
   getAbilityModifiers() {
@@ -207,9 +241,9 @@ class CharactersService {
       spellcasting: {
         spellAbility: job.spellcasting.ability,
         totalSpells: job.spellcasting.spells,
-        spells: job.spellcasting.spellsRec,
+        spells: [],
         totalCantrips: job.spellcasting.cantrips,
-        cantrips: job.spellcasting.cantripsRec,
+        cantrips: [],
         slots: job.spellcasting.slots
       },
       proficiencies: {
@@ -229,6 +263,8 @@ class CharactersService {
     this.getLanguages()
     this.getAbilities()
     this.getAbilityModifiers()
+    this.getSpells()
+
     // NOTE Saves temporary build stats to Local Storage, allowing the user to refresh the Results Page and retain their Questionnaire information
     window.localStorage.setItem('count', JSON.stringify(AppState.count))
     window.localStorage.setItem('job', JSON.stringify(AppState.job))
@@ -239,6 +275,8 @@ class CharactersService {
     window.localStorage.setItem('abilities', JSON.stringify(AppState.chooseAbilities))
     window.localStorage.setItem('languages', JSON.stringify(AppState.languages))
     window.localStorage.setItem('character', JSON.stringify(AppState.character))
+    window.localStorage.setItem('spells', JSON.stringify(AppState.spells))
+    window.localStorage.setItem('cantrips', JSON.stringify(AppState.cantrips))
   }
 
   sortStats() {

@@ -4,10 +4,10 @@ import { api } from './AxiosService'
 import { questionsService } from './QuestionsService'
 
 class ResultsService {
-  async getJob() {
+  async buildJob() {
     const title = AppState.jobs.filter(j => j.role === AppState.character.role && j.style === AppState.character.style)[0].title
-    const res = await api.get(`api/jobs?title=${title}`)
-    AppState.job = res.data[0]
+    const res = await this.getJob(title)
+    AppState.job = res
     AppState.questions.trade[0].answers = AppState.job.races
     AppState.questions.trade[1].answers = AppState.job.backgrounds
     if (AppState.job.subChoices.answers[0]) {
@@ -19,6 +19,11 @@ class ResultsService {
       }
       AppState.questions.trade.push(subChoices)
     }
+  }
+
+  async getJob(title) {
+    const res = await api.get(`api/jobs?title=${title}`)
+    return res.data[0]
   }
 
   async getRace(title) {
@@ -38,6 +43,11 @@ class ResultsService {
     AppState.armor = armor.data
   }
 
+  async getSpells() {
+    const res = await api.get('api/spells')
+    AppState.spellbook = res.data
+  }
+
   // ANCHOR Loads Local Storage data from Questionnaire if the Results Page is refreshed
   loadBuild() {
     questionsService.resetAttributes()
@@ -48,6 +58,8 @@ class ResultsService {
     AppState.chooseScores = JSON.parse(window.localStorage.getItem('scores'))
     AppState.skills = JSON.parse(window.localStorage.getItem('skills'))
     AppState.chooseAbilities = JSON.parse(window.localStorage.getItem('abilities'))
+    AppState.chooseSpells = JSON.parse(window.localStorage.getItem('spells'))
+    AppState.chooseCantrips = JSON.parse(window.localStorage.getItem('cantrips'))
     AppState.languages = JSON.parse(window.localStorage.getItem('languages'))
     AppState.character = JSON.parse(window.localStorage.getItem('character'))
     AppState.built = true
@@ -66,6 +78,7 @@ class ResultsService {
       index = Math.floor(Math.random() * AppState.job.subJobs.length)
       AppState.job.subJobs = AppState.job.subJobs[index]
     }
+    await this.getSpells()
     AppState.built = true
     router.push('Results')
   }

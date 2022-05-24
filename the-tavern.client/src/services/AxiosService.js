@@ -11,3 +11,8 @@ export const setBearer = function(bearer) {
 export const resetBearer = function() {
   api.defaults.headers.authorization = ''
 }
+
+export const dndApi = Axios.create({
+  baseURL: 'https://www.dnd5eapi.co/',
+  timeout: 3000
+})

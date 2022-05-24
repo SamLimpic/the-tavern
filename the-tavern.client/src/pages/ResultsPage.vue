@@ -26,7 +26,7 @@
             </div>
           </div>
 
-          <!-- SECTION The available Skill options -->
+          <!-- SECTION The available Language options -->
           <div v-else-if="state.languages < state.chooseLanguages.choose">
             <h3 class="font-sm">
               Choose {{ state.chooseLanguages.choose }} of your available Languages!
@@ -39,7 +39,7 @@
           <!-- SECTION The available Equipment options -->
           <div v-else-if="state.equipment < state.job.equipment[0].choices.length">
             <h3 class="font-sm">
-              Choose from these sets of available Equipment
+              Choose from these sets of available Equipment!
             </h3>
             <EquipmentChoice v-for="(c, key) in state.job.equipment[0].choices" :key="key" :choice-prop="c" :index-prop="key" />
           </div>
@@ -51,6 +51,26 @@
             </h3>
             <div class="row justify-content-around">
               <ActiveAbility v-for="(a, index) in state.chooseAbilities" :key="index" :ability-prop="a" :index-prop="index" />
+            </div>
+          </div>
+
+          <!-- SECTION The available Cantrip options -->
+          <div v-else-if="state.cantrips < state.chooseCantrips.choose">
+            <h3 class="font-sm">
+              Choose {{ state.chooseCantrips.choose }} of your available Cantrips!
+            </h3>
+            <div class="row justify-content-around">
+              <SpellList v-for="(c, index) in state.chooseCantrips.from" :key="index" :spell-prop="c" :select-prop="true" />
+            </div>
+          </div>
+
+          <!-- SECTION The available Spell options -->
+          <div v-else-if="state.spells < state.chooseSpells.choose">
+            <h3 class="font-sm">
+              Choose {{ state.chooseSpells.choose }} of your available Spells!
+            </h3>
+            <div class="row justify-content-around">
+              <SpellList v-for="(s, index) in state.chooseSpells.from" :key="index" :spell-prop="s" :select-prop="true" />
             </div>
           </div>
 
@@ -135,6 +155,10 @@ export default {
       chooseAbilities: computed(() => AppState.chooseAbilities),
       chooseLanguages: computed(() => AppState.languages),
       languages: computed(() => AppState.count.languages),
+      chooseCantrips: computed(() => AppState.cantrips),
+      cantrips: computed(() => AppState.count.cantrips),
+      chooseSpells: computed(() => AppState.spells),
+      spells: computed(() => AppState.count.spells),
 
       // NOTE determines the Progress Bar Color depending on Selected Role / Style
       colors: {

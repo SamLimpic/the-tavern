@@ -2,12 +2,8 @@ import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
 const Equipment = new Schema({
-  armor: {
-    type: Array
-  },
-  weapon: {
-    type: Array
-  }
+  armor: { type: Array },
+  weapon: { type: Array }
 })
 
 const SubJob = new Schema({

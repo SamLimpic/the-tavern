@@ -39,6 +39,7 @@ export default {
           AppState.scores[title].mod = Math.floor((AppState.scores[title].value - 10) / 2)
           AppState.stats = AppState.stats.filter(s => s !== stat)
           AppState.activeRolls[index] = 0
+          document.getElementById(index).disabled = true
           AppState.count.score++
           if (AppState.count.score === 6) {
             AppState.confirm = true

@@ -40,7 +40,7 @@ class QuestionsService {
         AppState.role = AppState.character[t]
       } else {
         // SECTION Pulls Character Class from database once Role & Style are established
-        await resultsService.getJob()
+        await resultsService.buildJob()
         AppState.activeQuestion = questions.trade[0]
         AppState.count.question = 8
         AppState.style = AppState.character[t]
@@ -125,6 +125,14 @@ class QuestionsService {
       choose: 0,
       from: []
     }
+    AppState.spells = {
+      choose: 0,
+      from: []
+    }
+    AppState.cantrips = {
+      choose: 0,
+      from: []
+    }
     AppState.attributes = {
       role: {
         tank: 0.05,
@@ -148,7 +156,9 @@ class QuestionsService {
       mods: 0,
       modChoice: 0,
       abilities: 0,
-      score: 0
+      score: 0,
+      spells: 0,
+      cantrips: 0
     }
     AppState.activeRolls = {
       0: 0,

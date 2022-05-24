@@ -90,6 +90,14 @@ export const AppState = reactive({
     choose: 0,
     from: []
   },
+  spells: {
+    choose: 0,
+    from: []
+  },
+  cantrips: {
+    choose: 0,
+    from: []
+  },
   questions: {
     role: [],
     style: [],
@@ -100,6 +108,8 @@ export const AppState = reactive({
     style: 0,
     question: 0,
     languages: 0,
+    spells: 0,
+    cantrips: 0,
     skills: 0,
     equipment: 0,
     mods: 0,
