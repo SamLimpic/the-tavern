@@ -75,6 +75,12 @@ class DndService {
     }
   }
 
+  async buildSkills() {
+    for (const skill of AppState.skillsList) {
+      await api.post('api/skills', skill)
+    }
+  }
+
   async getData(endpoint, query = '') {
     const res = await dndApi.get(`${endpoint}/${query}`)
     return res.data

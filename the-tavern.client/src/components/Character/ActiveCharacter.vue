@@ -12,10 +12,10 @@
       <u> {{ state.activeCharacter.name }} </u>
     </h2>
     <h3 class="font-lg">
-      {{ state.activeCharacter.race }} <br> {{ state.activeCharacter.job }}
+      {{ state.activeCharacter.race }} {{ state.activeCharacter.job }}
     </h3>
     <h3 class="font-md">
-      {{ state.activeCharacter.alignment }}
+      {{ state.activeCharacter.alignment }} {{ state.activeCharacter.background }}
     </h3>
     <h4 class="font-sm">
       {{ state.activeCharacter.gender }}: {{ state.activeCharacter.age }} Years Old
@@ -34,19 +34,19 @@
     </div>
   </div>
   <div class="col-12 text-center mt-3">
-    <h2>
-      <u>Skills</u>
-    </h2>
-    <div class="row justify-content-center mt-3">
-      <!-- SECTION Displays available Abilities for the Active Character -->
-      <SkillList v-for="s in state.activeCharacter.proficiencies.skills" :key="s" :skill-prop="s" />
-    </div>
     <h2 class="mt-3">
       <u>Languages</u>
     </h2>
     <div class="row justify-content-center mt-3">
-      <!-- SECTION Displays available Abilities for the Active Character -->
+      <!-- SECTION Displays available Languages for the Active Character -->
       <LanguageList v-for="l in state.activeCharacter.languages" :key="l" :language-prop="l" />
+    </div>
+    <h2>
+      <u>Skills</u>
+    </h2>
+    <div class="row justify-content-center mt-3">
+      <!-- SECTION Displays available Skills for the Active Character -->
+      <SkillList v-for="(s, index) in state.activeCharacter.proficiencies.skills" :key="index" :skill-prop="s" />
     </div>
     <h2 class="mt-3">
       <u>Abilities</u>

@@ -84,7 +84,6 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { questionsService } from '../services/QuestionsService'
 import Notification from '../utils/Notification'
-import { resultsService } from '../services/ResultsService'
 
 export default {
   name: 'Questionnaire',
@@ -111,7 +110,6 @@ export default {
     onMounted(async() => {
       try {
         questionsService.resetAttributes()
-        await resultsService.getSpells()
         await questionsService.getQuestions()
         // NOTE This timeout ensures consistent loading time across all pages
         setTimeout(function() { state.loading = false }, 1500)

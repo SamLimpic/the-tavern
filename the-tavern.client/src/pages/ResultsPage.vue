@@ -22,7 +22,7 @@
               Choose {{ state.chooseSkills.choose }} of your available Skills!
             </h3>
             <div class="row justify-content-center">
-              <Skill v-for="s in state.chooseSkills.from" :key="s" :skill-prop="s" />
+              <SkillList v-for="(s, index) in state.chooseSkills.from" :key="index" :skill-prop="s" :select-prop="true" />
             </div>
           </div>
 
@@ -172,6 +172,9 @@ export default {
       }
     })
     onMounted(async() => {
+      await resultsService.getSpells()
+      await resultsService.getSkills()
+
       if (state.built) {
         charactersService.createCharacter()
       } else {

@@ -36,7 +36,7 @@ class CharactersService {
     })
     skills.choose += jobProf.skills.choose
 
-    if (AppState.job.subJobs) {
+    if (AppState.job.subJobs[0]) {
       const subProf = AppState.job.subJobs.proficiencies
       if (subProf.weapons[0]) {
         subProf.weapons.forEach(p => {
@@ -110,6 +110,14 @@ class CharactersService {
         })
       }
     }
+
+    if (proficiencies.skills[0]) {
+      const fullSkills = []
+      proficiencies.skills.forEach(s => {
+        fullSkills.push(AppState.skillsList.find(k => k.name === s))
+      })
+      proficiencies.skills = fullSkills
+    }
   }
 
   // ANCHOR Runs through the chosen Class and pulls the relevant Abilities into the Character object
@@ -120,8 +128,9 @@ class CharactersService {
     })
     AppState.race.abilities.forEach(a => {
       abilities.push(a)
+      if (a.title === 'Dwarven Toughness') AppState.character.health++
     })
-    if (AppState.job.subJobs) {
+    if (AppState.job.subJobs[0]) {
       AppState.job.subJobs.abilities.forEach(a => {
         abilities.push(a)
       })
@@ -155,7 +164,7 @@ class CharactersService {
       }
     })
 
-    if (AppState.job.subJobs) {
+    if (AppState.job.subJobs[0]) {
       if (AppState.job.subJobs.proficiencies.languages[0]) {
         AppState.job.subJobs.proficiencies.languages.forEach(l => {
           languages.filter(c => c !== l)
@@ -190,7 +199,7 @@ class CharactersService {
         }
       }
     })
-    if (AppState.job.subJobs) {
+    if (AppState.job.subJobs[0]) {
       if (AppState.job.subJobs.spells) {
         AppState.job.subJobs.spells.forEach(s => spellcasting.spells.push(AppState.spellbook.find(p => p.name === s)))
       }
@@ -200,6 +209,14 @@ class CharactersService {
     }
     AppState.spells.choose = spellcasting.totalSpells
     AppState.cantrips.choose = spellcasting.totalCantrips
+  }
+
+  getSkills() {
+    const skills = []
+    AppState.skills.from.forEach(s => {
+      skills.push(AppState.skillsList.find(k => k.name === s))
+    })
+    AppState.skills.from = skills
   }
 
   getAbilityModifiers() {
@@ -260,6 +277,7 @@ class CharactersService {
       }
     }
     this.getProficiencies()
+    this.getSkills()
     this.getLanguages()
     this.getAbilities()
     this.getAbilityModifiers()

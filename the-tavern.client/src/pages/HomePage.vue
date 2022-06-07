@@ -78,6 +78,7 @@ import { AppState } from '../AppState'
 import { charactersService } from '../services/CharactersService'
 import Notification from '../utils/Notification'
 import { resultsService } from '../services/ResultsService'
+// import { dndService } from '../services/DndService'
 
 export default {
   name: 'Home',
@@ -94,6 +95,7 @@ export default {
     onMounted(async() => {
       localStorage.clear()
       await charactersService.getCharacters(state.account.id)
+      // await dndService.buildSkills()
       // NOTE This timeout ensures consistent loading time across all pages
       setTimeout(function() { state.loading = false }, 1500)
     })

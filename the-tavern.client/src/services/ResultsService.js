@@ -48,6 +48,11 @@ class ResultsService {
     AppState.spellbook = res.data
   }
 
+  async getSkills() {
+    const res = await api.get('api/skills')
+    AppState.skillsList = res.data
+  }
+
   // ANCHOR Loads Local Storage data from Questionnaire if the Results Page is refreshed
   loadBuild() {
     questionsService.resetAttributes()

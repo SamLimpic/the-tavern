@@ -1,7 +1,7 @@
 <template>
   <!-- ANCHOR Displays specific Equipment options to be selected -->
   <div class="col-md-4 col-10 mb-3">
-    <button type="button" class="btn btn-secondary no-hover text-shadow h-100 w-100">
+    <button type="button" class="btn btn-secondary text-shadow h-100 w-100">
       <h3 class="font-sm p-0 m-0">
         {{ equipmentProp }}
       </h3>

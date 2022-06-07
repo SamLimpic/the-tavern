@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { computed, onMounted, reactive } from 'vue'
+import { onMounted, reactive } from 'vue'
 import { AppState } from '../../AppState'
 import Notification from '../../utils/Notification'
 
@@ -28,7 +28,6 @@ export default {
   },
   setup() {
     const state = reactive({
-      character: computed(() => AppState.character),
       disabled: false
     })
     onMounted(async() => {

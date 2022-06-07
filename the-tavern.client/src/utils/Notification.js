@@ -258,12 +258,12 @@ export default class Notification {
   }
 
   // SECTION Information Modal
-  static expand(obj) {
+  static expand(title, text1, text2 = '', text3 = '') {
     Swal.fire({
+      title: title,
       icon: 'info',
-      title: `${obj.title}!`,
-      text: `${obj.body}`,
-      confirmButtonColor: '#247c78'
+      html:
+        text1 + '<br>' + text2 + '<br>' + text3 + '<br>'
     })
   }
 }
