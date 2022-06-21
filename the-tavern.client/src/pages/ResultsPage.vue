@@ -32,7 +32,7 @@
               Choose {{ state.chooseLanguages.choose }} of your available Languages!
             </h3>
             <div class="row justify-content-center">
-              <Language v-for="l in state.chooseLanguages.from" :key="l" :language-prop="l" />
+              <Language v-for="l in state.chooseLanguages.from" :key="l" :language-prop="l" :select-prop="true" />
             </div>
           </div>
 

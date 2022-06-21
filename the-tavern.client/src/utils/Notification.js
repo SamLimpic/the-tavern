@@ -258,12 +258,11 @@ export default class Notification {
   }
 
   // SECTION Information Modal
-  static expand(title, text1, text2 = '', text3 = '') {
+  static expand(title, body) {
     Swal.fire({
       title: title,
-      icon: 'info',
-      html:
-        text1 + '<br>' + text2 + '<br>' + text3 + '<br>'
+      icon: 'question',
+      text: body
     })
   }
 }

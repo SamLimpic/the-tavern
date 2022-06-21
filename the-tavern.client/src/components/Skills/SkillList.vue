@@ -6,7 +6,7 @@
             class="btn btn-lg w-100"
             :class="!selectProp ? 'btn-secondary' : skillProp.pro.includes(state.character.job) ? 'btn-success' : skillProp.con.includes(state.character.job) ? 'btn-danger' : 'btn-dark'"
             :disabled="state.disabled"
-            @click="addSkill(skillProp, selectProp)"
+            @click="selectProp ? addSkill(skillProp) : expand(skillProp)"
     >
       <h3 class="font-sm p-0 m-0">
         {{ skillProp.name }}
@@ -38,26 +38,23 @@ export default {
   setup() {
     const state = reactive({
       character: computed(() => AppState.character),
-
-      disabled: false,
-      color: 'btn-dark'
+      disabled: false
     })
     onMounted(async() => {
 
     })
     return {
       state,
-      async addSkill(skill, select) {
-        if (select) {
-          if (await Notification.confirmAction(skill.name, skill.desc, 'info', 'Select')) {
-            Notification.toast(`You chose ${skill.name}`, 'success')
-            AppState.character.proficiencies.skills.push(skill)
-            AppState.count.skills++
-            state.disabled = true
-          }
-        } else {
-          Notification.expand(skill.name, skill.ability, skill.desc)
+      async addSkill(skill) {
+        if (await Notification.confirmAction(skill.name, skill.desc, 'info', 'Select')) {
+          Notification.toast(`You chose ${skill.name}`, 'success')
+          AppState.character.proficiencies.skills.push(skill)
+          AppState.count.skills++
+          state.disabled = true
         }
+      },
+      expand(skill) {
+        Notification.expand(skill.name, skill.desc)
       }
     }
   },

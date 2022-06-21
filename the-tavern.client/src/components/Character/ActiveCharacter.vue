@@ -34,13 +34,6 @@
     </div>
   </div>
   <div class="col-12 text-center mt-3">
-    <h2 class="mt-3">
-      <u>Languages</u>
-    </h2>
-    <div class="row justify-content-center mt-3">
-      <!-- SECTION Displays available Languages for the Active Character -->
-      <LanguageList v-for="l in state.activeCharacter.languages" :key="l" :language-prop="l" />
-    </div>
     <h2>
       <u>Skills</u>
     </h2>
@@ -96,6 +89,13 @@
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Abilities for the Active Character -->
         <EquipmentList v-for="e in state.activeCharacter.equipment.tools" :key="e" :equipment-prop="e" />
+      </div>
+      <h2 class="mt-3">
+        <u>Languages</u>
+      </h2>
+      <div class="row justify-content-center mt-3">
+        <!-- SECTION Displays available Languages for the Active Character -->
+        <Language v-for="l in state.activeCharacter.languages" :key="l" :language-prop="l" />
       </div>
     </div>
   </div>
