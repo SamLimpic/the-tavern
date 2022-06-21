@@ -20,7 +20,6 @@ export const AppState = reactive({
 
   // SECTION Base Variables
   built: false,
-  showActive: false,
   showStats: false,
   show: 'start',
   save: true,

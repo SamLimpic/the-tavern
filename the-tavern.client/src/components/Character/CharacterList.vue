@@ -13,7 +13,7 @@
       <transition name="fade">
         <div class="row justify-content-between text-left d-lg-none d-flex" v-if="state.show">
           <!-- SECTION On Mobile, displays all Character information as a Drop Down -->
-          <ActiveCharacter />
+          <ActiveCharacter :character="character" />
         </div>
       </transition>
     </div>
@@ -35,8 +35,7 @@ export default {
     const state = reactive({
       show: false,
       characters: computed(() => AppState.characters),
-      activeCharacter: computed(() => AppState.activeCharacter),
-      AppState: computed(() => AppState)
+      activeCharacter: computed(() => AppState.activeCharacter)
     })
 
     return {
@@ -44,12 +43,7 @@ export default {
       setActiveCharacter(id) {
         try {
           charactersService.setActiveCharacter(id)
-          if (!state.show) {
-            state.show = true
-          } else {
-            state.show = false
-          }
-          state.AppState.showActive = true
+          state.show = !state.show
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }
