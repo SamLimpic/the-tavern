@@ -25,8 +25,8 @@
           <div class="progress mb-4" style="height: 2rem">
             <div class="progress-bar bg-primary"
                  role="progressbar"
-                 :style="`width: ${(state.count.question * 10) + 2}%`"
-                 :aria-valuenow="`${(state.count.question * 10) + 2}`"
+                 :style="`width: ${(state.count.question * 10)}%`"
+                 :aria-valuenow="`${(state.count.question * 10)}`"
                  aria-valuemin="0"
                  aria-valuemax="100"
             ></div>

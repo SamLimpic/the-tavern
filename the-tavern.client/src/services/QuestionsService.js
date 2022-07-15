@@ -10,7 +10,7 @@ class QuestionsService {
     AppState.questions.style = res.data.filter(q => q.type === 'Style')
     AppState.questions.trade = res.data.filter(q => q.type === 'Race' || q.type === 'Background')
 
-    AppState.activeQuestion = AppState.questions.role[0]
+    AppState.activeQuestion = AppState.questions.role.find(q => q.number === 0)
   }
 
   // ANCHOR Interprets Questionnaire results and updates potential outcomes
@@ -35,20 +35,20 @@ class QuestionsService {
       this.tieBreaker(type, AppState.tieBreakers)
     } else if (AppState.activeQuestion.number === questions[t].length - 1) {
       if (type === 'Role') {
-        AppState.activeQuestion = questions.style[0]
+        AppState.activeQuestion = questions.style.find(q => q.number === 0)
         AppState.count.question = 5
         AppState.role = AppState.character[t]
       } else {
         // SECTION Pulls Character Class from database once Role & Style are established
         await resultsService.buildJob()
-        AppState.activeQuestion = questions.trade[0]
+        AppState.activeQuestion = questions.trade.find(q => q.number === 0)
         AppState.count.question = 8
         AppState.style = AppState.character[t]
       }
       AppState.tieBreakers = []
     } else {
       AppState.count.question++
-      AppState.activeQuestion = questions[t][AppState.activeQuestion.number + 1]
+      AppState.activeQuestion = questions[t].find(q => q.number === AppState.activeQuestion.number + 1)
     }
   }
 
@@ -71,7 +71,7 @@ class QuestionsService {
       router.push('Results')
     } else {
       AppState.count.question++
-      AppState.activeQuestion = questions.trade[AppState.activeQuestion.number + 1]
+      AppState.activeQuestion = questions.trade.find(q => q.number === AppState.activeQuestion.number + 1)
     }
   }
 
@@ -92,10 +92,10 @@ class QuestionsService {
       // SECTION Pushes a potential Tiebreaker selection if its count hits 2
       AppState.tieBreakers.push(string)
     }
-    if (Math.floor(attribute) === 3 || AppState.activeQuestion === questions[questions.length - 2]) {
+    if (Math.floor(attribute) === 3 || AppState.activeQuestion === questions.find(q => q.number === questions.length - 2)) {
       // SECTION Sets the Active Role / Style if its count hits 3
       AppState.count.question++
-      AppState.activeQuestion = questions[questions.length - 1]
+      AppState.activeQuestion = questions.find(q => q.number === questions.length - 1)
     }
   }
 
@@ -104,7 +104,7 @@ class QuestionsService {
     const t = type.toLowerCase()
     const questions = AppState.questions[t]
     AppState.count.question++
-    AppState.activeQuestion = questions[questions.length - 1]
+    AppState.activeQuestion = questions.find(q => q.number === questions.length - 1)
     // SECTION Displays only the required Tiebreaker attirbutes to be tested
     AppState.activeQuestion.answers = AppState.activeQuestion.answers.filter(a => a.value === arr[0] || a.value === arr[1])
     AppState.tieBreakers = []

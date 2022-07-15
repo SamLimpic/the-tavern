@@ -21,6 +21,9 @@
             <h3 class="font-sm">
               Choose {{ state.chooseSkills.choose }} of your available Skills!
             </h3>
+            <h2 class="font-xs">
+              <b class="text-success"> GREEN </b> skills are encouraged for your character build, while <b class="text-danger"> RED </b> skills are discouraged.
+            </h2>
             <div class="row justify-content-center">
               <SkillList v-for="(s, index) in state.chooseSkills.from" :key="index" :skill-prop="s" :select-prop="true" />
             </div>
