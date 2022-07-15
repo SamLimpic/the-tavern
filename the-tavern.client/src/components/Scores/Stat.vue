@@ -1,70 +1,19 @@
 <template>
   <!-- ANCHOR Displays Ability Scores & Stat Modifiers -->
-  <div class="col-2 d-md-block d-none px-xl-2 px-lg-1 px-md-2" dropzone="zone" @dragover.prevent @drop.prevent="moveNum(state.activeNum, statProp.title, statProp.mod)" v-if="state.drop">
-    <!-- SECTION Desktop Column Layout utilizing Drag and Drop-->
-    <div class="stat-box text-center rounded bg-light">
+  <div class="col-md-2 col-4 px-xl-2 px-lg-1 px-md-2 mt-3">
+    <div class="stat-box text-center rounded bg-white">
       <h3 class="font-md m-0">
         <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
       </h3>
-      <h4 class="font-xl text-danger" v-if="statProp.value > 0 && statProp.value < 11">
-        {{ statProp.value + statProp.mod }}
+      <h4 class="font-xl" :class="statProp.value > 11 ? 'text-success' : statProp.value < 10 ? 'text-danger' : 'text-muted'">
+        <span class="text-success" v-if="statProp.mod > 0 && statProp.value < 1">+{{ statProp.mod }}</span>
+        <span v-if="statProp.value > 0">{{ statProp.value }}</span>
       </h4>
-      <h4 class="font-xl text-muted" v-else-if="statProp.value === 10">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h4 class="font-xl text-success" v-if="statProp.value > 11">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h5 class="font-lg text-success pt-1" v-if="statProp.mod > 0 && statProp.value < 1 ">
-        +{{ statProp.mod }}
-      </h5>
-    </div>
-  </div>
-  <div class="col-2 d-md-block d-none px-xl-2 px-lg-1 px-md-2" v-else>
-    <!-- SECTION Desktop Column Layout utilizing Drag and Drop-->
-    <div class="stat-box text-center text-muted rounded bg-light">
-      <h3 class="font-md m-0">
-        <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
-      </h3>
-      <h4 class="font-xl text-danger" v-if="statProp.value > 0 && statProp.value < 11">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h4 class="font-xl text-muted" v-else-if="statProp.value === 10">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h4 class="font-xl text-success" v-if="statProp.value > 11">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h5 class="font-lg text-success pt-1" v-if="statProp.mod > 0 && statProp.value < 1 ">
-        +{{ statProp.mod }}
-      </h5>
-    </div>
-  </div>
-
-  <div class="col-4 d-md-none d-block mt-3 px-sm-4 px-2">
-    <!-- SECTION Mobile Column Layout -->
-    <div class="stat-box text-center rounded bg-light">
-      <h3 class="font-md m-0 pt-2">
-        <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
-      </h3>
-      <h4 class="font-xl text-danger" v-if="statProp.value > 0 && statProp.value < 11">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h4 class="font-xl text-muted" v-else-if="statProp.value === 10">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h4 class="font-xl text-success" v-if="statProp.value > 11">
-        {{ statProp.value + statProp.mod }}
-      </h4>
-      <h5 class="font-lg text-success pt-1" v-if="statProp.mod > 0 && statProp.value < 1 ">
-        +{{ statProp.mod }}
-      </h5>
     </div>
   </div>
 </template>
 <script>
-import { AppState } from '../../AppState'
-import { computed, reactive, onMounted } from 'vue'
+import { reactive } from 'vue'
 export default {
   name: 'Stat',
   props: {
@@ -75,30 +24,10 @@ export default {
   },
   setup() {
     const state = reactive({
-      drop: true,
-      character: computed(() => AppState.character),
-      abilityScore: computed(() => AppState.abilityScore),
-      activeNum: computed(() => AppState.activeNum),
-      activeScore: computed(() => AppState.activeScore),
-      border: {
-        success: 'border-success',
-        warning: 'border-warning',
-        danger: 'border-danger'
-      }
-    })
-    onMounted(async() => {
 
     })
     return {
-      state,
-      moveNum(num, title, mod) {
-        AppState.character.scores[title.toLowerCase()].value = num
-        AppState.scores[title.toLowerCase()].value = num + mod
-        AppState.scores[title.toLowerCase()].mod = Math.floor((AppState.scores[title.toLowerCase()].value - 10) / 2)
-        AppState.activeScores[state.activeScore] = 0
-        AppState.count.score++
-        state.drop = false
-      }
+      state
     }
   }
 }

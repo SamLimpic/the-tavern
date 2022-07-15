@@ -7,7 +7,7 @@
   </main>
   <footer>
     <div class="row justify-content-center bg-dark text-light text-center">
-      <p class="font-xs my-md-4 my-3 p-0">
+      <p class="font-xs text-shadow my-md-4 my-3 p-0">
         Made with <span><i class="fas fa-dice-d20 text-warning px-1"></i></span> by a bunch of nerds
       </p>
     </div>

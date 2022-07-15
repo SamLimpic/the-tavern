@@ -2,7 +2,7 @@
   <!-- ANCHOR Displays the list of available Account Characters -->
   <div class="row justify-content-center">
     <div class="col-12 mt-3">
-      <button type="button" class="btn btn-lg btn-dark w-100" @click="setActiveCharacter(character.id)">
+      <button type="button" class="btn btn-lg btn-dark text-shadow w-100" @click="setActiveCharacter(character.id)">
         <h2 class="font-sm">
           <u>{{ character.name }}</u>
         </h2>
@@ -13,7 +13,7 @@
       <transition name="fade">
         <div class="row justify-content-between text-left d-lg-none d-flex" v-if="state.show">
           <!-- SECTION On Mobile, displays all Character information as a Drop Down -->
-          <ActiveCharacter />
+          <ActiveCharacter :character="character" />
         </div>
       </transition>
     </div>
@@ -35,8 +35,7 @@ export default {
     const state = reactive({
       show: false,
       characters: computed(() => AppState.characters),
-      activeCharacter: computed(() => AppState.activeCharacter),
-      AppState: computed(() => AppState)
+      activeCharacter: computed(() => AppState.activeCharacter)
     })
 
     return {
@@ -44,12 +43,7 @@ export default {
       setActiveCharacter(id) {
         try {
           charactersService.setActiveCharacter(id)
-          if (!state.show) {
-            state.show = true
-          } else {
-            state.show = false
-          }
-          state.AppState.showActive = true
+          state.show = !state.show
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

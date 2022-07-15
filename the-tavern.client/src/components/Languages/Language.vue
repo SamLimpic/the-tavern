@@ -1,7 +1,7 @@
 <template>
   <!-- ANCHOR Displays available Languages to be selected -->
-  <div class="col-md-4 col-sm-6 col-10 text-center my-2 ">
-    <button :id="languageProp" type="button" class="btn btn-lg btn-dark w-100" @click="addLanguage(languageProp)">
+  <div class="col-md-4 col-sm-6 col-10 text-center mb-3 ">
+    <button :id="languageProp" type="button" class="btn btn-lg w-100" :class="!selectProp ? 'no-hover btn-secondary' : 'btn-dark'" @click="addLanguage(languageProp)">
       <h3 class="font-xs p-0 m-0">
         {{ languageProp }}
       </h3>
@@ -20,6 +20,10 @@ export default {
     languageProp: {
       type: String,
       required: true
+    },
+    selectProp: {
+      type: Boolean,
+      default: false
     }
   },
   setup() {

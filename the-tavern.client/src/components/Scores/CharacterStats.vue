@@ -1,71 +1,20 @@
 <template>
   <!-- ANCHOR Displays Ability Scores & Modifiers for Active Character -->
-  <div class="col-2 hoverable d-sm-flex d-none p-1 text-center">
-    <!-- SECTION Desktop Column Layout
-    Toggles between Raw Scores & Modifiers on Click -->
-    <div class="stat-box rounded position-relative bg-light" @click="toggle(false)" v-if="state.show">
+  <div class="col-sm-2 col-4 hoverable p-1 text-center">
+    <!-- Toggles between Raw Scores & Modifiers on Click -->
+    <div class="stat-box rounded position-relative bg-white" @click="toggle(state.mod)">
       <i class="fas fa-adjust icon icon-show"></i>
       <h3 class="font-xl m-0 pt-2 pb-1">
         <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
       </h3>
-      <h4 class="text-success font-md m-0" v-if="statProp.mod > 0">
-        +{{ statProp.mod }}
+      <h4 class="text-success font-md m-0" :class="statProp.mod === 0 ? 'text-muted' : statProp.mod > 0 ? 'text-success' : 'text-danger'">
+        <span v-if="state.mod">
+          <span v-if="statProp.mod > 0">+</span>
+          <span v-else-if="statProp.mod < 0">-</span>
+          {{ Math.abs(statProp.mod) }}
+        </span>
+        <span class="font-lg" v-else>{{ statProp.value }}</span>
       </h4>
-      <h4 class="text-muted strike-through font-md m-0" v-else-if="statProp.mod === 0">
-        &nbsp;{{ statProp.mod }}&nbsp;
-      </h4>
-      <h4 class="text-danger font-md m-0" v-else>
-        {{ statProp.mod }}
-      </h4>
-    </div>
-    <div class="stat-box rounded position-relative bg-light" @click="toggle(true)" v-else>
-      <i class="fas fa-adjust icon icon-hide"></i>
-      <h3 class="font-xl m-0 pt-2">
-        <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
-      </h3>
-      <h5 class="text-success font-lg m-0" v-if="statProp.mod > 0">
-        {{ statProp.value }}
-      </h5>
-      <h5 class="text-muted font-lg m-0" v-else-if="statProp.mod === 0">
-        {{ statProp.value }}
-      </h5>
-      <h5 class="text-danger font-lg m-0" v-else>
-        {{ statProp.value }}
-      </h5>
-    </div>
-  </div>
-  <div class="col-4 hoverable d-sm-none d-flex px-1 text-center">
-    <!-- SECTION Mobile Column Layout
-    Toggles between Raw Scores & Modifiers on Click -->
-    <div class="stat-box rounded position-relative bg-light" @click="toggle(false)" v-if="state.show">
-      <i class="fas fa-adjust icon icon-show"></i>
-      <h3 class="font-xl m-0 pt-2 pb-1">
-        <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
-      </h3>
-      <h4 class="text-success font-md m-0" v-if="statProp.mod > 0">
-        +{{ statProp.mod }}
-      </h4>
-      <h4 class="text-muted strike-through font-md m-0" v-else-if="statProp.mod === 0">
-        &nbsp;{{ statProp.mod }}&nbsp;
-      </h4>
-      <h4 class="text-danger font-md m-0" v-else>
-        {{ statProp.mod }}
-      </h4>
-    </div>
-    <div class="stat-box rounded position-relative bg-light" @click="toggle(true)" v-else>
-      <i class="fas fa-adjust icon icon-hide"></i>
-      <h3 class="font-xl m-0 pt-2">
-        <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
-      </h3>
-      <h5 class="text-success font-lg m-0" v-if="statProp.mod > 0">
-        {{ statProp.value }}
-      </h5>
-      <h5 class="text-muted font-lg m-0" v-else-if="statProp.mod === 0">
-        {{ statProp.value }}
-      </h5>
-      <h5 class="text-danger font-lg m-0" v-else>
-        {{ statProp.value }}
-      </h5>
     </div>
   </div>
 </template>
@@ -83,7 +32,7 @@ export default {
   },
   setup() {
     const state = reactive({
-      show: computed(() => AppState.showStats),
+      mod: computed(() => AppState.showStats),
       character: computed(() => AppState.character),
       abilityScore: computed(() => AppState.abilityScore),
       activeNum: computed(() => AppState.activeNum),
@@ -95,7 +44,7 @@ export default {
     return {
       state,
       toggle(bool) {
-        AppState.showStats = bool
+        AppState.showStats = !bool
       }
     }
   }

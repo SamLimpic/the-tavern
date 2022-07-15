@@ -7,9 +7,9 @@
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="font-xl">
-            <u>Loading your Character</u><br>
-            <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
+            <u>Loading your Character</u>
           </h2>
+          <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
         </div>
         <div class="shadow rounded bg-light text-center m-4 p-sm-4 p-3" v-else>
           <h2 class="font-lg">
@@ -21,25 +21,28 @@
             <h3 class="font-sm">
               Choose {{ state.chooseSkills.choose }} of your available Skills!
             </h3>
+            <h2 class="font-xs">
+              <b class="text-success"> GREEN </b> skills are encouraged for your character build, while <b class="text-danger"> RED </b> skills are discouraged.
+            </h2>
             <div class="row justify-content-center">
-              <Skill v-for="s in state.chooseSkills.from" :key="s" :skill-prop="s" />
+              <SkillList v-for="(s, index) in state.chooseSkills.from" :key="index" :skill-prop="s" :select-prop="true" />
             </div>
           </div>
 
-          <!-- SECTION The available Skill options -->
+          <!-- SECTION The available Language options -->
           <div v-else-if="state.languages < state.chooseLanguages.choose">
             <h3 class="font-sm">
               Choose {{ state.chooseLanguages.choose }} of your available Languages!
             </h3>
             <div class="row justify-content-center">
-              <Language v-for="l in state.chooseLanguages.from" :key="l" :language-prop="l" />
+              <Language v-for="l in state.chooseLanguages.from" :key="l" :language-prop="l" :select-prop="true" />
             </div>
           </div>
 
           <!-- SECTION The available Equipment options -->
           <div v-else-if="state.equipment < state.job.equipment[0].choices.length">
             <h3 class="font-sm">
-              Choose from these sets of available Equipment
+              Choose from these sets of available Equipment!
             </h3>
             <EquipmentChoice v-for="(c, key) in state.job.equipment[0].choices" :key="key" :choice-prop="c" :index-prop="key" />
           </div>
@@ -53,28 +56,41 @@
               <ActiveAbility v-for="(a, index) in state.chooseAbilities" :key="index" :ability-prop="a" :index-prop="index" />
             </div>
           </div>
+
+          <!-- SECTION The available Cantrip options -->
+          <div v-else-if="state.cantrips < state.chooseCantrips.choose">
+            <h3 class="font-sm">
+              Choose {{ state.chooseCantrips.choose }} of your available Cantrips!
+            </h3>
+            <div class="row justify-content-around">
+              <SpellList v-for="(c, index) in state.chooseCantrips.from" :key="index" :spell-prop="c" :select-prop="true" />
+            </div>
+          </div>
+
+          <!-- SECTION The available Spell options -->
+          <div v-else-if="state.spells < state.chooseSpells.choose">
+            <h3 class="font-sm">
+              Choose {{ state.chooseSpells.choose }} of your available Spells!
+            </h3>
+            <div class="row justify-content-around">
+              <SpellList v-for="(s, index) in state.chooseSpells.from" :key="index" :spell-prop="s" :select-prop="true" />
+            </div>
+          </div>
+
+          <!-- SECTION The available Ability Modifier options -->
           <div v-else-if="state.chooseScores && state.mods > state.modChoice">
             <h3 class="font-sm">
               Now assign your {{ state.mods }} Ability Modifiers!
             </h3>
 
-            <!-- SECTION The available Ability Modifier options -->
             <div class="row justify-content-around">
               <AbilityMod v-for="m in state.chooseScores" :key="m" :mod-prop="m" />
             </div>
           </div>
 
           <!-- SECTION The Ability Score Roll Function -->
-          <div v-else-if="state.score < 6">
+          <div v-else>
             <Score />
-          </div>
-
-          <!-- SECTION Save your Character once all other criteria have been met -->
-          <div class="col-12 text-center" v-else>
-            <i class="fas fa-dice-d20 text-success fa-7x text-shadow mt-3 mb-4" @click="saveCharacter"></i>
-            <h3 class="font-sm">
-              Congratulations!<br>Click the dice above to save your Character!
-            </h3>
           </div>
         </div>
       </div>
@@ -84,9 +100,9 @@
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="font-lg">
-            <u>Character Profile</u><br>
-            <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
+            <u>Character Profile</u>
           </h2>
+          <i class="fas fa-dice-d20 fa-spin text-warning font-xxl mt-3"></i>
         </div>
         <div class="shadow rounded bg-light text-left m-4 p-md-4 p-3" v-else>
           <h2 class="font-lg">
@@ -121,15 +137,15 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { resultsService } from '../services/ResultsService'
 import { charactersService } from '../services/CharactersService'
-import Notification from '../utils/Notification'
 
 export default {
   name: 'Results',
   setup() {
     const state = reactive({
       loading: true,
+      built: computed(() => AppState.built),
+      confirm: computed(() => AppState.confirm),
       character: computed(() => AppState.character),
-      activeCharacter: computed(() => AppState.activeCharacter),
       job: computed(() => AppState.job),
       skills: computed(() => AppState.count.skills),
       chooseSkills: computed(() => AppState.skills),
@@ -142,6 +158,10 @@ export default {
       chooseAbilities: computed(() => AppState.chooseAbilities),
       chooseLanguages: computed(() => AppState.languages),
       languages: computed(() => AppState.count.languages),
+      chooseCantrips: computed(() => AppState.cantrips),
+      cantrips: computed(() => AppState.count.cantrips),
+      chooseSpells: computed(() => AppState.spells),
+      spells: computed(() => AppState.count.spells),
 
       // NOTE determines the Progress Bar Color depending on Selected Role / Style
       colors: {
@@ -155,26 +175,21 @@ export default {
       }
     })
     onMounted(async() => {
-      if (AppState.built === 'true') {
+      await resultsService.getSpells()
+      await resultsService.getSkills()
+
+      if (state.built) {
         charactersService.createCharacter()
       } else {
         resultsService.loadBuild()
       }
       AppState.activeCharacter = AppState.character
       // NOTE This timeout ensures consistent loading time across all pages
-      setTimeout(function() { state.loading = false }, 1000)
+      setTimeout(function() { state.loading = false }, 1500)
     })
     return {
       state,
-      user: computed(() => AppState.user),
-      async saveCharacter() {
-        try {
-          await Notification.multiModal()
-          await charactersService.saveCharacter()
-        } catch (error) {
-          Notification.toast('Error' + error, 'error')
-        }
-      }
+      user: computed(() => AppState.user)
     }
   }
 }

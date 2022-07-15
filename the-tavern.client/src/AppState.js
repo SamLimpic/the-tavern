@@ -5,7 +5,6 @@ export const AppState = reactive({
   user: {},
   account: {},
   activeQuestion: {},
-  attributes: {},
   job: {},
   race: {},
   background: {},
@@ -19,15 +18,17 @@ export const AppState = reactive({
   chooseAbilities: [],
   chooseScores: [],
 
-  // SECTION Base Variable,s
-  showActive: false,
+  // SECTION Base Variables
+  built: false,
   showStats: false,
   show: 'start',
-  activeScore: 0,
-  activeNum: 0,
+  save: true,
+  confirm: false,
+  role: null,
+  style: null,
 
   // SECTION Dictionaries
-  activeScores: {
+  activeRolls: {
     0: 0,
     1: 0,
     2: 0,
@@ -35,36 +36,17 @@ export const AppState = reactive({
     4: 0,
     5: 0
   },
-  characterScores: {
-    strength: {
-      title: 'Strength',
-      value: 0,
-      mod: 0
+  attributes: {
+    role: {
+      tank: 0.05,
+      damage: 0.05,
+      support: 0.05,
+      utility: 0.05
     },
-    dexterity: {
-      title: 'Dexterity',
-      value: 0,
-      mod: 0
-    },
-    constitution: {
-      title: 'Constitution',
-      value: 0,
-      mod: 0
-    },
-    intelligence: {
-      title: 'Intelligence',
-      value: 0,
-      mod: 0
-    },
-    wisdom: {
-      title: 'Wisdom',
-      value: 0,
-      mod: 0
-    },
-    charisma: {
-      title: 'Charisma',
-      value: 0,
-      mod: 0
+    style: {
+      weapons: 0.05,
+      spells: 0.05,
+      balance: 0.05
     }
   },
   scores: {
@@ -107,6 +89,14 @@ export const AppState = reactive({
     choose: 0,
     from: []
   },
+  spells: {
+    choose: 0,
+    from: []
+  },
+  cantrips: {
+    choose: 0,
+    from: []
+  },
   questions: {
     role: [],
     style: [],
@@ -117,6 +107,8 @@ export const AppState = reactive({
     style: 0,
     question: 0,
     languages: 0,
+    spells: 0,
+    cantrips: 0,
     skills: 0,
     equipment: 0,
     mods: 0,

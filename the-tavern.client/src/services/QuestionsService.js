@@ -10,7 +10,7 @@ class QuestionsService {
     AppState.questions.style = res.data.filter(q => q.type === 'Style')
     AppState.questions.trade = res.data.filter(q => q.type === 'Race' || q.type === 'Background')
 
-    AppState.activeQuestion = AppState.questions.role[0]
+    AppState.activeQuestion = AppState.questions.role.find(q => q.number === 0)
   }
 
   // ANCHOR Interprets Questionnaire results and updates potential outcomes
@@ -35,20 +35,20 @@ class QuestionsService {
       this.tieBreaker(type, AppState.tieBreakers)
     } else if (AppState.activeQuestion.number === questions[t].length - 1) {
       if (type === 'Role') {
-        AppState.activeQuestion = questions.style[0]
+        AppState.activeQuestion = questions.style.find(q => q.number === 0)
         AppState.count.question = 5
         AppState.role = AppState.character[t]
       } else {
         // SECTION Pulls Character Class from database once Role & Style are established
-        await resultsService.getJob()
-        AppState.activeQuestion = questions.trade[0]
+        await resultsService.buildJob()
+        AppState.activeQuestion = questions.trade.find(q => q.number === 0)
         AppState.count.question = 8
         AppState.style = AppState.character[t]
       }
       AppState.tieBreakers = []
     } else {
       AppState.count.question++
-      AppState.activeQuestion = questions[t][AppState.activeQuestion.number + 1]
+      AppState.activeQuestion = questions[t].find(q => q.number === AppState.activeQuestion.number + 1)
     }
   }
 
@@ -67,11 +67,11 @@ class QuestionsService {
     }
     if (AppState.activeQuestion.number === questions.trade.length - 1) {
       // SECTION Completes the Build process and reroutes to the Results page
-      AppState.built = 'true'
+      AppState.built = true
       router.push('Results')
     } else {
       AppState.count.question++
-      AppState.activeQuestion = questions.trade[AppState.activeQuestion.number + 1]
+      AppState.activeQuestion = questions.trade.find(q => q.number === AppState.activeQuestion.number + 1)
     }
   }
 
@@ -92,10 +92,10 @@ class QuestionsService {
       // SECTION Pushes a potential Tiebreaker selection if its count hits 2
       AppState.tieBreakers.push(string)
     }
-    if (Math.floor(attribute) === 3 || AppState.activeQuestion === questions[questions.length - 2]) {
+    if (Math.floor(attribute) === 3 || AppState.activeQuestion === questions.find(q => q.number === questions.length - 2)) {
       // SECTION Sets the Active Role / Style if its count hits 3
       AppState.count.question++
-      AppState.activeQuestion = questions[questions.length - 1]
+      AppState.activeQuestion = questions.find(q => q.number === questions.length - 1)
     }
   }
 
@@ -104,7 +104,7 @@ class QuestionsService {
     const t = type.toLowerCase()
     const questions = AppState.questions[t]
     AppState.count.question++
-    AppState.activeQuestion = questions[questions.length - 1]
+    AppState.activeQuestion = questions.find(q => q.number === questions.length - 1)
     // SECTION Displays only the required Tiebreaker attirbutes to be tested
     AppState.activeQuestion.answers = AppState.activeQuestion.answers.filter(a => a.value === arr[0] || a.value === arr[1])
     AppState.tieBreakers = []
@@ -122,6 +122,14 @@ class QuestionsService {
       from: []
     }
     AppState.languages = {
+      choose: 0,
+      from: []
+    }
+    AppState.spells = {
+      choose: 0,
+      from: []
+    }
+    AppState.cantrips = {
       choose: 0,
       from: []
     }
@@ -148,47 +156,17 @@ class QuestionsService {
       mods: 0,
       modChoice: 0,
       abilities: 0,
-      score: 0
+      score: 0,
+      spells: 0,
+      cantrips: 0
     }
-    AppState.activeScores = {
+    AppState.activeRolls = {
       0: 0,
       1: 0,
       2: 0,
       3: 0,
       4: 0,
       5: 0
-    }
-    AppState.characterScores = {
-      strength: {
-        title: 'Strength',
-        value: 0,
-        mod: 0
-      },
-      dexterity: {
-        title: 'Dexterity',
-        value: 0,
-        mod: 0
-      },
-      constitution: {
-        title: 'Constitution',
-        value: 0,
-        mod: 0
-      },
-      intelligence: {
-        title: 'Intelligence',
-        value: 0,
-        mod: 0
-      },
-      wisdom: {
-        title: 'Wisdom',
-        value: 0,
-        mod: 0
-      },
-      charisma: {
-        title: 'Charisma',
-        value: 0,
-        mod: 0
-      }
     }
     AppState.scores = {
       strength: {
@@ -222,11 +200,9 @@ class QuestionsService {
         mod: 0
       }
     }
-    AppState.built = 'false'
+    AppState.built = false
     AppState.role = null
     AppState.style = null
-    AppState.activeScore = 0
-    AppState.activeNum = 0
     AppState.tieBreakers = []
     AppState.abilityScore = []
     AppState.chooseAbilities = []

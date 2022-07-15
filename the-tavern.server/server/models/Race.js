@@ -38,6 +38,11 @@ const Race = new Schema(
       value: { type: Number },
       choose: { type: Number },
       from: { type: Array }
+    },
+    spells: {
+      type: Array,
+      choose: { type: Number },
+      from: { type: Array }
     }
   },
   { timestamps: true, toJSON: { virtuals: true } }

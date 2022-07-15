@@ -9,6 +9,7 @@
         <p class="font-md mx-1 my-2">
           Here are some helpful Links to provide more information.
         </p>
+        <span class="text-warning text-shadow text-center font-xxl"><i class="fab fa-d-and-d"></i></span>
         <ul class="font-sm text-left mx-2 mb-2">
           <li>
             <i class="text-secondary resources" onclick="window.open('https://www.dndbeyond.com/essentials')">Welcome to D&D</i>
@@ -42,66 +43,5 @@ export default {
 </script>
 
 <style scoped>
-/* SECTION Establishes Media Queries for responsive font sizing */
-
-@media (min-width: 0) {
-  .font-sm {
-    font-size: 1.25rem;
-  }
-  .font-md {
-    font-size: 1.5rem;
-  }
-  .font-lg {
-    font-size: 1.75rem;
-  }
-}
-
-@media (min-width: 576px) {
-  .font-sm {
-    font-size: 1.5rem;
-  }
-  .font-md {
-    font-size: 1.75rem;
-  }
-  .font-lg {
-    font-size: 2.25rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .font-sm {
-    font-size: 1.5rem;
-  }
-  .font-md {
-    font-size: 1.75rem;
-  }
-  .font-lg {
-    font-size: 2rem;
-  }
-}
-
-@media (min-width: 992px) {
-  .font-sm {
-    font-size: 1.5rem;
-  }
-  .font-md {
-    font-size: 1.75em;
-  }
-  .font-lg {
-    font-size: 2.25rem;
-  }
-}
-
-@media (min-width: 1200px) {
-  .font-sm {
-    font-size: 1.75rem;
-  }
-  .font-md {
-    font-size: 2rem;
-  }
-  .font-lg {
-    font-size: 2.5rem;
-  }
-}
 
 </style>

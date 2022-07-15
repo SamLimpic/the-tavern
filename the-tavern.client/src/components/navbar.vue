@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-light">
-        <h1 class="font-lg my-1 p-0">
+        <h1 class="font-lg text-shadow my-1 p-0">
           <span><i class="fas fa-dice-d20 text-warning mr-2"></i></span> The Tavern
         </h1>
       </div>
@@ -20,7 +20,7 @@
       <span class="navbar-toggler-icon" />
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav font-md mr-auto">
+      <ul class="navbar-nav font-md text-shadow mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
             Home
