@@ -14,7 +14,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-4 bg-primary shadow h-100 p-md-4">
+      <div class="col-lg-4 bg-secondary shadow h-100 p-md-4">
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
           <h2 class="font-lg m-0 p-0">

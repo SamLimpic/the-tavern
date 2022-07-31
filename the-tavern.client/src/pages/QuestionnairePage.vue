@@ -16,7 +16,7 @@
           </div>
         </div>
       </div>
-      <div class="col-4 d-lg-block d-none bg-primary h-100 p-md-4">
+      <div class="col-4 d-lg-block d-none bg-secondary h-100 p-md-4">
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
           <h2 class="font-lg">
             <u>Progress</u>

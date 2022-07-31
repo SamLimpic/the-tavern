@@ -1,7 +1,7 @@
 <template>
   <!-- ANCHOR Displays specific Equipment options to be selected -->
   <div class="col-sm-6 col-10 my-2">
-    <button type="button" class="btn btn-lg btn-light w-100" @click="addEquipment(equipmentProp)">
+    <button type="button" class="btn btn-lg btn-primary w-100" @click="addEquipment(equipmentProp)">
       <h4 class="font-sm mb-2" v-if="equipmentProp.weapon && equipmentProp.weapon.length > 1">
         <u class="font-md">Weapon</u> <br>  {{ equipmentProp.weapon[0] }} x {{ equipmentProp.weapon.length }}
       </h4>

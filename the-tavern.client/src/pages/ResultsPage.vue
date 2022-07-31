@@ -96,7 +96,7 @@
       </div>
 
       <!-- SECTION Character Profile Sidebar based on Results -->
-      <div class="col-4 d-lg-block d-none bg-primary h-100 p-md-4">
+      <div class="col-4 d-lg-block d-none bg-secondary h-100 p-md-4">
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="font-lg">

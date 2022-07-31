@@ -36,7 +36,7 @@
         <AboutResources />
       </div>
 
-      <div class="col-4 d-lg-block d-none bg-primary p-md-4">
+      <div class="col-4 d-lg-block d-none bg-secondary p-md-4">
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
           <h2 class="font-sm mb-3">
             These tips might be of use to you!

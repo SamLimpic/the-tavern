@@ -1,7 +1,7 @@
 <template>
   <!-- ANCHOR Displays available Equipment Choices to be selected -->
-  <div class="bg-dark shadow rounded mt-4 py-1" v-if="state.equipment === indexProp">
-    <h3 class="text-center text-light font-md pt-3">
+  <div class="mt-4 py-1" v-if="state.equipment === indexProp">
+    <h3 class="text-center font-md pt-3">
       <u> Choose 1</u>
     </h3>
     <div class="row justify-content-around m-2">
