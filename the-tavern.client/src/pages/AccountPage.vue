@@ -10,6 +10,9 @@
             <h1 class="font-xl">
               <u>Select a Character for more details</u>
             </h1>
+            <h2>
+              <i>You have {{ state.characters.length }} characters to choose from!</i>
+            </h2>
             <i class="fas fa-dice-d20 fa-spin text-warning my-3 font-xxl"></i>
           </div>
         </div>

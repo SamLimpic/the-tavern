@@ -2,7 +2,7 @@
   <!-- ANCHOR The main Questionnaire page, loads Question and Answer components. -->
   <div class="questionnaire container-fluid">
     <div class="row justify-content-center h-100">
-      <div class="col-lg-8 col-12 p-md-4">
+      <div class="col-lg-8 col-12 p-md-4 p-2">
         <div class="shadow rounded row justify-content-center bg-light text-center m-4 p-md-4 p-3">
           <!-- SECTION Loads the Active Question and Answers -->
           <div v-if="state.activeQuestion && !state.loading">
@@ -22,7 +22,7 @@
             <u>Progress</u>
           </h2>
           <!-- SECTION General Progress Bar for Questionnaire -->
-          <div class="progress mb-4" style="height: 2rem">
+          <div class="progress mb-4">
             <div class="progress-bar bg-primary"
                  role="progressbar"
                  :style="`width: ${(state.count.question * 10)}%`"
@@ -37,7 +37,7 @@
             <h3 class="text-left font-md">
               {{ state.role }}
             </h3>
-            <div class="progress mb-4" style="height: 2rem">
+            <div class="progress mb-4">
               <div :class="'progress-bar ' + state.colors[state.role.toLowerCase()]"
                    role="progressbar"
                    :style="`width: ${state.attributes.role[state.role.toLowerCase()] * 33}%`"
@@ -53,7 +53,7 @@
             <h3 class="text-left font-md">
               {{ state.style }}
             </h3>
-            <div id="questions results" class="progress mb-4" style="height: 2rem">
+            <div class="progress mb-4">
               <div :class="'progress-bar ' + state.colors[state.style.toLowerCase()]"
                    role="progressbar"
                    :style="`width: ${state.attributes.style[state.style.toLowerCase()] * 33}%`"
@@ -125,5 +125,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
+.progress {
+ border: 3px solid var(--dark);
+ height: 2.5rem;
+}
 </style>

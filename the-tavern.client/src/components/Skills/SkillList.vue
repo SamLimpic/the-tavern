@@ -3,8 +3,8 @@
   <div class="col-lg-4 col-md-3 col-sm-4 col-10 text-center my-2 ">
     <button :id="skillProp.name"
             type="button"
-            class="btn btn-lg w-100"
-            :class="!selectProp ? 'btn-secondary' : skillProp.pro.includes(state.character.job) ? 'btn-success' : skillProp.con.includes(state.character.job) ? 'btn-danger' : 'btn-dark'"
+            class="btn btn-lg btn-primary text-shadow w-100"
+            :class="!selectProp ? 'bg-primary' : skillProp.pro.includes(state.character.job) ? 'bg-success' : skillProp.con.includes(state.character.job) ? 'bg-danger' : 'bg-secondary'"
             :disabled="state.disabled"
             @click="selectProp ? addSkill(skillProp) : expand(skillProp)"
     >

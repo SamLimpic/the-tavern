@@ -3,7 +3,7 @@
   <div class="results container-fluid">
     <div class="row justify-content-center h-100">
       <!-- SECTION Cascading Character Attribute selection options -->
-      <div class="col-lg-8 col-12 p-md-4">
+      <div class="col-lg-8 col-12 p-md-4 p-2">
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3" v-if="state.loading">
           <h2 class="font-xl">
@@ -22,7 +22,7 @@
               Choose {{ state.chooseSkills.choose }} of your available Skills!
             </h3>
             <h2 class="font-xs">
-              <b class="text-success"> GREEN </b> skills are encouraged for your character build, while <b class="text-danger"> RED </b> skills are discouraged.
+              <b class="text-success"> GREEN </b> skills are encouraged for your build, while <b class="text-danger"> RED </b> skills are discouraged.
             </h2>
             <div class="row justify-content-center">
               <SkillList v-for="(s, index) in state.chooseSkills.from" :key="index" :skill-prop="s" :select-prop="true" />
@@ -42,7 +42,7 @@
           <!-- SECTION The available Equipment options -->
           <div v-else-if="state.equipment < state.job.equipment[0].choices.length">
             <h3 class="font-sm">
-              Choose from these sets of available Equipment!
+              Choose 1 from each of these sets of available Equipment!
             </h3>
             <EquipmentChoice v-for="(c, key) in state.job.equipment[0].choices" :key="key" :choice-prop="c" :index-prop="key" />
           </div>
@@ -80,9 +80,11 @@
           <!-- SECTION The available Ability Modifier options -->
           <div v-else-if="state.chooseScores && state.mods > state.modChoice">
             <h3 class="font-sm">
-              Now assign your {{ state.mods }} Ability Modifiers!
+              Now select {{ state.mods }} Abilities to improve!
             </h3>
-
+            <h2 class="font-xs">
+              <b class="text-success"> GREEN </b> abilities are encouraged for your build, while <b class="text-danger"> RED </b> abilities are discouraged.
+            </h2>
             <div class="row justify-content-around">
               <AbilityMod v-for="m in state.chooseScores" :key="m" :mod-prop="m" />
             </div>

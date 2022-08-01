@@ -3,7 +3,7 @@
   <h3 class="mb-0 text-left">
     {{ attributeProp[0].toUpperCase() + attributeProp.slice(1) }}
   </h3>
-  <div class="progress mb-3" style="height: 1.5rem">
+  <div class="progress mb-3">
     <div :class="'progress-bar ' + state.colors[attributeProp]"
          role="progressbar"
          :style="`width: ${state.role * 33}%`"
@@ -65,5 +65,8 @@ export default {
 </script>
 
 <style>
-
+.progress {
+ border: 3px solid var(--dark);
+ height: 2rem;
+}
 </style>

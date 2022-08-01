@@ -1,6 +1,8 @@
 import Swal from 'sweetalert2'
 import { AppState } from '../AppState'
 
+const confirm = '#2A783B'
+const cancel = '#BD3428'
 export default class Notification {
   /**
  *
@@ -20,8 +22,8 @@ export default class Notification {
         text: text,
         icon: icon,
         showCancelButton: true,
-        confirmButtonColor: '#587439',
-        cancelButtonColor: '#ae2d26',
+        confirmButtonColor: confirm,
+        cancelButtonColor: cancel,
         confirmButtonText: confirmButtonText
       })
       if (res.isConfirmed) {
@@ -54,7 +56,8 @@ export default class Notification {
       timerProgressBar: progressBar,
       toast: true,
       showConfirmButton: false,
-      confirmButtonColor: '#587439'
+      confirmButtonColor: confirm,
+      cancelButtonColor: cancel
     })
   }
 
@@ -92,8 +95,8 @@ export default class Notification {
         },
         inputPlaceholder: 'Select a weapon',
         showCancelButton: true,
-        confirmButtonColor: '#587439',
-        cancelButtonColor: '#ae2d26'
+        confirmButtonColor: confirm,
+        cancelButtonColor: cancel
       })
 
       if (weapon) {
@@ -134,8 +137,8 @@ export default class Notification {
         },
         inputPlaceholder: 'Select a weapon',
         showCancelButton: true,
-        confirmButtonColor: '#587439',
-        cancelButtonColor: '#ae2d26'
+        confirmButtonColor: confirm,
+        cancelButtonColor: cancel
       })
 
       if (weapon) {
@@ -151,7 +154,8 @@ export default class Notification {
     await Swal.mixin({
       input: 'text',
       confirmButtonText: 'Next &rarr;',
-      confirmButtonColor: '#587439',
+      confirmButtonColor: confirm,
+      cancelButtonColor: cancel,
       progressSteps: [1, 2, 3, 4, 5]
     }).queue([
       {
@@ -253,7 +257,8 @@ export default class Notification {
       icon: icon,
       title: title,
       text: text,
-      confirmButtonColor: '#247c78'
+      confirmButtonColor: confirm,
+      cancelButtonColor: cancel
     })
   }
 
@@ -262,7 +267,8 @@ export default class Notification {
     Swal.fire({
       title: title,
       icon: 'question',
-      text: body
+      text: body,
+      confirmButtonColor: confirm
     })
   }
 }

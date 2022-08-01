@@ -1,12 +1,9 @@
 <template>
   <!-- ANCHOR Displays available Equipment Choices to be selected -->
-  <div class="mt-4 py-1" v-if="state.equipment === indexProp">
-    <h3 class="text-center font-md pt-3">
-      <u> Choose 1</u>
-    </h3>
+  <div v-if="state.equipment === indexProp">
     <div class="row justify-content-around m-2">
       <!-- SECTION Displays specific Equipment options to be selected -->
-      <Equipment v-for="(e, index, key) in choiceProp" :key="key" :equipment-prop="e" />
+      <Equipment v-for="(e, index, key) in choiceProp" :key="key" :equipment-prop="e" :select-prop="true" />
     </div>
   </div>
 </template>

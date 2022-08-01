@@ -63,7 +63,8 @@ const Job = new Schema(
       armor: { type: Array },
       weapons: { type: Array },
       tools: { type: Array },
-      saves: { type: Array }
+      saves: { type: Array },
+      fails: { type: Array }
     },
     languages: { type: Array },
     abilities: {

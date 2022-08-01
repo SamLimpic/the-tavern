@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
       <div class="d-flex flex-column text-light">
-        <h1 class="font-lg text-shadow my-1 p-0">
+        <h1 class="font-lg text-shadow m-1 p-0">
           <span><i class="fas fa-dice-d20 text-warning mr-2"></i></span> The Tavern
         </h1>
       </div>
@@ -20,7 +20,7 @@
       <span class="navbar-toggler-icon" />
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav font-md text-shadow mr-auto">
+      <!-- <ul class="navbar-nav font-md text-shadow mr-auto">
         <li class="nav-item">
           <router-link :to="{ name: 'Home' }" class="nav-link">
             Home
@@ -41,10 +41,10 @@
             Accessibility
           </router-link>
         </li>
-      </ul>
-      <span class="navbar-text">
+      </ul> -->
+      <span class="navbar-text ml-auto">
         <button
-          class="btn btn-outline-light text-right text-uppercase"
+          class="btn btn-outline-light text-uppercase font-md mr-2 px-3 py-1"
           @click="login"
           v-if="!user.isAuthenticated"
         >
@@ -62,7 +62,7 @@
               height="40"
               class="rounded"
             />
-            <span class="mx-3 text-light text-shadow font-sm">{{ user.name }}</span>
+            <span class="mx-3 text-light text-shadow font-md">{{ user.name }}</span>
           </div>
           <div
             class="dropdown-menu p-0 list-group w-100"
@@ -70,12 +70,12 @@
             @click="state.dropOpen = false"
           >
             <router-link :to="{ name: 'Account' }">
-              <div class="list-group-item list-group-item-action hoverable">
+              <div class="list-group-item list-group-item-action font-md hoverable">
                 Account
               </div>
             </router-link>
             <div
-              class="list-group-item list-group-item-action hoverable"
+              class="list-group-item list-group-item-action font-md hoverable"
               @click="logout"
             >
               Logout

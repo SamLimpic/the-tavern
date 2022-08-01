@@ -1,6 +1,6 @@
 <template>
   <!-- ANCHOR Mobile Dropdown Menu in place of the Desktop Drag and Drop -->
-  <a class="dropdown-item font-sm" @click="addStat(dropProp, diceProp, indexProp)">{{ dropProp }}</a>
+  <a class="dropdown-item font-sm" :class="state.job.proficiencies.saves.includes(dropProp) ? 'text-success' : state.job.proficiencies.fails.includes(dropProp) ? 'text-danger' : ''" @click="addStat(dropProp, diceProp, indexProp)">{{ dropProp }}</a>
 </template>
 
 <script>
@@ -27,6 +27,7 @@ export default {
   setup() {
     const state = reactive({
       stats: computed(() => AppState.stats),
+      job: computed(() => AppState.job),
       character: computed(() => AppState.character)
     })
     return {

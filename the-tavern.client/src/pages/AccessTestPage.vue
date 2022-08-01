@@ -3,18 +3,26 @@
   Disabled buttons do not pass Accessibility and are not to be used. -->
   <div class="access-test container">
     <div class="row justify-content-center">
-      <div class="col-md-12 col-8 text-center">
-        <h2 class="my-3">
-          <u> Accessibility Test Page </u>
-        </h2>
+      <div class="col-12 text-center">
+        <div class="row justify-content-around m-4 p-md-4 p-3">
+          <div class="col-10 shadow rounded bg-light p-3">
+            <h2 class="font-xl mb-3">
+              Accessibility Test Page
+            </h2>
+            <h3><u>Header On Light Background</u></h3>
+            <h4><b>Approriate Header Hierarchy</b></h4>
+            <h5><i>And Various Font Formats</i></h5>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor nihil veritatis tenetur deleniti temporibus! Illo perferendis nobis enim aperiam eum in harum, at vel. Molestias provident molestiae fugiat quaerat ut!</p>
+          </div>
+        </div>
         <div class="row justify-content-around p-3 my-3 shadow rounded bg-light">
-          <div class="col-md-2 col-12 my-2">
+          <div class="col-md-2 col-sm-6 col-12 my-2">
             <button type="button" class="btn btn-lg btn-primary">
               Primary
             </button>
           </div>
           <div class="col-md-2 col-12 my-2">
-            <button type="button" class="btn btn-lg btn-secondary">
+            <button type="button" class="btn btn-lg btn-secondary" disabled>
               Secondary
             </button>
           </div>
@@ -46,12 +54,12 @@
             </button>
           </div>
           <div class="col-md-2 col-12 my-2">
-            <button type="button" class="btn btn-lg btn-outline-secondary">
+            <button type="button" class="btn btn-lg btn-outline-secondary" disabled>
               Secondary
             </button>
           </div>
           <div class="col-md-2 col-12 my-2">
-            <button type="button" class="btn btn-lg btn-outline-success">
+            <button type="button" class="btn btn-lg btn-outline-success" disabled>
               Success
             </button>
           </div>
@@ -66,17 +74,9 @@
             </button>
           </div>
           <div class="col-md-2 col-12 my-2">
-            <button type="button" class="btn btn-lg btn-outline-info">
+            <button type="button" class="btn btn-lg btn-outline-info" disabled>
               Info
             </button>
-          </div>
-        </div>
-        <div class="row justify-content-around">
-          <div class="col-10 shadow rounded bg-light p-3 my-3">
-            <h3><u>Header On Light Background</u></h3>
-            <h4><b>Approriate Header Hierarchy</b></h4>
-            <h5><i>And Various Font Formats</i></h5>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolor nihil veritatis tenetur deleniti temporibus! Illo perferendis nobis enim aperiam eum in harum, at vel. Molestias provident molestiae fugiat quaerat ut!</p>
           </div>
         </div>
       </div>

@@ -1,30 +1,37 @@
 <template>
   <!-- ANCHOR Displays Ability Scores & Stat Modifiers -->
   <div class="col-md-2 col-4 px-xl-2 px-lg-1 px-md-2 mt-3">
-    <div class="stat-box text-center rounded bg-white">
+    <div class="stat-box text-center rounded bg-white" :class="state.job.proficiencies.saves.includes(statProp.title) ? 'text-success border-success' : state.job.proficiencies.fails.includes(statProp.title) ? 'text-danger border-danger' : ''">
       <h3 class="font-md m-0">
         <u>{{ statProp.title.substring(0,3).toUpperCase() }}</u>
       </h3>
-      <h4 class="font-xl" :class="statProp.value > 11 ? 'text-success' : statProp.value < 10 ? 'text-danger' : 'text-muted'">
-        <span class="text-success" v-if="statProp.mod > 0 && statProp.value < 1">+{{ statProp.mod }}</span>
+      <h4 class="font-xl" :class="selectProp ? '' : statProp.value > 11 ? 'text-success' : statProp.value < 10 ? 'text-danger' : 'text-muted'">
+        <span class="text-muted" v-if="statProp.mod > 0 && statProp.value < 1">+{{ statProp.mod }}</span>
         <span v-if="statProp.value > 0">{{ statProp.value }}</span>
       </h4>
     </div>
   </div>
 </template>
+
 <script>
-import { reactive } from 'vue'
+import { AppState } from '../../AppState'
+import { computed, reactive } from 'vue'
+
 export default {
   name: 'Stat',
   props: {
     statProp: {
       type: Object,
       required: true
+    },
+    selectProp: {
+      type: Boolean,
+      default: false
     }
   },
   setup() {
     const state = reactive({
-
+      job: computed(() => AppState.job)
     })
     return {
       state

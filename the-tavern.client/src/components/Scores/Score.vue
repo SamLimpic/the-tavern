@@ -3,14 +3,14 @@
   <div class="row">
     <div class="col-12 text-center">
       <h3 class="font-sm">
-        <span v-if="!state.roll">Now you just need to roll your Ability Scores!</span>
-        <span v-else-if="state.score < 6">Now assign them accordingly!</span>
+        <span v-if="!state.roll">Now you need to roll your Ability Scores!</span>
+        <span v-else-if="state.score < 6">Just select your Scores and assign them to your Abilities below</span>
         <span v-else>Congratulations!</span>
       </h3>
-      <i class="fas fa-dice-d20 fa-7x text-shadow mt-2 mb-4" :class="!state.roll ? 'text-warning hoverable' : state.score < 6 ? 'text-danger' : 'text-success hoverable'" @click="diceHandler()"></i>
+      <i class="fas fa-dice-d20 fa-7x text-shadow mt-2 mb-4" :class="!state.roll ? 'text-warning fa-spin hoverable' : state.score < 6 ? 'text-danger' : 'text-success hoverable'" @click="diceHandler()"></i>
       <h3 class="font-sm">
-        <span v-if="!state.roll">Click the dice to generate your Scores below:</span>
-        <span v-else-if="state.score < 6">Select your Scores and assign them to your ideal Abilities!</span>
+        <span v-if="!state.roll">Click the spinning dice to generate your Scores below:</span>
+        <span v-else-if="state.score < 6">Your highest scores should be assigned to <span class="text-success">GREEN</span> abilities, while your lowest scores should be assigned to <span class="text-danger">RED</span> abilities</span>
         <span v-else>Click the dice again to save your Character!</span>
       </h3>
     </div>
@@ -21,7 +21,7 @@
   </div>
   <div class="row mt-2 text-center mx-xl-1 mx-lg-0 mx-md-1 mx-sm-3 mx-1 mb-1">
     <!-- SECTION Displays Ability Scores & Stat Modifiers -->
-    <Stat v-for="(s, key) in state.character.scores" :key="key" :stat-prop="s" />
+    <Stat v-for="(s, key) in state.character.scores" :key="key" :stat-prop="s" :select-prop="true" />
   </div>
 </template>
 
@@ -52,7 +52,7 @@ export default {
         }
       },
       diceRoll() {
-        const finalRolls = []
+        let finalRolls = []
         for (let i = 0; i < 6; i++) {
           const subRolls = []
           for (let j = 0; j < 4; j++) {
@@ -66,6 +66,7 @@ export default {
           subRolls.pop()
           finalRolls.push(subRolls.reduce((a, v) => { return a + v }, 0))
         }
+        finalRolls = finalRolls.sort((a, b) => (b - a))
         AppState.abilityScore.push(...finalRolls)
         for (let i = 0; i < AppState.abilityScore.length; i++) {
           AppState.activeRolls[i] = AppState.abilityScore[i]

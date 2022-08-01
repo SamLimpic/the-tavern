@@ -22,7 +22,7 @@
             <div class="col-md-3 col-5 order-md-1 order-2 mt-md-0 mt-3 text-right">
               <router-link :to="{name: 'About'}">
                 <!-- NOTE Redirects to About Page -->
-                <button type="button" class="btn btn-primary text-shadow w-100 font-xs">
+                <button type="button" class="btn btn-primary bg-secondary text-shadow w-100 font-xs">
                   About
                 </button>
               </router-link>
@@ -36,15 +36,17 @@
               </router-link>
             </div>
             <div class="col-md-3 col-5 order-md-3 order-3 mt-md-0 mt-3 text-left">
-              <!-- NOTE Creates a randomized character, sets that character as Active, and redirects to the Account Page. -->
-              <button type="button" class="btn btn-primary text-shadow w-100 font-xs" @click="random">
-                Random
-              </button>
+              <router-link :to="{name: 'Account'}">
+                <!-- NOTE Creates a randomized character, sets that character as Active, and redirects to the Account Page. -->
+                <button type="button" class="btn btn-primary bg-secondary text-shadow w-100 font-xs">
+                  Account
+                </button>
+              </router-link>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-4 d-lg-block d-none bg-secondary shadow h-100 p-md-4">
+      <div class="col-4 d-lg-block d-none bg-secondary shadow p-md-4">
         <!-- STUB Loading Icon is visible while data is pulled from Server-->
         <div class="shadow rounded bg-light text-center m-4 p-md-4 p-3">
           <h2 class="font-lg m-0 p-0">
@@ -93,6 +95,14 @@ export default {
       characters: computed(() => AppState.characters)
     })
     onMounted(async() => {
+      const reload = sessionStorage.getItem('reload')
+      if (reload) {
+        sessionStorage.removeItem('reload')
+      } else {
+        sessionStorage.setItem('reload', 'true')
+        location.reload()
+      }
+
       localStorage.clear()
       await charactersService.getCharacters(state.account.id)
       // await dndService.buildSkills()

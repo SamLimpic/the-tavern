@@ -2,8 +2,8 @@
   <!-- ANCHOR Displays the randomly-generated Ability Score rolls -->
   <div class="col-md-2 col-4 text-center mt-3 px-xl-2 px-lg-1 px-md-2 px-sm-4">
     <div class="btn-group dropup w-100">
-      <button :id="indexProp" type="button" class="btn bg-white dice-roll btn-outline-dark rounded p-0" data-toggle="dropdown">
-        <h3 class="font-xxl" :class="diceProp > 11 ? 'text-success' : diceProp < 9 ? 'text-danger' : 'text-muted'">
+      <button :id="indexProp" type="button" class="btn bg-white dice-roll rounded p-0" data-toggle="dropdown">
+        <h3 class="font-xxl">
           {{ diceProp === 0 ? null : diceProp }}
         </h3>
       </button>
