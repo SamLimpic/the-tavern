@@ -14,7 +14,8 @@ const routes = [
   {
     path: '/questions',
     name: 'Questionnaire',
-    component: loadPage('QuestionnairePage')
+    component: loadPage('QuestionnairePage'),
+    beforeEnter: authGuard
   },
   {
     path: '/results',

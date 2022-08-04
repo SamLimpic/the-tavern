@@ -15,11 +15,11 @@
       </h3>
     </div>
   </div>
-  <div class="row align-items-center mx-xl-1 mx-lg-0 mx-md-1 mx-sm-3 mx-1" v-if="state.roll && state.score < 6">
+  <div class="row align-items-center mx-xl-1 mx-lg-0 mx-md-1 mx-sm-3" v-if="state.roll && state.score < 6">
     <!-- SECTION Displays the randomly-generated Ability Score rolls -->
     <DiceRoll v-for="(d, key) in state.activeRolls" :key="key" :dice-prop="d" :index-prop="key" />
   </div>
-  <div class="row mt-2 text-center mx-xl-1 mx-lg-0 mx-md-1 mx-sm-3 mx-1 mb-1">
+  <div class="row mt-2 text-center mx-xl-1 mx-lg-0 mx-md-1 mx-sm-3 mb-1">
     <!-- SECTION Displays Ability Scores & Stat Modifiers -->
     <Stat v-for="(s, key) in state.character.scores" :key="key" :stat-prop="s" :select-prop="true" />
   </div>

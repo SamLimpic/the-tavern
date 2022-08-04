@@ -5,8 +5,35 @@
       <div class="col-lg-8 col-12 p-md-4 p-2">
         <div class="shadow rounded row justify-content-center bg-light text-center m-4 p-md-4 p-3">
           <!-- SECTION Loads the Active Question and Answers -->
-          <div v-if="state.activeQuestion && !state.loading">
+          <div v-if="state.activeQuestion && !state.loading && state.quiz">
             <Question />
+          </div>
+          <div v-else-if="!state.loading && !state.quiz">
+            <div class="col-12" v-if="state.count.select < 1">
+              <h2 class="font-md">
+                <u>First, choose your character's Class!</u><br>
+              </h2>
+              <div class="row justify-content-center">
+                <Selection v-for="(s, index) in state.jobs" :key="index" :selection-prop="s" type-prop="Job" />
+              </div>
+            </div>
+            <div class="col-12" v-else-if="state.count.select === 1 || state.count.select === 2">
+              <h2 class="font-md">
+                <u>Next, choose your character's Race!</u><br>
+                <span class="font-sm" v-if="state.count.select === 2">As well as your Sub-Race</span>
+              </h2>
+              <div class="row justify-content-center">
+                <Selection v-for="(s, index) in state.races" :key="index" :selection-prop="s" type-prop="Race" />
+              </div>
+            </div>
+            <div class="col-12" v-else-if="state.count.select > 2">
+              <h2 class="font-md">
+                <u>Last, choose your character's Background!</u><br>
+              </h2>
+              <div class="row justify-content-center">
+                <Selection v-for="(s, index) in state.backgrounds" :key="index" :selection-prop="s" type-prop="Background" />
+              </div>
+            </div>
           </div>
           <div class="col-12" v-else>
             <h2 class="font-md">
@@ -92,9 +119,13 @@ export default {
       loading: true,
       activeQuestion: computed(() => AppState.activeQuestion),
       attributes: computed(() => AppState.attributes),
+      jobs: computed(() => AppState.jobs),
+      races: computed(() => AppState.races),
+      backgrounds: computed(() => AppState.backgrounds),
       count: computed(() => AppState.count),
       role: computed(() => AppState.role),
       style: computed(() => AppState.style),
+      quiz: computed(() => AppState.quiz),
 
       // NOTE determines the Progress Bar Color depending on Selected Role / Style
       colors: {

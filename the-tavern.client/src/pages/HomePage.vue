@@ -29,11 +29,15 @@
             </div>
             <div class="col-md-5 col-sm-6 col-8 order-md-2 order-1 mt-md-0 mt-2 mx-md-0 mx-5">
               <!-- NOTE Starts a fresh Questionnaire -->
-              <router-link :to="{name: 'Questionnaire'}">
+              <button type="button" class="btn btn-primary text-shadow w-100 font-sm py-md-3" @click="start()">
+                Get Started!
+              </button>
+
+              <!-- <router-link :to="{name: 'Questionnaire'}">
                 <button type="button" class="btn btn-primary text-shadow w-100 font-sm py-md-3">
                   Get Started!
                 </button>
-              </router-link>
+              </router-link> -->
             </div>
             <div class="col-md-3 col-5 order-md-3 order-3 mt-md-0 mt-3 text-left">
               <router-link :to="{name: 'Account'}">
@@ -79,6 +83,7 @@ import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../AppState'
 import { charactersService } from '../services/CharactersService'
 import Notification from '../utils/Notification'
+import router from '../router'
 import { resultsService } from '../services/ResultsService'
 // import { dndService } from '../services/DndService'
 
@@ -114,6 +119,19 @@ export default {
       async random() {
         try {
           await resultsService.randomCharacter()
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      },
+      async start() {
+        try {
+          await Notification.start()
+          if (AppState.quiz) {
+            Notification.toast('A new adventurer then!', 'info')
+          } else {
+            Notification.toast("I thought I'd seen you before!", 'info')
+          }
+          router.push('questions')
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }

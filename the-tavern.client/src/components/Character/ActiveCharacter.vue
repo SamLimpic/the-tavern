@@ -3,8 +3,9 @@
   <div class="col-sm-6 col-12 mt-md-4 mt-3">
     <div class="img-container position-relative">
       <img :src="character.imgUrl" class="w-100 bg-warning p-1 shadow rounded" alt="">
-      <i class="fas fa-edit btn-overlay text-shadow hoverable font-lg" title="Edit Character" aria-label="Edit Character" @click="editCharacter(character)" v-if="character.id"></i>
+      <i class="fas fa-edit btn-edit text-shadow hoverable font-lg" title="Edit Character" aria-label="Edit Character" @click="editCharacter(character)" v-if="character.id"></i>
       <i class="fas fa-ban btn-delete text-shadow hoverable font-lg" title="Delete Character" aria-label="Delete Character" @click="deleteCharacter(character)" v-if="character.id"></i>
+      <i class="fas fa-palette btn-image text-shadow hoverable font-lg" title="Edit Character" aria-label="Edit Character" @click="editImgUrl(character)" v-if="character.id"></i>
     </div>
   </div>
   <div class="col-sm-6 col-12 mt-md-4 mt-3 pl-sm-0 ml-sm-0 ml-3 pl-3">
@@ -137,7 +138,16 @@ export default {
           await resultsService.getRace(character.race)
           await Notification.multiModal(character.name, character.age, character.gender, character.alignment, character.imgUrl)
           await charactersService.editCharacter(character)
-          Notification.toast('Your character was updated!', 'success')
+          Notification.toast(`${character.name} was updated!`, 'success')
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'error')
+        }
+      },
+      async editImgUrl(character) {
+        try {
+          await Notification.editImage(character.imgUrl)
+          await charactersService.editCharacter(character)
+          Notification.toast(`Looking good, ${character.name}!`, 'success')
         } catch (error) {
           Notification.toast('Error: ' + error, 'error')
         }
@@ -166,7 +176,7 @@ export default {
     1.5px 1.5px 0 #000;
 }
 
-.btn-overlay {
+.btn-edit {
   position: absolute;
   border: none;
   background: transparent;
@@ -177,7 +187,22 @@ export default {
   transition: all 0.3s ease-in-out;
 }
 
-.btn-overlay:hover {
+.btn-edit:hover {
+  color: var(--warning)
+}
+
+.btn-image {
+  position: absolute;
+  border: none;
+  background: transparent;
+  transform: scaleX(-1);
+  left: 15px;
+  bottom: 15px;
+  color: var(--info);
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-image:hover {
   color: var(--warning)
 }
 

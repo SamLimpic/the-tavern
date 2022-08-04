@@ -251,7 +251,7 @@ class CharactersService {
       speed: race.speed,
       health: job.health,
       proBonus: 2,
-      imgUrl: '',
+      imgUrl: 'http://www.geocities.ws/Area51/Orion/3107/Lance21.jpg',
       scores: AppState.scores,
       languages: [],
       abilities: [],

@@ -158,7 +158,8 @@ class QuestionsService {
       abilities: 0,
       score: 0,
       spells: 0,
-      cantrips: 0
+      cantrips: 0,
+      select: 0
     }
     AppState.activeRolls = {
       0: 0,

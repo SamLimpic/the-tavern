@@ -3,6 +3,8 @@ import { AppState } from '../AppState'
 
 const confirm = '#2A783B'
 const cancel = '#BD3428'
+const info = '#1A92B6'
+const warning = '#ea7f23'
 export default class Notification {
   /**
  *
@@ -156,13 +158,16 @@ export default class Notification {
       confirmButtonText: 'Next &rarr;',
       confirmButtonColor: confirm,
       cancelButtonColor: cancel,
-      progressSteps: [1, 2, 3, 4, 5]
+      progressSteps: [1, 2, 3, 4]
     }).queue([
       {
         title: "What is your character's name?",
         icon: 'question',
         inputPlaceholder: 'The Nameless One',
-        inputValue: name
+        inputValue: name,
+        inputAttributes: {
+          maxlength: 25
+        }
       },
       {
         title: 'How old is your character?',
@@ -208,15 +213,15 @@ export default class Notification {
           }
         },
         inputValue: alignment.replace(' ', '_')
-      },
-      {
-        title: 'What does your character look like?',
-        icon: 'info',
-        input: 'text',
-        text: 'Paste an Image URL below',
-        inputPlaceholder: "We've provided you a placeholder",
-        inputValue: imgUrl
       }
+      // {
+      //   title: 'What does your character look like?',
+      //   icon: 'info',
+      //   input: 'text',
+      //   text: 'Paste an Image URL below',
+      //   inputPlaceholder: "We've provided you a placeholder",
+      //   inputValue: imgUrl
+      // }
     ]).then((result) => {
       if (result.value) {
         if (result.value[0] === '') {
@@ -238,11 +243,6 @@ export default class Notification {
           AppState.activeCharacter.alignment = 'True Neutral'
         } else {
           AppState.activeCharacter.alignment = result.value[3].replace('_', ' ')
-        }
-        if (result.value[4] === '') {
-          AppState.activeCharacter.imgUrl = 'http://www.geocities.ws/Area51/Orion/3107/Lance21.jpg'
-        } else {
-          AppState.activeCharacter.imgUrl = result.value[4]
         }
         AppState.save = true
       } else {
@@ -269,6 +269,47 @@ export default class Notification {
       icon: 'question',
       text: body,
       confirmButtonColor: confirm
+    })
+  }
+
+  static async editImage(image) {
+    const { value: url } = await Swal.fire({
+      title: 'What does your character look like?',
+      input: 'url',
+      imageUrl: image,
+      imageAlt: 'Custom image',
+      inputPlaceholder: 'Paste an Image URL here',
+      showCancelButton: true,
+      cancelButtonColor: cancel
+    })
+
+    if (url) {
+      AppState.activeCharacter.imgUrl = url
+    }
+  }
+
+  static async start() {
+    await Swal.fire({
+      title: 'Greetings!',
+      html:
+        'Are you new to the world Dungeons & Dragons?' +
+        '<br><br>' +
+        'Seasoned adventurers can choose from our list of available races & classes, while newer party members may prefer our guided experience.' +
+        '<br><br>' +
+        'Choose wisely...',
+      showDenyButton: true,
+      showCloseButton: true,
+      confirmButtonColor: info,
+      confirmButtonText: 'Give me that list!',
+      denyButtonColor: warning,
+      denyButtonText: "I'd like some help!"
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+        AppState.quiz = false
+      } else if (result.isDenied) {
+        AppState.quiz = true
+      }
     })
   }
 }

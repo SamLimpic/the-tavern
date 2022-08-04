@@ -6,8 +6,7 @@ import { questionsService } from './QuestionsService'
 class ResultsService {
   async buildJob() {
     const title = AppState.jobs.filter(j => j.role === AppState.character.role && j.style === AppState.character.style)[0].title
-    const res = await this.getJob(title)
-    AppState.job = res
+    await this.getJob(title)
     AppState.questions.trade[0].answers = AppState.job.races
     AppState.questions.trade[1].answers = AppState.job.backgrounds
     if (AppState.job.subChoices.answers[0]) {
@@ -23,7 +22,7 @@ class ResultsService {
 
   async getJob(title) {
     const res = await api.get(`api/jobs?title=${title}`)
-    return res.data[0]
+    AppState.job = res.data[0]
   }
 
   async getRace(title) {
