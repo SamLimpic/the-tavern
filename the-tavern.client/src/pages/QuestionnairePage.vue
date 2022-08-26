@@ -9,24 +9,25 @@
             <Question />
           </div>
           <div v-else-if="!state.loading && !state.quiz">
-            <div class="col-12" v-if="state.count.select < 1">
+            <div class="col-12" v-if="state.count.select < 2">
               <h2 class="font-md">
                 <u>First, choose your character's Class!</u><br>
+                <span class="font-sm" v-if="state.count.select === 1">As well as your Sub-Class</span>
               </h2>
               <div class="row justify-content-center">
                 <Selection v-for="(s, index) in state.jobs" :key="index" :selection-prop="s" type-prop="Job" />
               </div>
             </div>
-            <div class="col-12" v-else-if="state.count.select === 1 || state.count.select === 2">
+            <div class="col-12" v-else-if="state.count.select > 1 && state.count.select < 4">
               <h2 class="font-md">
                 <u>Next, choose your character's Race!</u><br>
-                <span class="font-sm" v-if="state.count.select === 2">As well as your Sub-Race</span>
+                <span class="font-sm" v-if="state.count.select === 3">As well as your Sub-Race</span>
               </h2>
               <div class="row justify-content-center">
                 <Selection v-for="(s, index) in state.races" :key="index" :selection-prop="s" type-prop="Race" />
               </div>
             </div>
-            <div class="col-12" v-else-if="state.count.select > 2">
+            <div class="col-12" v-else-if="state.count.select > 3">
               <h2 class="font-md">
                 <u>Last, choose your character's Background!</u><br>
               </h2>

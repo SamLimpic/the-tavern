@@ -179,6 +179,7 @@ export default {
     onMounted(async() => {
       await resultsService.getSpells()
       await resultsService.getSkills()
+      await resultsService.getEquipment()
 
       if (state.built) {
         charactersService.createCharacter()

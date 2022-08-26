@@ -43,25 +43,33 @@ export default {
           Notification.toast(`You chose ${selection.title}`, 'success')
           switch (type) {
             case 'Job':
-              await resultsService.getJob(selection.title)
-              console.log('Job:', AppState.job)
+              if (selection.subjob.length) {
+                AppState.jobs = selection.subjob
+                await resultsService.getJob(selection.title)
+                AppState.count.select++
+              } else if (selection.subclass) {
+                resultsService.getSubJob(selection.title)
+                AppState.count.select++
+              } else {
+                await resultsService.getJob(selection.title)
+                AppState.count.select += 2
+              }
               break
             case 'Race':
               if (selection.subrace.length) {
                 AppState.races = selection.subrace
+                AppState.count.select++
               } else {
                 await resultsService.getRace(selection.title)
+                AppState.count.select += 2
               }
-              console.log('Race:', AppState.race)
               break
             case 'Background':
               await resultsService.getBackground(selection.title)
               AppState.built = true
               router.push('Results')
-              console.log('Background:', AppState.background)
               break
           }
-          AppState.count.select++
         }
       }
     }

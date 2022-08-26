@@ -28,6 +28,7 @@
 import { computed, onMounted, reactive } from 'vue'
 import { AppState } from '../../AppState'
 import Notification from '../../utils/Notification'
+import { resultsService } from '../../services/ResultsService'
 
 export default {
   name: 'Equipment',
@@ -52,19 +53,20 @@ export default {
       state,
       async addEquipment(obj) {
         if ((obj.weapon && obj.weapon[0] === 'Simple') || (obj.weapon && obj.weapon[0] === 'Martial')) {
-          await Notification.weaponChoice(obj.weapon[0])
+          await Notification.weaponChoice(obj.weapon[0], obj.weapon.length)
         } else if (obj.weapon && obj.weapon.length > 1) {
           Notification.toast(`You chose ${obj.weapon.length} ${obj.weapon[0]}s!`, 'success')
-          obj.weapon.forEach(w => AppState.character.equipment.weapons.push(w))
+          obj.weapon.forEach(w => resultsService.getWeapon(w))
         } else if (obj.weapon && obj.armor) {
           Notification.toast(`You chose a ${obj.weapon[0]} and ${obj.armor[0]}!`, 'success')
-          obj.weapon.forEach(w => AppState.character.equipment.weapons.push(w))
+          obj.weapon.forEach(w => resultsService.getWeapon(w))
+          obj.armor.forEach(a => resultsService.getArmor(a))
         } else if (obj.armor) {
           Notification.toast(`You chose ${obj.armor[0]}!`, 'success')
-          obj.armor.forEach(a => AppState.character.equipment.armor.push(a))
+          obj.armor.forEach(a => resultsService.getArmor(a))
         } else {
           Notification.toast(`You chose a ${obj.weapon[0]}!`, 'success')
-          obj.weapon.forEach(w => AppState.character.equipment.weapons.push(w))
+          obj.weapon.forEach(w => resultsService.getWeapon(w))
         }
         AppState.count.equipment++
       }

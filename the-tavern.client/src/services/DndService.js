@@ -18,7 +18,6 @@ class DndService {
         }
       }
     }
-    console.log(AppState.data)
   }
 
   async buildSpellBook() {

@@ -123,73 +123,172 @@ export const AppState = reactive({
       title: 'Barbarian',
       role: 'Tank',
       style: 'Weapons',
-      description: 'Powerful martial warriors that take and dish out damage better than anyone else.'
+      description: 'Powerful martial warriors that take and dish out damage better than anyone else.',
+      subclass: false,
+      subjob: []
     },
     {
       title: 'Bard',
       role: 'Utility',
       style: 'Balance',
-      description: 'An inspiring musician whose power echoes the music of creation'
+      description: 'An inspiring musician whose power echoes the music of creation.',
+      subclass: false,
+      subjob: []
     },
     {
       title: 'Cleric',
       role: 'Tank',
       style: 'Spells',
-      description: 'A priestly champion who wields divine magic in service of a higher power'
+      description: 'A priestly champion who wields divine magic in service of a higher power.',
+      subclass: false,
+      subjob: [
+        {
+          title: 'Knowledge',
+          subclass: true,
+          description: "You've devoted yourself to an all-knowing divine being",
+          subjob: []
+        },
+        {
+          title: 'Life',
+          subclass: true,
+          description: 'You cherish life and seek to preserve it above all else',
+          subjob: []
+        },
+        {
+          title: 'Light',
+          subclass: true,
+          description: "You've devoted yourself to a being of pure divine light",
+          subjob: []
+        },
+        {
+          title: 'Nature',
+          subclass: true,
+          description: 'You seek to protect and preserve the natural world',
+          subjob: []
+        },
+        {
+          title: 'Tempest',
+          subclass: true,
+          description: "You've pledged yourself to the wild and willful storm",
+          subjob: []
+        },
+        {
+          title: 'Trickery',
+          subclass: true,
+          description: "You've devoted yourself to a capricious and inexplicable being",
+          subjob: []
+        },
+        {
+          title: 'War',
+          subclass: true,
+          description: 'You seek to honor your god through bravery and combat',
+          subjob: []
+        }
+      ]
     },
     {
       title: 'Druid',
       role: 'Support',
       style: 'Balance',
-      description: 'A priest of the Old World, wielding the powers of nature and adopting animal forms'
+      description: 'A priest of the Old World, wielding the powers of nature and adopting animal forms.',
+      subclass: false,
+      subjob: []
     },
     {
       title: 'Fighter',
       role: 'Damage',
       style: 'Weapons',
-      description: 'A master of martial combat, skilled with a variety of weapons and armor'
+      description: 'A master of martial combat, skilled with a variety of weapons and armor.',
+      subclass: false,
+      subjob: []
     },
     {
       title: 'Monk',
       role: 'Support',
       style: 'Weapons',
-      description: 'A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection'
+      description: 'A master of martial arts, harnessing the power of the body in pursuit of physical and spiritual perfection.',
+      subclass: false,
+      subjob: []
     },
     {
       title: 'Paladin',
       role: 'Tank',
       style: 'Balance',
-      description: 'A holy warrior whose divine powers are strictly bound by sacred oaths'
+      description: 'A holy warrior whose divine powers are strictly bound by sacred oaths.',
+      subclass: false,
+      subjob: []
     },
     {
       title: 'Ranger',
       role: 'Damage',
       style: 'Balance',
-      description: 'A warrior who uses martial prowess and nature magic to combat threats in the wild'
+      description: 'A warrior who uses martial prowess and nature magic to combat threats in the wild.',
+      subclass: false,
+      subjob: []
     },
     {
       title: 'Rogue',
       role: 'Utility',
       style: 'Weapons',
-      description: 'A scoundrel who uses stealth and trickery to overcome obstacles and enemies'
+      description: 'A scoundrel who uses stealth and trickery to overcome obstacles and enemies.',
+      subclass: false,
+      subjob: []
     },
     {
       title: 'Sorcerer',
       role: 'Damage',
       style: 'Spells',
-      description: 'A spellcaster who draws on inherent magic from a gift or bloodline'
+      description: 'A spellcaster who draws on inherent magic from a gift or bloodline.',
+      subclass: false,
+      subjob: [
+        {
+          title: 'Draconic',
+          subclass: true,
+          description: 'You are descended from an ancient dragonic bloodline',
+          subjob: []
+        },
+        {
+          title: 'Wild Magic',
+          subclass: true,
+          description: 'Wild and unexplained magic imbues your bloodline from ages past',
+          subjob: []
+        }
+      ]
     },
     {
       title: 'Warlock',
       role: 'Utility',
       style: 'Spells',
-      description: 'A wielder of magic that is derived from a bargain with an extraplanar entity'
+      description: 'A wielder of magic that is derived from a bargain with an extraplanar entity.',
+      subclass: false,
+      subjob: [
+        {
+          title: 'Archfey',
+          subclass: true,
+          description: "You've pledged yourself to a wild and willful fey being",
+          subjob: []
+        },
+        {
+          title: 'Fiend',
+          subclass: true,
+          description: "You've pledged yourself to a dark and sinister fiend",
+          subjob: []
+        },
+        {
+          title: 'Great Old One',
+          subclass: true,
+          description: "You've pledged yourself to an incomprehensible ancient being",
+          subjob: []
+        }
+      ]
     },
     {
       title: 'Wizard',
       role: 'Support',
       style: 'Spells',
-      description: 'A scholarly magic-user capable of manipulating the structures of reality'
+      description: 'A scholarly magic-user capable of manipulating the structures of reality.',
+      subclass: false,
+      subjob: []
     }
   ],
   races: [
@@ -200,16 +299,16 @@ export const AppState = reactive({
     },
     {
       title: 'Dwarf',
-      description: 'Stout, short and hardworking, Dwarves live their long lives with a spirit of good and justice. Their sturdiness allows them to be more resistant than other classes in combat as well as resist poison.',
+      description: 'Short, stout and hardworking, Dwarves live their long lives with a spirit of good and justice. Their sturdiness allows them to be more resistant than other classes in combat as well as resist poison.',
       subrace: [
         {
           title: 'Hill Dwarf',
-          description: 'Wiser than their mountain siblings, they also tend to be even more sturdy than them, meaning they are able to stand more hits before falling in combat.',
+          description: 'Wiser than their mountain siblings, they also tend to be even more sturdy than them, meaning they are able to withstand more hits before falling in combat.',
           subrace: []
         },
         {
           title: 'Mountain Dwarf',
-          description: 'The mountain and the labor in there has made them stronger. Their skin tends to be lighter toned as well as their stature a bit higher.',
+          description: 'The mountain and the labor therein has made them stronger. They tends to be lighter-skinned as well as a bit taller.',
           subrace: []
         }
       ]
@@ -225,7 +324,7 @@ export const AppState = reactive({
         },
         {
           title: 'High Elf',
-          description: 'High elves are more studious and value art in a greater way than the other subraces. In addition, they master both longswords and shortswords, as well as shortbows and longbows.',
+          description: 'High elves are more studious and value art more than the rest. In addition, they master both longswords and shortswords, as well as shortbows and longbows.',
           subrace: []
         },
         {
@@ -253,15 +352,16 @@ export const AppState = reactive({
     },
     {
       title: 'Half-Elf',
-      description: 'These beings combine the best of elves and humans, or so they say. Isolated from both worlds, they often work as ambassadors. They often wander in search of adventurers with whom they can find a sense of belonging.'
+      description: 'These beings combine the best of elves and humans, or so they say. Isolated from both worlds, they often work as ambassadors. They often wander in search of adventurers with whom they can find a sense of belonging.',
+      subrace: []
     },
     {
       title: 'Halfling',
-      description: 'Halflings are isolated, cheerful folk who love their homes and communities. However, a strong sense of curiosity inhabits in most of them,. They are extremely agile, but not as fast as other races',
+      description: 'Halflings are isolated, cheerful folk who love their homes and communities. However, a strong sense of curiosity inhabits most of them. They are extremely agile, but not as fast as other races',
       subrace: [
         {
           title: 'Lightfoot Halfling',
-          description: 'Lightfoot Halflings can easily hide behind anything that is higher than themselves and tend to be more charismatic than the rest from their race.',
+          description: 'Lightfoot Halflings can easily hide behind anything that is taller than themselves and tend to be more charismatic than the rest from their race.',
           subrace: []
         },
         {

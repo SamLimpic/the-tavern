@@ -25,6 +25,10 @@ class ResultsService {
     AppState.job = res.data[0]
   }
 
+  getSubJob(title) {
+    AppState.job.subJobs = AppState.job.subJobs.find(j => j.title === title)
+  }
+
   async getRace(title) {
     const res = await api.get(`api/races?title=${title}`)
     AppState.race = res.data[0]
@@ -50,6 +54,24 @@ class ResultsService {
   async getSkills() {
     const res = await api.get('api/skills')
     AppState.skillsList = res.data
+  }
+
+  getWeapon(str) {
+    if (AppState.character.equipment.weapons.find(w => w.title === str)) {
+      AppState.character.equipment.weapons.find(w => w.title === str).count++
+    } else {
+      AppState.weapons.find(w => w.title === str).count = 1
+      AppState.character.equipment.weapons.push(AppState.weapons.find(w => w.title === str))
+    }
+  }
+
+  getArmor(str) {
+    if (AppState.character.equipment.armor.find(w => w.title === str)) {
+      AppState.character.equipment.armor.find(w => w.title === str).count++
+    } else {
+      AppState.armor.find(w => w.title === str).count = 1
+      AppState.character.equipment.armor.push(AppState.armor.find(w => w.title === str))
+    }
   }
 
   // ANCHOR Loads Local Storage data from Questionnaire if the Results Page is refreshed

@@ -71,7 +71,7 @@
       </h2>
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Abilities for the Active Character -->
-        <EquipmentList v-for="e in character.equipment.weapons" :key="e" :equipment-prop="e" />
+        <EquipmentList v-for="e in character.equipment.weapons" :key="e" :equipment-prop="e" type-prop="weapon" />
       </div>
     </div>
     <div v-if="character.equipment.armor[0]">
@@ -80,7 +80,7 @@
       </h2>
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Abilities for the Active Character -->
-        <EquipmentList v-for="e in character.equipment.armor" :key="e" :equipment-prop="e" />
+        <EquipmentList v-for="e in character.equipment.armor" :key="e" :equipment-prop="e" type-prop="armor" />
       </div>
     </div>
     <div v-if="character.equipment.tools[0]">
@@ -89,7 +89,7 @@
       </h2>
       <div class="row justify-content-center mt-3">
         <!-- SECTION Displays available Abilities for the Active Character -->
-        <EquipmentList v-for="e in character.equipment.tools" :key="e" :equipment-prop="e" />
+        <Language v-for="e in character.equipment.tools" :key="e" :language-prop="e" />
       </div>
       <h2 class="mt-3">
         <u>Languages</u>

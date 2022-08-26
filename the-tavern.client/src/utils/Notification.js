@@ -1,10 +1,11 @@
 import Swal from 'sweetalert2'
 import { AppState } from '../AppState'
+import { resultsService } from '../services/ResultsService'
 
 const confirm = '#2A783B'
 const cancel = '#BD3428'
-const info = '#1A92B6'
-const warning = '#ea7f23'
+// const info = '#1A92B6'
+// const warning = '#ea7f23'
 export default class Notification {
   /**
  *
@@ -64,7 +65,7 @@ export default class Notification {
   }
 
   // SECTION Weapon Selection Modal
-  static async weaponChoice(type) {
+  static async weaponChoice(type, num) {
     if (type === 'Martial') {
       const { value: weapon } = await Swal.fire({
         title: `Select your ${type} Weapon`,
@@ -98,12 +99,23 @@ export default class Notification {
         inputPlaceholder: 'Select a weapon',
         showCancelButton: true,
         confirmButtonColor: confirm,
-        cancelButtonColor: cancel
+        cancelButtonColor: cancel,
+        inputValidator: (value) => {
+          return new Promise((resolve) => {
+            if (value !== '') {
+              resolve()
+            } else {
+              resolve('You need to select a weapon!')
+            }
+          })
+        }
       })
 
       if (weapon) {
         this.toast(`You chose a ${weapon}!`, 'success')
-        AppState.character.equipment.weapons.push(weapon)
+        for (let i = 0; i < num; i++) {
+          resultsService.getWeapon(weapon)
+        }
       }
     }
     if (type === 'Simple') {
@@ -140,12 +152,23 @@ export default class Notification {
         inputPlaceholder: 'Select a weapon',
         showCancelButton: true,
         confirmButtonColor: confirm,
-        cancelButtonColor: cancel
+        cancelButtonColor: cancel,
+        inputValidator: (value) => {
+          return new Promise((resolve) => {
+            if (value !== '') {
+              resolve()
+            } else {
+              resolve('You need to select a weapon!')
+            }
+          })
+        }
       })
 
       if (weapon) {
         this.toast(`You chose a ${weapon}!`, 'success')
-        AppState.character.equipment.weapons.push(weapon)
+        for (let i = 0; i < num; i++) {
+          resultsService.getWeapon(weapon)
+        }
       }
     }
   }
@@ -288,20 +311,29 @@ export default class Notification {
     }
   }
 
+  static expandEquipment(title, body, properties) {
+    Swal.fire({
+      icon: 'question',
+      title: title,
+      html:
+        `<h5>${properties}</h5>` +
+        `<h4>${body}</h4>`,
+      confirmButtonColor: confirm
+    })
+  }
+
   static async start() {
     await Swal.fire({
       title: 'Greetings!',
       html:
-        'Are you new to the world Dungeons & Dragons?' +
-        '<br><br>' +
-        'Seasoned adventurers can choose from our list of available races & classes, while newer party members may prefer our guided experience.' +
-        '<br><br>' +
-        'Choose wisely...',
+        '<h5>Are you new to the world Dungeons & Dragons?</h5>' +
+        '<h6>Seasoned adventurers can choose from our list of available races & classes, while newer party members may prefer our guided experience.</h6>' +
+        '<h5>Choose wisely...</h5>',
       showDenyButton: true,
       showCloseButton: true,
-      confirmButtonColor: info,
+      confirmButtonColor: confirm,
       confirmButtonText: 'Give me that list!',
-      denyButtonColor: warning,
+      denyButtonColor: cancel,
       denyButtonText: "I'd like some help!"
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
